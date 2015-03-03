@@ -1,0 +1,31 @@
+
+
+\DecVar \Xcoord
+
+%% Move the pen to the loc which is furthest right
+\Define \MoveToRightmost(2)
+{
+%% #1:  A loc
+%% #2:  A loc
+	\MoveToLoc(#1)
+  	\GetX
+	\Q=\Xcoord;
+	\MoveToLoc(#2)
+	\GetX
+	\MoveToLoc(#1)
+	\IF \GtDec(\Xcoord,\Q) \THEN
+	    \MoveToLoc(#2)
+	    \FI
+}
+
+%% Store x component + 500 of pen loc in Xcoord
+\Define \GetX(0)
+{
+\MarkLoc(temp)  
+\Move(-500,0)	\MarkLoc(leftUp)
+\Move(0,-100)	\MarkLoc(leftDown)
+\MoveToLoc(temp)	\Move(100,0)	\MarkLoc(tempRight)
+\MoveToLL(leftUp,leftDown)(temp,tempRight)
+\MarkLoc(x)
+\LSeg\Xcoord(x,temp)
+}

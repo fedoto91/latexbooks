@@ -1,0 +1,39 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+%% Show a method to return the student's gpa
+%% rounded to two decimal places.
+
+\begin {figure}
+
+\begin {verbatim}
+/**  Postcondition: return this Student's gpa,
+  *                 rounded to the nearest one 
+  *                 hundredth.
+  */
+public double getRoundedGPA()
+{  int gpaAsInt;
+   gpaAsInt = (int) (gpa * 100 + 0.5);
+   return gpaAsInt / 100.0;
+}
+\end{verbatim}
+
+
+
+
+\caption {Method which returns a Student's gpa,
+rounded to the nearest hundredth}
+\label {fig:roundedGPA}
+
+\end {figure}
+
+%% \end {document}
+

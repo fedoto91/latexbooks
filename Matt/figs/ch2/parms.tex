@@ -1,0 +1,58 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+%% Correct usage of actual and formal parameters
+
+\begin {figure}
+
+\begin {tabular} {l l l}
+Method signature   
+	&  Method invocation 
+	& Remarks  				\\
+\hline
+public void &	&				\\
+meth(int a, char b)
+	& s1.meth(3);
+	& Incorrect: there are two formal parameters \\
+	 & &  and only two actual parameters 	\\ 
+	& s1.meth(3, 4);
+	& Incorrect: The type of the second actual parameter \\
+	& &  must be char, to agree with the second formal  	\\
+	& &  parameter			\\
+	& s1.meth(3,'b');
+	& ok					\\
+	& x = s1.meth(3,'b');
+	& Incorrect: The method is a void method \\
+	& &  and has no explicit result for assignment
+	  to x.					\\
+public int 	&	&			\\
+evenOdd (int a)
+	&  int result;	&			\\
+	&   result = evenOdd(17);
+	&  ok					\\
+	&  evenOdd(17);
+	&  The compiler will accept this, but it is probably \\
+	& &  not what is desired; the explicit
+	   result is discarded.			\\
+\end {tabular}
+	   
+
+
+\caption {Examples of correct and incorrect
+method calls.  Actual and formal parameters
+must have a one-to-one correspondence.
+Void methods have no explicit result.}
+\label {fig:parms}
+
+\end {figure}
+
+%% \end {document}
+

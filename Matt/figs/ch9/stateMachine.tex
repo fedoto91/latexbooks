@@ -1,0 +1,50 @@
+% LaTeX source for ``Compiler Design: Theory, Tools, and Examples''
+% Primary Author:  Seth D. Bergmann
+
+%% State machine to process java comments 
+
+
+
+%% \documentclass{article}
+%% \usepackage{../../DraTex,../../AlDraTex}
+
+%% \begin{document}
+\begin{figure}    %% default loc is [tbp]  top, bottom, Page of floats.
+
+\Draw
+
+\NewCIRCNode(\StateNode,110,)
+\Define\StateAt(3){ \MoveTo(#2,#3)		%% regular state
+   \StateNode(#1)(--\footnotesize{#1}--)}
+
+\DiagramSpec(\StateAt&
+             \TransEdge)
+
+\ArrowHeads(1)
+\Diagram ( DEF,0,0 & SLASH,80,0 & SINGLE,150,0 &
+	   MULTI,80,-70 & STAR,0,-70 ) 
+         (DEF, SLASH, /, A$,$n 		&
+	  DEF,DEF,180,n$,$A$,$*		&
+	  SLASH,SINGLE,/,		&
+	  SLASH,MULTI,*,		&
+	  SINGLE,SINGLE,0,A$,$*$,$/	&
+	  MULTI, MULTI, 0, /$,$n$,$A	&
+	  MULTI,STAR,*,	n$,$A		&
+	  STAR, DEF, /, 		&
+	  STAR, STAR, 200, *
+	  )
+\CurvedEdgeAt (SINGLE,0,1,  DEF,1.5,1.5)
+	      (90,0.3, 45, 0.3)
+\EdgeLabel[+](--n--)
+
+\EndDraw
+
+
+\caption{State machine to process java comments.  
+\texttt{n} represents a newline character. \texttt{A} represents any
+input character except newline, *, and /.
+Start at the default state (DEF).  }
+\label{fig:stateMachine}
+\end{figure}
+
+%% \end{document}

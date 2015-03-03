@@ -1,0 +1,67 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Class diagram of abstract clsses.
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\MinNodeSize(40,40)
+
+\RectNode(super)(--$<<$abstract$>>$
+      		\underline{class Super}
+		abstract meth1();
+		abstract meth2();--)
+\MoveToExit(-2,-3)
+\RectNode(sub1)(--\underline{class Sub1}
+		meth1()
+		\{// concrete\}
+		meth2()
+		\{// concrete\}--)
+\MoveToExit(3,0)
+\RectNode(sub2)(--$<<$abstract$>>$
+      		\underline{class Sub2}
+		abstract meth1();
+		 meth2()
+		\{// concrete\}--)
+\MoveToExit(-1,-3)
+\RectNode(sub3)(--\underline{class Sub3}
+		meth1()
+		\{// concrete\}--)
+\MoveToExit(3,0)
+\RectNode(sub4)(--\underline{class Sub4}
+		meth1()
+		\{// concrete\}--)
+
+\ArrowSpec(H)
+\Edge(sub1,super)
+\Edge(sub2,super)
+\Edge(sub3,sub2)
+\Edge(sub4,sub2)
+
+\EndDraw
+
+\caption {Class diagram showing an abstract method which 
+must be implemented (concrete) for use in concrete sub-classes}
+
+
+\label {fig:abstrMeth}
+
+\end {figure}
+
+%% \end {document}
+

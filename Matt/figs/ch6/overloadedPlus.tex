@@ -1,0 +1,42 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Concatenation gotcha
+
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+\begin {tabular} {l | l | l}
+Plus operation(s)	& 	Result 	& 	Explanation			\\
+\hline
+\texttt{2 + 3}		& 	\texttt{5}	&	Addition of ints   		\\
+\texttt{"2" + "3"}	& 	\texttt{"23"}	&	Concatenation of Strings	\\
+\texttt{2 + "3"}	& 	\texttt{"23"}	&	Concatenation of Strings	\\
+\texttt{"2" + 3}	& 	\texttt{"23"}	&	Concatenation of Strings	\\
+\texttt{2 + 3 + " is the result"} & \texttt{"5 is the result"} & 
+			Addition done first	\\
+\texttt{"Result is " + 2 + 3}	& \texttt{"Result is 23"}	&	
+			Concatenation done first					\\
+\texttt{"Result is " + (2 + 3)}	& \texttt{"Result is 5"} &	
+			Parentheses take precedence
+
+\end {tabular}
+
+\caption {The overloaded + operator can mean addition of numbers or
+concatenation of Strings, depending on the context. }
+
+\label {fig:overloadedPlus}
+
+\end {figure}
+
+%% \end {document}
+

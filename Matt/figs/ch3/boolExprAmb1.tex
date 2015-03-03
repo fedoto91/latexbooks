@@ -1,0 +1,57 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+%% Draw boxes to demonstrate  ambiguity
+%% of definition of boolean expressions.
+%% This is the correct interpretation.
+
+\begin {figure}
+\Draw
+
+\input figs/boxIt
+%% \input ../boxIt
+
+\MarkLoc(a)
+\Move(70,0)
+\MarkLoc(b)
+\Move(70,0)
+\MarkLoc(c)
+
+\boxItDefault(a,3,a)
+\boxItDefault(b,3,b)
+\boxItDefault(c,3,c)
+
+\MoveToLoc(a)
+\Move(-5,0)
+\MarkLoc(d)
+\MoveToLoc(b)
+\Move(40,0)
+\MarkLoc(e)
+\Move(-40,0)
+\MarkLoc(f)
+
+\boxIt($!$,7,d,70,25)
+%% \boxIt($!$\hspace{15pt}\hfill,7,d,70,25)
+\boxIt($\&\&$,6,e,110,25)
+\boxIt(\hspace{20pt}$||$\hspace{85pt},5,f,240, 35)
+
+\EndDraw
+
+\caption {Applying the definition of boolean expression to: 
+$!a ||   b \&\& c $ 		%% won't take \verb
+}
+
+\label {fig:boolExprAmb1}
+
+\end {figure}
+
+%% \end {document}
+

@@ -1,0 +1,53 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Partial class diagram of the Exception classes
+%% from java.util and also BadGpaException
+
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% \begin{document}
+
+\begin {figure}
+\ArrowHeads(1)
+\ArrowSpec(H)
+\Define \MyEdge(2)
+  { \Edge(#2,#1) }
+\TreeSpec(\RectNode)() (\MyEdge)
+\Draw
+
+\Tree()
+  (2,\underline{Throwable}~~~~				//
+   0,\underline{Error}~~~~			
+	& 3,\underline{Exception}~~ ~~			//
+   2,\underline{RunTimeException}~~ \symbol{40}unchecked\symbol{41} ~~	
+        & 0,\underline{BadGpaException}~~ \symbol{40}checked\symbol{41} ~~	
+	& 1,\underline{IOException}~~ \symbol{40}checked\symbol{41} ~~	//
+   0,\underline{NullPointerException}~~ \symbol{40}unchecked\symbol{41} ~~	
+%% 	& 0,\underline{IndexOutOfBoundsException}~~ \symbol{40}unchecked\symbol{41} ~~	
+	& 0,\underline{IllegalArgumentException}~~ \symbol{40}unchecked\symbol{41} ~~	
+	& 0,\underline{FileNotFoundException}~~ \symbol{40}checked\symbol{41} ~~	//
+  )
+
+%%%% 
+%% /symbol{40} is left parenthesis
+%% /symbol{41} is right parenthesis
+%% Maybe you can find a better way to include parentheses in a tree.
+
+
+
+\EndDraw
+
+\caption {Class diagram showing some of the 
+Exception classes in the Java class library with our own class,
+BadGpaException}
+
+
+\label {fig:ExceptionClasses2}
+
+\end {figure}
+
+%% \end {document}

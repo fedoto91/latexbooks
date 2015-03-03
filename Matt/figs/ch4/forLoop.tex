@@ -1,0 +1,98 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%%  \begin{document}
+%%  Flow diagram for a for loop
+
+\begin {figure}
+
+\Draw
+
+\FcNode(A)
+\Move(0,-35)
+
+\MinNodeSize(170,20)
+\RectNode(init)(--initilization--)
+{ \Move(0,-60)
+\MinNodeSize(170,100)
+\RectNode(big)(-- --)
+}
+
+
+\Move(0,-25)
+\FcNode(I)
+
+\MinNodeSize(20,20)
+\Move(0,-35)
+\DiamondNode(cond)(--condition--)
+\Move(50,10)
+\Node(false)(--false--)
+\MoveToLoc(cond)
+\Move(-15,-25)
+\Node(true)(--true--)
+
+
+
+
+\MoveToLoc(I)
+\Move(-50,0)
+\RectNode(incr)(--increment--)
+
+\MoveToLoc(cond)
+\Move(0,-75)
+\RectNode(stmt)(--statement--)
+
+\Move(0,-25)
+\FcNode(F)
+
+\Move(-30,0)
+\FcNode(G)
+
+\Move(-75,0)	 %% use HVEdge to connect G with incr
+\FcNode(G)
+
+\MoveToLoc(cond)
+\Move(100,0)
+\FcNode(B)
+
+\MoveToLoc(F)
+\Move(0,-25)
+\FcNode(D)	 %% HVEdge, D to B
+
+\Move(0,-25)
+\FcNode(E)
+
+\ArrowHeads(1)
+\Edge(A,init)
+\Edge(D,E)  
+\VHEdge(G,incr)
+\Edge(cond,stmt)
+\Edge(incr,I)
+\Edge(init,cond)
+
+\ArrowHeads(0)
+\Edge(cond,B)
+\VHEdge(B,D)
+\Edge(stmt,F)  
+\Edge(F,G)  
+
+
+
+\EndDraw
+
+
+\caption {Flow diagram for a \texttt{for} loop structure}
+
+\label {fig:forLoop}
+
+\end {figure}
+
+%% \end {document}
+

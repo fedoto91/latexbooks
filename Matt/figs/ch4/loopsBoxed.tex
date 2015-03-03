@@ -1,0 +1,67 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+%% Apply definition of stmt by drawing boxes 
+%% around substatements
+
+\begin {figure}
+
+\Draw
+
+\MarkLoc(cmpd)
+
+\Move(25,9)
+\MarkLoc(while)
+
+\Move(5,-10)
+\MarkLoc(if)
+
+\Move(-10,12)
+\MarkLoc(mult)
+
+\Move(0,-47)
+\MarkLoc(add)
+
+\Move(-28,-29)
+\MarkLoc(assign)
+
+
+\input{figs/boxIt}
+%% \input{../boxIt}
+\boxIt (
+	\{  \hfill				~~~~
+	\hspace{10pt} $while ( y < 10 )$  \hfill	~~~~
+       	\hspace{20pt} $if (y > 0)$ \hfill 	~~~~
+       	\hspace{30pt} $y = y * 2;$ \hfill	~~~~
+	\hspace{20pt} $else$	   \hfill	~~~~
+       	\hspace{30pt} $y = y + 1;$ \hfill	~~~~
+       	\hspace{10pt} $x = y;$     \hfill	~~~~
+	\}  \hfill,
+         4,cmpd, 220,220)
+
+\boxIt (~,5,while,140,122)
+\boxIt (~,3,if,100,95)
+\boxIt (~,1,mult,70,20)
+\boxIt (~,1,add,70,20)
+\boxIt (~,1,assign,50,20)
+
+\EndDraw
+
+
+\caption {Applying the definition of 
+ Statement by drawing a box around each statement} 	
+
+ \label {fig:loopsBoxed}
+
+\end {figure}
+
+%% \end {document}
+

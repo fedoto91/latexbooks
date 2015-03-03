@@ -1,0 +1,59 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% General diagram of the class hierarchy
+
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\MinNodeSize(40,40)
+
+\RectNode (Object)(--\underline {Object}~~~~--)
+\MoveToExit(-6,-4)
+\RectNode (sub1)(--\underline {Subclass}~~~~--)
+\MoveToExit(3,0)
+\RectNode (sub2)(--\underline {Subclass}~~~~--)
+\MoveToExit(3,0)
+\Node (dots)(-- .~.~. --)
+\MoveToExit(3,0)
+\RectNode (subn)(--\underline {Subclass}~~~~--)
+\MoveToLoc(sub2)
+\Move(-40,-60)
+\RectNode (sub21)(--\underline {SubSubclass}~~~~--)
+\MoveToExit(3,0)
+\RectNode (sub22)(--\underline {SubSubclass}~~~~--)
+\MoveToExit(3,0)
+
+\ArrowSpec (H)
+\Edge(sub1,Object)
+\Edge(sub2,Object)
+\Edge(subn,Object)
+\Edge(sub21,sub2)
+\Edge(sub22,sub2)
+
+\EndDraw
+
+\caption {Class diagram showing Object at the root}
+
+
+\label {fig:classHierarchy}
+
+\end {figure}
+
+%% \end {document}
+

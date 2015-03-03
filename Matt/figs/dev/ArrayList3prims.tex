@@ -1,0 +1,52 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for an ArrayList of size 3
+%% Wrapper classes and Strings may be treated as primitives.
+
+\documentclass{article}
+
+\usepackage{../../cmds}
+\usepackage{../../DraTex}
+\usepackage{../../AlDraTex}
+
+
+\begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+\input {../object}
+%% \input {figs/object}
+
+
+
+
+\Indirect \Table <arrayListPrims>
+{1,size, 3	&
+ 1, 0, "joe"  	&
+ 1, 1, "jim"	&
+ 1, 2, "mary"	
+}
+
+\Indirect \Table <arrayListObjs>
+ {  0,0,foo, foo, foo }
+  
+
+
+%% \Scale(0.8,0.8)
+\Obj (1, roster,ArrayList$<String>$,arrayListPrims,arrayListObjs)
+    
+\EndDraw
+
+\caption {An object diagram showing an ArrayList of Strings
+with size 3 }
+
+\label {fig:ArrayList3prims}
+
+\end {figure}
+
+\end {document}
+

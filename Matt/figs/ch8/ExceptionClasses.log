@@ -1,0 +1,81 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=latex 2013.9.25)  26 MAR 2014 11:34
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**ExceptionClasses
+(./ExceptionClasses.tex
+LaTeX2e <2011/06/27>
+Babel <3.9f> and hyphenation patterns for 2 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (../../cmds.sty
+\c@ruleNum=\count87
+)
+(../../DraTex.sty) (../../AlDraTex.sty
+\:C=\count99
+\:Ca=\count100
+\:Cb=\count101
+\:Cc=\count102
+\:tk=\toks15
+\Va=\dimen149
+\Vb=\dimen150
+\:Vc=\dimen151
+\:Vd=\dimen152
+\:Ve=\dimen153
+\:AddrCount=\count103
+) (./ExceptionClasses.aux)
+\openout1 = `ExceptionClasses.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 31.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 31.
+\:<y.0>=\dimen154
+\:<y.1>=\dimen155
+\:<y.2>=\dimen156
+\:<y.3>=\dimen157
+\:<x.0>=\dimen158
+\:<x.1>=\dimen159
+\:<x.2>=\dimen160
+
+Overfull \hbox (54.72308pt too wide) in paragraph at lines 20--36
+ [] 
+ []
+
+[1] (./ExceptionClasses.aux) ) 
+Here is how much of TeX's memory you used:
+ 1287 strings out of 495036
+ 11227 string characters out of 6181728
+ 95382 words of memory out of 5000000
+ 4570 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 36i,19n,29p,195b,892s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on ExceptionClasses.dvi (1 page, 11060 bytes).

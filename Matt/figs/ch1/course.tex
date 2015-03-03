@@ -1,0 +1,49 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+
+%% Object diagram of a Course object
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+\input {figs/object}
+
+
+\Indirect \Table <coursePrims>
+{  1, name, "Calculus"			&
+   1, credits, 4         		&
+   1, prof, "Einstein"
+}
+
+
+\Indirect \Table <courseObjs>
+ {  0, , , , , , , }
+  
+
+
+\Scale (0.8,0.8)
+\Obj (1, math, Course, coursePrims, courseObjs, , ,)
+    
+\EndDraw
+
+\caption {An object diagram}
+
+\label {fig:course}
+
+\end {figure}
+
+%% \end {document}
+
+

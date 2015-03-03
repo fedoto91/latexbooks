@@ -1,0 +1,48 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Object diagram showing effect a Student object
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+\input {figs/object}
+
+\Indirect \Table <studentPrims>
+{  
+   1, name, "joe" 		&
+   1, ssn,  "121-33-8493"		&
+   1, gpa,  0.0			
+}
+
+
+\Indirect \Table <studentObjs>
+ {  0,,,,, , , }
+  
+
+
+\Scale (0.8,0.8)
+\Obj (1, s1,Student,studentPrims,studentObjs, , , )
+
+\EndDraw
+
+\caption {An object diagram showing a variable storing a reference
+to a Student object}
+
+\label {fig:assignRef1}
+
+\end {figure}
+
+%% \end {document}
+

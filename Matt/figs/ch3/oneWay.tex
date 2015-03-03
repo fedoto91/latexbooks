@@ -1,0 +1,58 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%%  \begin{document}
+%% Flow diagram for a one-way selection structure
+
+\begin {figure}
+
+\Draw
+
+\FcNode(blankA)
+\Move(0,-50)
+\DiamondNode(cond)(--Condition--)
+{ \MoveToExit(1,0) \MarkGLoc(c) \Move(13,6) \Text(--false--) }
+{ \MoveToExit(0,-1) \Move(12,-5) \Text(--true--) }
+
+
+\Move(0,-50)
+\RectNode(stmt)(--Statement--)
+\Move(0,-25)
+\FcNode(blankB)
+\Move(0,-25)
+\FcNode(blankC)
+\Move(50,100)
+
+
+
+\ArrowHeads(1)
+\Edge (blankA,cond)
+\Edge (cond,stmt)
+\Edge (cond,stmt)
+\Edge (stmt,blankC)
+
+\MoveToLoc(c)
+\Line(20,0)
+\Line(0,-75)
+\Node(blankD)(----)
+\Edge(blankD,blankB)
+
+
+\EndDraw
+
+
+\caption {Flow diagram for a one-way selection structure}
+
+\label {fig:oneWay}
+
+\end {figure}
+
+%% \end {document}
+

@@ -1,0 +1,62 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+%% Definition of logical operations
+%% or, and, not
+
+\begin {figure}[p]
+
+The logical \emph {or} operation is 
+designated by the Java operator \verb.||.
+\begin {tabular} {c c c}
+	  x & y & x \verb.||. y		\\
+	\hline
+	false & false & false		\\
+	false & true  & true		\\
+	true  & false & true		\\
+	true  & true  & true		\\
+\end {tabular}
+
+\vspace{10pt}
+The logical \emph {and} operation is 
+designated by the Java operator %%%% \&\&
+\begin {tabular} {c c c}
+	  x & y & x \verb.&&. y		\\
+	\hline
+	false & false & false		\\
+	false & true  & false		\\
+	true  & false & false		\\
+	true  & true  & true		\\
+\end {tabular}
+
+\vspace{10pt}
+The logical \emph {not} operation is 
+designated by the Java operator ! 
+and is a unary operation
+
+\begin {tabular} {c c c}
+	  x &  ! x   		\\
+	\hline
+	false & true		\\
+	true  & false 		\\
+\end {tabular}
+
+
+
+\caption {Definitions of the logical 
+operations \emph {or}, \emph {and},
+and \emph {not}. }
+\label {fig:boolOps}
+
+\end {figure}
+
+%% \end {document}
+

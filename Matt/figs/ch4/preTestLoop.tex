@@ -1,0 +1,71 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%%  \begin{document}
+%% Flow diagram for a pre-test loop
+
+\begin {figure}
+
+\Draw
+
+\FcNode(blankA)
+\Move(0,-25)
+\FcNode(blankB)
+\Move(0,-50)
+\DiamondNode(cond)(--Condition--)
+{ \MoveToExit(1,0) \MarkGLoc(c) \Move(13,6) \Text(--false--) }
+{ \MoveToExit(0,-1) \Move(12,-5) \Text(--true--) }
+
+\Move(0,-50)
+\RectNode(stmt)(--Statement--)
+\Move(0,-25)
+\FcNode(blankD)
+\Move(0,-25)
+\FcNode(blankE)
+\Move(0,-25)
+\FcNode(blankF)
+\Move(50,25)
+\FcNode(blankG)
+\MoveToLoc(cond)
+\Move(50,0)
+\FcNode(blankH)
+\MoveToLoc(blankD)
+\Move(-50,0)
+\FcNode(blankJ)
+\MoveToLoc(blankB)
+\Move(-50,0)
+\FcNode(blankI)
+
+\ArrowHeads(1)
+\Edge (blankA,cond)
+\Edge (cond,stmt)
+\Edge (blankE,blankF)
+\Edge (blankI,blankB)
+
+\ArrowHeads(0)
+\Edge (cond,blankH)
+\Edge (stmt,blankD)
+\Edge (blankH,blankG)
+\Edge (blankE,blankG)
+\Edge (blankD,blankJ) 
+\Edge (blankI,blankJ) 
+
+
+\EndDraw
+
+
+\caption {Flow diagram for a pretest loop structure}
+
+\label {fig:preTestLoop}
+
+\end {figure}
+
+%% \end {document}
+

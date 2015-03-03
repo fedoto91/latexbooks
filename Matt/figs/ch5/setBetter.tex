@@ -1,0 +1,49 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for a set containing three values.
+%% This version allows Strings and wrapper classes to be treated
+%% as primitives.
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\Indirect \Table <numberObjs>
+ {  0, , , , , , , }
+  
+\Indirect \Table <numberPrims>
+ {  
+	1, ,  92 	&
+	1, ,  100	&
+	1, ,  96 	
+    }
+
+
+\Scale (0.8,0.8)
+\ObjSet(1, grades,Set~$<Integer>$,numberPrims,numberObjs,3)
+    
+\EndDraw
+
+\caption {A simplified object diagram showing a set after three
+items have been added. Since the type of the items is Integer (a wrapper for
+int), they can be treated like primitives.}
+
+\label {fig:setBetter}
+
+\end {figure}
+
+%% \end {document}
+

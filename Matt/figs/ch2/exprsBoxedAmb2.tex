@@ -1,0 +1,52 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%%  \documentclass{article}
+%% 
+%%  \usepackage{../../cmds}
+%%  \usepackage{../../DraTex}
+%%  \usepackage{../../AlDraTex}
+
+
+%%  \begin{document}
+%% Demonstrate ambiguity of definition
+%% using 3 + 4 * 7
+%% This is the correct interpretation
+
+\begin {figure}
+\Draw
+
+\input figs/boxIt
+%% \input ../boxIt
+
+\MarkLoc(a)
+\Move(70,0)
+\MarkLoc(b)
+\Move(75,0)
+\MarkLoc(c)
+
+\boxItDefault(3,1,a)
+\boxItDefault(4,1,b)
+\boxItDefault(7,1,c)
+
+\MoveToLoc(a)
+\Move(115,0)
+\MarkLoc(d)
+\Move(-10,0)
+\MarkLoc(e)
+
+\boxIt(\hspace{15pt}\hfill*\hspace{10pt}\hfill,4,d, 130,25)
+\boxIt(~$  +  $\hspace{150pt}\hfill,2,e,265, 35)
+
+\EndDraw
+
+
+\caption {An alternate solution 
+when applying the definition of 
+expression to $3+4*7$ }
+\label {fig:exprsBoxedAmb2}
+
+\end {figure}
+
+%% \end {document}
+

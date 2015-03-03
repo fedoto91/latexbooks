@@ -1,0 +1,103 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Diagram of a computer and peripherals
+
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% \usepackage{graphics}
+%% \begin{document}
+%% 
+\begin {figure}
+
+\Draw
+
+\MinNodeSize(30,10)
+
+\RectNode(cpu)(--CPU~~~~~~--)
+\MoveToExit(2,0)
+\RectNode(ram)(--RAM~~~~~~--)
+\MoveToExit(4,3)
+\OvalNode(diskTop)(-- --)
+\MoveToExit(0,-2.3)
+
+\MinNodeSize(30,30)
+\Node(disk)(--Disk--)
+\Move(-15,15)
+\Line(0,-30)
+\Move(30,0)
+\Line(0,30)
+\Move(-15,-30)
+\DrawOvalArc(15,5)(180,0)
+
+\Move(0,-50)
+\MinNodeSize(40,20)
+\RectNode(kb)(--KeyBoard~~~~--)
+\SetBrush(5,5){\PaintRect(1,1)}
+\Move(-20,-17)
+\PaintRect(40,20)
+\SetBrush(0,0){ }
+
+\MoveToExit(0,-4.5)
+\RRectNode(monitor)(--Monitor~~~~~~--)
+
+% USB
+%% \MoveToExit(-4.0,0)
+%% \MarkLoc(usb1) \Move(10,0)
+%% \MarkLoc(usb2) \Move(-5,10)
+%% \MarkLoc(usb3) \Move(15,-20)
+%% \PaintQuad(usb1,usb2,usb2,usb3)
+%% 
+%% \MarkLoc(sq)
+%% \PaintRect(10,10)  \Move(-25,-5)
+%% \PaintCircle(4)   \MarkLoc(circ) \Move(10, -35)
+%% 
+%% \PaintCircle(8)	  \MarkLoc(Circ)
+%% 
+%% \PenSize(1mm)
+%% \Ragged(50)
+%% 
+%% \Line(0,50)   \MoveToLoc(circ) 
+%% \MarkLoc(usb1) \Move(0,-30)
+%% \MarkLoc(usb2) \MoveToLoc(Circ)  \Move(0,10)
+%% \MarkLoc(usb4) \Move(-5,30)
+%% \MarkLoc(usb3)
+%% \Curve(usb1,usb2,usb3,usb4)
+%% 
+%% \MoveToLoc(Circ) 		\Move(0,15)
+%% \MarkLoc(usb1)			\Move(5,30)
+%% \MarkLoc(usb2)		\MoveToLoc(sq) 	\Move(0,-30)
+%% \MarkLoc(usb3)
+%% \Curve(usb1,usb2,usb3,sq)
+%% 
+%% \PenSize(0.75pt)
+%% \Ragged(7.5)
+%% 
+%% xxx
+
+
+\ArrowHeads(2)
+\CurvedEdgeAt(ram,1,0.5,disk,-1,0)(0,0.1,180,0.1)
+
+\ArrowHeads(1)
+\CurvedEdgeAt(kb,-1,0,ram,1,0)(180,0.1,0,0.1)
+
+\CurvedEdgeAt(ram,1,-0.5,monitor,-1,0)(0,0.1,180,0.1)
+
+
+
+\EndDraw
+
+%% \includegraphics*[5mm,5mm][20mm,30mm]{usb.eps}
+
+\caption {Simplified diagram of a computer with peripheral 
+devices}
+
+\label {fig:computer}
+
+\end {figure}
+
+%%  \end {document}

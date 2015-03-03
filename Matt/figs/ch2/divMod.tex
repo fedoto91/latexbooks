@@ -1,0 +1,42 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+%% Show examples of division and mod 
+
+\begin {figure}
+
+
+\begin{tabular} {c c c l}
+Example & Result  & type of result & remarks  \\
+\hline
+$15 / 8$   & 	1 	 & int	& decimal places are truncated \\
+$15 / 8.0$ &	1.875    & double & at least one operand is double \\
+$15.0 / 8$ &	1.875  	 & double & at least one operand is double \\
+$15 \% 8$  & 	7 	 & int 	  & remainder after division \\
+$0 \% 5$    & 	0 	 & int 	  &     \\
+$1 \% 5$    & 	1 	 & int 	  &     \\
+$2 \% 5$    & 	2 	 & int 	  &     \\
+$3 \% 5$    & 	3 	 & int 	  &     \\
+$4 \% 5$    & 	4 	 & int 	  &     \\
+$5 \% 5$    & 	0 	 & int 	  &     \\
+$6 \% 5$    & 	1 	 & int 	  &     \\
+$7 \% 5$    & 	2 	 & int 	  &     \\
+$10 \% 5$   & 	0 	 & int 	  & mod serves as a circular counter \\
+
+\end {tabular}
+
+\caption {Some examples of division and mod operations}
+\label {fig:divMod}
+
+\end {figure}
+
+%% \end {document}
+

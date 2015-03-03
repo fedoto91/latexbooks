@@ -1,0 +1,50 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+
+%% Object diagram of a University object
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+\input {figs/object}
+
+
+\Indirect \Table <studentPrims>
+{  1, name, "joe" 		&
+   1, ssn,  "183-22-4543"		&
+   1, gpa,  3.5		
+}
+
+
+\Indirect \Table <studentObjs>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+  
+
+
+\Scale (0.8,0.8)
+\OD (Student, studentPrims, studentObjs, 6)
+    
+\EndDraw
+
+\caption {An object diagram showing an instance
+of the class \texttt {Student}}
+
+\label {fig:simpleStudent}
+
+\end {figure}
+
+%% \end {document}
+
+

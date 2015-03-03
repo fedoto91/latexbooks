@@ -1,0 +1,53 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\begin{verbatim}
+
+public class Student
+{  // fields
+   private String name;
+   private String ssn;
+   private double gpa;
+
+   /** Constructor.
+       Initialize this Student's name, ssn, and gpa
+    */
+   public Student (String initialName, String initialSSN)
+   {  name = initialName;
+      ssn  = initialSSN;
+      gpa  = 0.0;
+   }
+
+   /** This method returns the name of this Student. */
+   public String getName()
+   {  return name;  }
+
+   /** This method changes the name of this Student. */
+   public void setName (String newName)
+   {  name = newName;  }
+
+}
+\end{verbatim}
+
+\caption {Java code defining a class named
+\texttt {Student} which has three fields,
+one constructor, and two methods }
+\label {fig:classWithConstr}
+
+\end {figure}
+
+%% \end {document}
+

@@ -1,0 +1,67 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for the GUI of the University InfoSys
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+%% \begin{document}
+
+\begin {figure} 
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\Indirect \Table <flowPrims>
+{ 1, ~  ,  ~ }		%% bottomRight[x] was wrong
+
+\Indirect \Table <flowObjs>
+{ 0,  ,  ,  , , , ,  }
+
+\Indirect \Table <northPrims>
+{ 0,  ,  }
+
+\Indirect \Table <northObjs>
+{ 1, layoutMgr, FlowLayout, flowPrims, flowObjs, , , }
+
+\Indirect \Table <borderPrims>
+{ 1, south, not~shown    &	%% Not showing value
+  1, east, null &
+  1, west, null &
+  1, center, not~shown 	%% Not showing value
+}
+  
+\Indirect \Table <borderObjs>
+{ 1, north, JPanel, northPrims, northObjs, , , }
+ 
+\Indirect \Table <contentPrims>
+{ 0,  ,  }
+
+\Indirect \Table <contentObjs>
+{ 1,layoutMgr, BorderLayout, borderPrims, borderObjs, , , }
+
+\Indirect \Table <framePrims>
+{  1,title,"State~U" }
+
+\Indirect \Table <frameObjs>
+{  1,contentPane,Container,contentPrims,contentObjs, , , }
+
+\Obj (1, frame,JFrame,framePrims,frameObjs, , , )
+    
+\EndDraw
+
+\caption {A hypothetical object diagram showing the value of the
+variable \texttt {frame} after the \texttt{makeFrame()} method
+has terminated}
+
+\label {fig:gui}
+
+\end {figure}
+
+%% \end {document}
+

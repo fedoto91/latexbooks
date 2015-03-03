@@ -1,0 +1,56 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% General General diagram of the class hierarchy
+
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\MinNodeSize(100,20)
+
+\MarkLoc (start)
+\Node(tag)(-- \texttt{Student st;} ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \hfill--)
+\MoveToExit(0,-2)
+\Node(tag)(--\texttt{st = new Undergrad(...);} ~ ~ \hfill--)
+\MoveToExit(0,-2)
+\Node(ug)(--\texttt{st.calcGPA();} ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \hfill--)
+\MoveToExit(0,-2)
+\Node(tag)(--\texttt{st = new GradStudent(...);} \hfill--)
+\MoveToExit(0,-2) 
+\Node(grad)(--\texttt{st.calcGPA();}~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\hfill--)
+
+\MoveToLoc(start)
+\Move(150,-30)  
+\RectNode(Ug)(--\underline{Undergrad} \hfill
+		\texttt{calcGPA()} \hfill--)
+\MoveToExit(0,-4)
+\RectNode(Grad)(--\underline{GradStudent} \hfill
+		\texttt{calcGPA()} \hfill--)
+\Edge(ug,Ug)
+\Edge(grad,Grad)
+\EndDraw
+
+\caption {Polymorphism: Identical method calls invoke 
+methods in different classes}
+
+\label {fig:polyMorph}
+
+\end {figure}
+
+%% \end {document}
+

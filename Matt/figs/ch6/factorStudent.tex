@@ -1,0 +1,48 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Determine which fields/methods can be factored from UGrad and Grad to Student
+
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+\begin {tabular} {c | c | c}
+Fields		& UnderGrad	& GradStudent			\\
+\hline
+name		& same		& same 				\\
+ssn 		& same		& same 				\\
+gpa 		& same		& same 				\\
+athlete		& $\surd$	&  				\\
+degree		& 		& $\surd$			\\
+		&		&				\\
+Methods		& UnderGrad	& GradStudent			\\
+\hline
+getName()	& same		& same 				\\
+getSSN()	& same		& same 				\\
+getGPA()	& same		& same 				\\
+getAthlete()	& $\surd$	&				\\
+setName()	& same		& same 				\\
+calcGPA()	& different 	& different			\\
+setAthlete()	& $\surd$     	& 				\\
+getDegree()	&          	& $\surd$ 			
+\end {tabular}
+
+\caption {Fields and methods which are the same in 
+\texttt{UnderGrad} and \texttt{GradStudent} can be
+factored to the \texttt{Student} super-class}
+
+\label {fig:factorStudent}
+
+\end {figure}
+
+%% \end {document}
+

@@ -1,0 +1,82 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Partial class diagram of the Collection classes
+%% from java.util
+
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% \begin{document}
+
+\begin {figure}
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\MinNodeSize(40,30)
+
+%% \RectNode (object)(--\underline {Object}~~--)
+%% \MoveToExit(-4,-4)
+
+\RectNode (collection)(--$<<interface>>$
+		\underline{Collection}~~--)
+\MoveToExit(4,0)
+\RectNode (map)(--$<<interface>>$
+		\underline{Map}~~--)
+\MoveToLoc(collection)
+\Move(-50,-70)
+\RectNode(list)(--$<<interface>>$
+		\underline{List}~~--)
+\MoveToExit(2.5,0)
+\RectNode (set)(--$<<interface>>$
+		\underline{Set}~~--)
+\MoveToExit(2.0,0)
+\RectNode(hashMap)(--
+		\underline{HashMap}~~--)
+\MoveToExit(2.5,0)
+\RectNode(treeMap)(--
+		\underline{TreeMap}~~--)
+\MoveToLoc(list)
+\Move(-50,-70)
+\RectNode(arrayList)(--
+		\underline{ArrayList}~~--)
+\MoveToExit(2.5,0)
+\RectNode(linkedList)(--
+		\underline{LinkedList}~~--)
+\MoveToExit(2.5,0)
+\RectNode(hashSet)(--
+		\underline{HashSet}~~--)
+\MoveToExit(2.5,0)
+\RectNode(treeSet)(--
+		\underline{TreeSet}~~--)
+
+
+\ArrowSpec (H)
+%% \Edge(collection,object)
+%% \Edge(map,object)
+\Edge(list,collection)
+\Edge(set,collection)
+\Edge(hashMap,map)
+\Edge(treeMap,map)
+\Edge(arrayList,list)
+\Edge(linkedList,list)
+\Edge(hashSet,set)
+\Edge(treeSet,set)
+
+\EndDraw
+
+\caption {Class diagram showing some of the interfaces
+and classes in the package java.util}
+
+
+\label {fig:collectionClasses}
+
+\end {figure}
+
+%% \end {document}
+

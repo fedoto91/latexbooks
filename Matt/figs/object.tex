@@ -1,0 +1,367 @@
+
+
+\MinNodeSize (20,10)
+\ArrowHeads(1)
+\ArrowSpec(F,10,4,5)
+%% \DecVar \MaxX
+
+%% Display the primitive values in an object
+%% Called once for each primitive field
+\Define \Var(3)
+{	
+%% parms:
+%%    #1: 0 if this var has no primitive value
+%%    #2: name of the var
+%%    #3: value in a box
+	
+   \IF \GtInt (#1,0)  \THEN
+	\MarkLoc(left)
+ 	\Move(0,-27)
+	\EntryExit(-1,0,-1,0)
+	\Node (tag) (--#2--)
+	%% Note the longest field value, to draw the box
+	{ 
+	\MoveToExit(1,0)
+	  \ORectNode (tag) (--#3--)
+	\MoveToExit(1,0)  \MarkLoc(right)
+	\Move(50,0)  \MarkLoc(rightPlus) 
+	\MoveToLL(right,rightPlus)(topL,maxL)
+	\MarkGLoc(bottomL)  
+	\LSeg\Q(maxL,maxRight)
+	\LSeg\R(bottomL,right)
+	\IF \GtDec (\R,\Q) \THEN
+	    \MoveToLoc(right)
+	    \MarkGLoc(maxRight)
+	    \FI
+	}
+	\EntryExit(0,0,0,0)
+\MarkGLoc(bottom)
+   \FI
+}
+
+
+%% Display the object references in an object
+%% Called once for each primitive field
+%% Object is a recursive data structure
+\Define \Obj(8)
+{	
+%% parms:
+%%    #1: 0 do not display
+%%        1 display ordinary ref
+%%	  2 display ref in a set
+%%        3 display a key in a map
+%%        4 display a ref to a set
+%%        5 display a ref to a map
+%%  	  6 display object only, calling OD directly, no arrow
+%%    #2: name of the field
+%%    #3: class of the field  (for object types)
+%%    #4: table of primitive fields in the referred object
+%% 	   or size for a map
+%%    #5: table of object fields in the referred object
+%%         or table of primitive keys for maps
+%%    #6: table of object keys in the referred object
+%%    #7: table of primitive values in the referred object
+%%    #8: table of object values in the referred object
+
+  % Base case for recursion:  #1 = 0
+
+\IF \GtInt (#1, 0) \THEN		% Recursive case
+					% for ordinary field or value in map
+
+   \Move(0,-25)
+   \MarkLoc(tmp)
+   \EntryExit(-1,0,1.1,0)
+   \Node (tag) (--#2--)
+   \ORectNode(ref) (-- --)
+   \EntryExit(0,0,0,0)
+   \IF \EqInt(#1,1) \THEN		% ordinary ref
+      \Move(100,\Val\I)
+      \OD(#3, #4, #5, 1)  
+   \FI
+   \IF \EqInt(#1,2) \THEN		% ref in a set
+ 	\ODset(#3,#4,#5)
+   \FI
+   \IF \EqInt(#1,3) \THEN		% key in a map
+	    \Move(-160,\Val\I)
+	    \Move(0,-10)    
+	    \OD(#3, #4, #5,3)  
+   \FI
+   \IF \EqInt(#1,4) \THEN		% ref to a set
+	       \OD(#3,#4,#5,4)
+   \FI
+   \IF \EqInt(#1,5) \THEN		% ref to a map
+	          \ODmap(#3,#4,#5,#6,#7,#8,#1)
+   \FI
+   \MoveToLoc(tmp)
+   \I-100;
+   \MarkGLoc(bottom)
+\FI
+   }
+ 
+%% Draw the object in a rectangular box
+%% Show primitive values
+%% Show references as arrows to objects
+\Define \OD(4)
+{  
+%% parms:
+%%    #1:  class of the object 
+%%    #2:  table of primitive fields 
+%%    #3:  table of object fields 
+%%    #4:  See parm #1 for Obj above
+
+   \SaveAll
+%%%%  J is depth of recursion
+\J+1;
+\IF \GtInt (\J,2) \THEN
+      \Move(-400,-200)
+      \J=0;
+    
+\FI
+\Move (-20,60)   %%% ???  
+\Node(obj)(--\underline{#1}--)
+%% topLeft and bottomRight are used to draw the rectangle
+\MoveToExit(1.02,0)    \MarkGLoc(maxRight)   %% maxRight stores largest primitive
+\MoveToExit(-1.2,1.2)  \MarkLoc(topLeft)
+\Move (50,-70)
+ 
+\MinNodeSize(30,15)
+\PenSize(0.25pt)	%% Lightweight arrow, might cross over other objects
+
+%% Draw the arrow for a reference
+\IF \EqInt (#4,3) \THEN 	%% key in a map
+     { \CurvedEdgeAt (ref,-0.8,0, obj,1,0.5)(180,0.6,90, 0.6) }
+	\ELSE
+	\IF \EqInt (#4,6) \THEN		%% calling OD directly 
+		{ } 			%% no arrow
+        \ELSE
+     	{ \CurvedEdgeAt (ref,0.8,0, obj,-1,0.8)(0,0.6,180, 0.6) }
+   	\FI
+   \FI
+
+\Move(-45,70)
+\PenSize(0.75pt)
+
+{\MarkGLoc (maxL) \Move (0,100) \MarkGLoc(topL) }
+
+\Indirect <#2>(0,9) { \Var }		%% Draw primitive fields
+\MarkLoc(bottomTemp)
+\MoveToLoc(maxRight) \MarkLoc(maxRightLocal)
+\MoveToLoc(bottomTemp)
+
+\Indirect<#3>(0,8) { \Obj   }		%% Draw object fields
+
+%% Set maxRightLocal in case there were no primitive fields
+\Move(100,0) \MarkLoc(maxRightTemp)
+\MoveToRightmost(maxRightLocal,maxRightTemp)
+\MarkLoc(maxRightLocal)
+{
+%% Find bottom right corner of rectangle
+\MoveToLoc(bottom)
+\Move(100,0) \MarkLoc(bottomR)
+\MoveToLoc(maxRightLocal) \Move(0,-100) \MarkLoc(rightB)
+\MoveToLL(bottom,bottomR)(maxRightLocal,rightB)
+\Move(10,-20) 
+\MarkLoc(bottomRight)
+\CSeg \DrawRect(bottomRight,topLeft)
+}
+   
+   \RecallAll
+\J-1;
+}
+
+%% Draw a ref to a Set
+\Define \ObjSet(6)
+{	
+%% parms:
+%%    #1: 0 iff this field has no Object ref
+%%    #2: name of the field
+%%    #3: class of the field  (for object types)
+%%    #4: table of primitive fields in the referred object - wrappers or Strings
+%%    #5: table of object fields in the referred object
+%%    #6: size of the set 
+
+  % Base case:  #1 = 0
+
+\IF \GtInt (#1, 0) \THEN		% Recursive case
+	\MarkLoc(tmp)
+   	\Node (tag) (--#2--)
+	\Move (50,0)
+	\ORectNode(ref) (-- --)
+	\Move(50,\Val\I)
+	\Move (35,20)
+	\ODset(#3, #4, #5,#6)  
+	\MoveToLoc(tmp)
+	\I-135;
+   \FI
+}
+
+%% Draw a set with the refs at 'random' places in the box
+\Define \ODset(4)    
+{  
+%% parms:
+%%    #1:  class of the object
+%%    #2:  table of primitive fields 
+%%    #3:  table of object fields 
+%%    #4:  size of the set        
+   \SaveAll
+  
+\MinNodeSize (90,110)
+\RectNode(obj)(-- #1~~~~~~~~~~~~~~~~~~~~~~~--)
+\MinNodeSize (20,10)
+
+{ \PenSize(0.25pt)	%% Lightweight arrow, might cross over other objects
+  %% Draw arrow to this Set object
+  \CurvedEdgeAt (ref,0.8,0, obj,-1,0.8)(10,0.6,180, 0.6) }
+  \PenSize(0.75pt)
+   \IntVar \X      
+   \IntVar \Y
+
+   \Move(-50,70)
+   { \Line(110,0) }
+   \Move (15,-15)
+   \Node(tag)(--size--)
+   \MoveToExit(1,0)
+   \Move(25,0)
+   \ORectNode(tag)(--#4--)
+   \Move(-90,0)
+   \MarkLoc(start)
+
+%% Place the fields at seemingly random locations
+   \Indirect <#2>(0,9) { 		%% Draw the primitive fields
+ 	\X+34;
+ 	\K=\X;
+	\K/90;
+	\K*90;
+ 	\X-\K;		%% x + 34 mod 90
+	\Y+73;
+	\K=\Y;
+	\K/110;
+	\K*110;
+	\Y-\K;		%% y + 73 mod 110
+	\Y+20;		%% Allow for size at top
+ 		\MoveToLoc(start)
+		\Move (\Val\X,-\Val\Y)
+ 		\Var
+}
+
+%% Place the fields at seemingly random locations
+   \Indirect<#3>(0,9) { 		%% Draw the object fields
+ 	\X+34;
+ 	\K=\X;
+ 	\K/90;
+ 	\K*90;
+ 	\X-\K;		%% x + 72 mod 90
+	\Y+73;
+	\K=\Y;
+	\K/110;
+	\K*110;
+	\Y-\K;		%% y + 73 mod 110
+	\Y+20;		%% Allow for size at top
+ 	\MoveToLoc(start)
+	\Move (\Val\X,-\Val\Y)
+		 \Obj   
+	}
+   \RecallAll
+}
+
+%% Draw a map object in a rectangle
+%% Value refs point to the right
+%% Key refs point to the left
+%% Note largest value field to draw the rectangle
+\Define \ODmap(7)
+{  
+%% parms:
+%%    #1:  class of the object 
+%%    #2:  size
+%%    #3:  table of primitive keys 
+%%    #4:  table of object keys 
+%%    #5:  table of primitive values 
+%%    #6:  table of object values 
+%%    #7:  see parm #1 for Obj above
+   \SaveAll
+  
+\Move(-20,-60) 
+\Node(obj)(--\underline{#1}--)
+\MoveToExit(1.02,0) 	\MarkLoc (maxRightLocal)
+			\MarkLoc (maxRight)
+\MoveToExit(-1.2,1.2)\MarkLoc (topLeft)
+
+\MinNodeSize(30,15)
+\PenSize(0.25pt)		%% Use Lightweight pen, may cross other objects
+
+\IF \EqInt(#7,3) \THEN
+     \CurvedEdgeAt (ref,-0.8,0, obj,1,0.5)(180,0.6,90, 0.6) 
+     \ELSE
+	\IF \EqInt(#7,6) \THEN		%% calling ODmap directly
+	    {  }
+	\ELSE
+	  \CurvedEdgeAt (ref,0.8,0, obj,-1,0.8)(10,0.6,180, 0.6) 
+        \FI
+\FI
+	
+\PenSize(0.75pt)
+\Move(20,-35)
+   
+   %% Show size and headings for keys and values
+   { \Node(tag)(--size--) \Move(40,0) \ORectNode(tag)(--#2--) }
+   \Move (10,-20)
+   { \Node(tag)(--\underline{keys}--) 
+     \Move(75,0) \Node(tag)(--\underline {values}--) 
+   }
+   \Move (-50,0)
+   \MarkLoc(keys)
+
+   {\MarkGLoc (maxL) \Move (0,100) \MarkGLoc(topL) }   %% ??
+
+  %% keys 
+   \Indirect <#3>(0,9) { \Var  }	%% Draw the primitive keys
+
+   \Indirect<#4>(0,8) { \Obj   }	%% Draw the object keys
+   \MarkGLoc(bottom)
+\MoveToLoc(keys)
+\Move(83, -1)
+{
+  %% values 
+   \Indirect <#5>(0,9) { \Var  }	%% Draw the primitive values
+   \MarkLoc(bottomTemp)
+   \MoveToLoc(bottomTemp)
+
+   \Indirect<#6>(0,8) { \Obj   }	%% Draw the object values
+
+%% Keys may not be primitive, affects size of box
+\Move(100,0)	\MarkLoc(maxRightTemp)
+\MoveToRightmost(maxRightLocal,maxRightTemp)
+\MarkLoc(maxRightLocal)
+}
+{
+%% Find bottom right corner of rectangle
+\MoveToLoc(bottom)
+\Move(100,0)	\MarkLoc(bottomR)
+\MoveToLoc(maxRightLocal)	\Move(0,-100)	\MarkLoc(rightB)
+\MoveToLL(bottom,bottomR)(maxRightLocal,rightB)
+\Move(10,-20)
+\MarkLoc(bottomRight)
+\CSeg \DrawRect(bottomRight,topLeft)
+}
+   \RecallAll
+}
+
+%% Move the pen to the loc which is furthest right
+\Define \MoveToRightmost(2)
+{
+%% #1:  A loc
+%% #2:  A loc
+\MoveTo(-200,100)	\MarkLoc(upLeft)
+\MoveTo(-200,-100)	\MarkLoc(downLeft)
+\MoveToLoc(#1)		\Move(100,0)	\MarkLoc(right)
+\MoveToLL(upLeft,downLeft)(#1,right)	\MarkLoc(leftA)
+\MoveToLoc(#2)		\Move(100,0)	\MarkLoc(right)
+\MoveToLL(upLeft,downLeft)(#2,right)	\MarkLoc(leftB)
+
+	\LSeg\Q(leftA,#1)
+	\LSeg\R(leftB,#2)
+	\MoveToLoc(#1)
+	\IF \GtDec (\R,\Q) \THEN
+	    \MoveToLoc(#2)
+	    \FI
+}

@@ -1,0 +1,59 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for a declared variable and a 
+%% newly created ArrayList
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\Node(tag)(--roster--)
+\MoveToExit(1,0)
+\Move(30,0)
+\MinNodeSize(40,20)
+\ORectNode(tag)(--null--)
+\Move (-25,-25)
+\Node(tag)(--(a)--)
+
+\Move (0,-50)
+
+\Indirect \Table <arrayListPrims>
+{1,size, 0}
+
+
+\Indirect \Table <arrayListObjs>
+ {  0, , , , , , , }
+  
+
+
+%% \Scale(0.8,0.8)
+\Obj (1, roster,ArrayList~$<Student>$,arrayListPrims,arrayListObjs, , , )
+\Move(0,-25)
+\Node(tag)(-- (b) --)
+    
+\EndDraw
+
+\caption {An object diagram showing the value of the
+variable \texttt {roster} (a) when it is declared and
+(b) after it has been assigned a value}
+
+\label {fig:newArrayList}
+
+\end {figure}
+
+%% \end {document}
+

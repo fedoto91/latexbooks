@@ -1,0 +1,79 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw a diagram depicting a user interface   
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+
+\input {figs/object}
+
+\MinNodeSize(220,30)
+
+\MinNodeSize(110,100)
+\RectNode(tag)(--\underline{User Interface}
+		(Exposed)~~
+		- Sends commands to the engine
+		- Relays info from the engine \hfill
+		to the user--)
+{ \MoveToExit(-1,0.8) \MarkGLoc(int)      }
+{ \MoveToExit(-2,0)  \MarkGLoc(interface)  }
+
+\MoveToExit (2,0) \Move(-20,0)
+
+\RectNode(tag)(--\underline{Engine}
+		(Hidden from view)~~
+		Details:
+		The inner workings~~--)
+
+\MoveToLoc(interface)
+\Move(0,50)
+\DrawCircle(10)
+{ \Move(6,3) \PaintCircle(1) \Move (5,0) \MarkGLoc(eye)  	% eye
+  \Move(-4,0) \DrawOvalArc (9,9)(-135,-90)			% mouth
+}
+\Move (0,-10)
+\Line(0,-50)
+\Move(0,25) \Line(20,20) \FcNode(hand) 
+\Move(-20,-45)
+{ \Move(0,25) \Line(-20,20) }
+{ \Line(20,-20) }
+{ \Line(-20,-20) }
+\Move(0,-30)
+\MinNodeSize(0,0) \Node(tag)(--User--)
+
+%  line of sight
+\MoveToLoc(eye) \FcNode(eyeNode)   
+\MoveToLoc(int) \FcNode(intNode)   
+\EdgeSpec(D)						% dashed edge
+\Edge (intNode,eyeNode)
+\MoveToLoc(intNode) \Move (0,-20) \FcNode(target)
+\Edge (hand, target)
+
+
+
+\EndDraw
+
+\caption {User Interface: All communication with 
+the engine is through the user interface}
+
+
+\label {fig:userInterface}
+
+\end {figure}
+
+%% \end {document}
+

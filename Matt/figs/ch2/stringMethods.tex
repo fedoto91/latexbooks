@@ -1,0 +1,46 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+%% Examples of String methods 
+
+\begin {figure}
+
+
+\begin{tabular} {l l l  }
+Method signature &    Example 	& Result   \\
+\hline
+\texttt{int length()}		&	\texttt{"and how".length()}	& \texttt{7}  		\\
+\texttt{char charAt(int index)}	&	\texttt{" and how".charAt(5)}	& \texttt{'h'} 		\\
+\texttt{int indexOf(String str)}&	\texttt{"jonson".indexOf("on")}	& \texttt{1}		\\
+\texttt{int indexOf(String str)}&	\texttt{"jonson".indexOf("on")}	& \texttt{1}		\\
+			&	\texttt{"jonson".indexOf("on.")}	& \texttt{-1}		\\
+\texttt{String substring(String str)}
+			&	\texttt{"and how".substring(4,7)} & \texttt{"how" }	\\
+\texttt{String toUpperCase()}	&  \texttt{"AnD HoW23!!".toUpperCase()}	&  \texttt{"AND HOW23!!"} \\
+\texttt{int compareTo}		&					&			\\
+\hspace{10pt} 
+\texttt{ (String otherString)}			&  \texttt{"john".compareTo("sam")}	& a positive int \\
+			&  \texttt{"john".compareTo("johnson")}	& a negative int \\
+			&  \texttt{"john".compareTo("john")}	& \texttt{0} 		\\
+			&  \texttt{"John".compareTo("john")}	& a negative int \\
+			&  \texttt{"99".compareTo("100")}	& a positive int \\
+
+
+\end {tabular}
+
+\caption {Examples of some String operations}
+
+\label {fig:stringMethods}
+
+\end {figure}
+
+%% \end {document}
+

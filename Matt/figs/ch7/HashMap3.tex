@@ -1,0 +1,83 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for a HashMap of size 3
+%% Keys are primitive
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+
+\Indirect \Table <student1Prims>
+{ 1, name, "joe" 	&
+  1, ssn, "256-44-0321"	&
+  1, gpa, 3.5  
+}
+
+\Indirect \Table <student1Objs>
+{ 0,  ,  ,  , , , ,  }
+
+\Indirect \Table <student2Prims>
+{ 1, name, "jim" 	&
+  1, ssn, "494-32-0909"	&
+  1, gpa, 2.5  
+}
+
+\Indirect \Table <student2Objs>
+{ 0,  ,  ,  , , , ,  }
+
+\Indirect \Table <student3Prims>
+{ 1, name, "mary" 	&
+  1, ssn, "222-32-9398"	&
+  1, gpa, 4.0  
+}
+
+\Indirect \Table <student3Objs>
+{ 0,  ,  ,  ,  , , , }
+
+\Indirect \Table <keyPrims>
+ {  1, ,"256-44-0321"	&
+    1, ,"494-32-0909"   &
+    1, ,"222-32-9398"	}
+
+\Indirect \Table <keyObjs>
+ {  0,0, , , , , ,  }
+  
+\Indirect \Table <valuePrims>
+ {  0, ,   }
+  
+\Indirect \Table <valueObjs>
+ {  1, ,Student,student1Prims,student1Objs, , , &
+    1, ,Student,student2Prims,student2Objs, , , &
+    1, ,Student,student3Prims,student3Objs, , , 
+ }
+  
+
+\Obj (5, myMap,HashMap~$<String{,}Student>$,3, 
+ 	keyPrims,keyObjs,valuePrims,valueObjs)
+    
+\EndDraw
+
+\caption {An object diagram showing the value of the
+variable \texttt {myMap} storing a reference to a map, 
+after three entries have been added}
+
+\label {fig:HashMap3}
+
+\end {figure}
+
+%% \end {document}
+

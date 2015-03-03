@@ -1,0 +1,74 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Use object diagrams to distinguish between == and .equals(Object)
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+\input {figs/object}
+
+\Indirect \Table <studentPrims>
+{  
+   1, name, "joe" 		&
+   1, ssn,  "183-22-4543"		&
+   1, gpa,  3.5			
+}
+
+\Indirect \Table <student2Prims>
+{  
+   1, name, "joe" 		&
+   1, ssn,  "183-22-4543"		&
+   1, gpa,  3.5			
+}
+
+\Indirect \Table <studentObjs>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+  
+
+
+\Scale (0.8,0.8)
+\Obj (1, s1,Student,studentPrims,studentObjs, , , )
+\Move(120,30)
+\FcNode(obj)
+\Move(-105,-50)
+\Node(s2)(--s2--)
+\MoveToExit(2.5, 0)
+\ORectNode(ref)(-- --)
+
+\PenSize(0.25pt)
+\CurvedEdgeAt(ref,1,0,obj,-1,0)(0,0.2,180,0.2)
+
+\Move (-100,-60)
+
+\PenSize(0.75pt)
+\Obj (1, s3,Student,student2Prims,studentObjs, , , )
+
+
+
+\EndDraw
+
+\caption {An object diagram showing the difference between
+comparison with == and comparison with .equals():
+\texttt{s1==s2} is \texttt{true} and 
+\texttt{s1==s3} is \texttt{false} and 
+\texttt{s1.equals(s3)} is \texttt{true}	
+}
+
+\label {fig:equals}
+
+\end {figure}
+
+%% \end {document}
+

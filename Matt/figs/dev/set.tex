@@ -1,0 +1,67 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for a set containing three values.
+
+\documentclass{article}
+
+\usepackage{../../cmds}
+\usepackage{../../DraTex}
+\usepackage{../../AlDraTex}
+
+
+\begin{document}
+
+\begin {figure}
+
+%%%%%%%%%%%%%%%%%%%%
+%% Needs more work, position of the object should not be relative to the position of its ref
+
+\Draw
+
+\input {../object}
+%% \input {figs/object}
+
+\Indirect \Table <numAPrims>
+{  1, value, 96 }
+
+\Indirect \Table <numBPrims>
+{  1, value, 100 }
+
+\Indirect \Table <numCPrims>
+{  1, value, 92 }
+
+\Indirect \Table <numAObjs>
+{  0, foo, foo, fooPrims, fooObjs   }
+
+\Indirect \Table <numBObjs>
+{  0, foo, foo, fooPrims, fooObjs   }
+
+\Indirect \Table <numCObjs>
+{  0, foo, foo, fooPrims, fooObjs   }
+
+\Indirect \Table <numberObjs>
+ {  
+    1, , Integer,numAPrims,numAObjs		&
+    1, , Integer,numBPrims,numBObjs		&
+    1, , Integer,numCPrims,numCObjs
+}
+  
+\Indirect \Table <numberPrims>
+ {  0, foo, foo}
+
+
+\Scale (0.8,0.8)
+\ObjSet(1, grades,Set$<Integer>$,numberPrims,numberObjs,3)
+    
+\EndDraw
+
+\caption {An object diagram showing a set of Integers after three
+items have been added. The items are stored in no particular order.} 
+
+\label {fig:set}
+
+\end {figure}
+
+\end {document}
+

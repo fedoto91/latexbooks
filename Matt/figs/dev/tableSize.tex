@@ -1,0 +1,42 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Determine the size of a table
+
+\documentclass{article}
+
+\usepackage{../../cmds}
+\usepackage{../../DraTex}
+\usepackage{../../AlDraTex}
+
+
+\begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+
+\IntVar \counter
+
+\Table \myTable { a, b, c &
+                  c, d, e
+ 		}
+
+\myTable(0,99){\counter+1;}
+    
+\WriteVal \counter
+
+\EndDraw
+
+\caption {An object diagram showing the value of the
+variable \texttt {roster} after three Students have been
+added}
+
+\label {fig:ArrayList3}
+
+\end {figure}
+
+\end {document}
+

@@ -1,0 +1,54 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Class diagram for Students 
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\MinNodeSize(40,40)
+
+
+\RectNode (instr)(--\underline {Instructor}~~~~--)
+\MoveToExit(4,0)
+
+\RectNode (student)(--\underline {Student}~~~~--)
+\MoveToExit(-6,-3)
+\RectNode (prof)(--\underline {Prof}~~~~--)
+\MoveToExit(4,0)
+\RectNode (gradStudent)(--\underline {GradStudent}~~~~--)
+\MoveToExit(3,0)
+\RectNode (underGrad)(--\underline {UnderGrad}~~~~--)
+
+\ArrowSpec (H)
+\Edge(underGrad,student)
+\Edge(gradStudent,student)
+\Edge(gradStudent,instr)
+\Edge(prof,instr)
+
+\EndDraw
+
+\caption {Class diagram showing multiple inheritance for the
+       GradStudent class; this is not permitted in Java}
+
+
+\label {fig:multInher}
+
+\end {figure}
+
+%% \end {document}
+

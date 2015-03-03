@@ -1,0 +1,53 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Class diagram for Exercise showing multiple inheritance
+%% with an interface.
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+\MinNodeSize(40,40)
+
+\RectNode (egglayer)(-- $<<$interface$>>$
+                  \underline {EggLayer}~~~~--)
+\MarkLoc(egg)
+\MoveToExit(2.5,0)
+
+\RectNode (fish)(-- $<<$interface$>>$
+		\underline {Fish}~~~~--)
+
+\MoveToLoc(egg)  \Move(40,-70)
+
+\RectNode (trout)(--\underline {Trout}~~~~--)
+\MoveToExit(4,0)
+
+\RectNode (guppy)(--\underline {Guppy}~~~~--)
+
+\ArrowHeads(1) \ArrowSpec(H)
+\Edge(trout,egglayer)      
+\Edge(trout,fish)      
+\Edge(guppy,fish)      
+
+\EndDraw
+
+\caption {Class diagram showing multiple inheritance with an interface
+	 for exercise set 6.7}
+
+\label {fig:interfaceEx2}
+
+\end {figure}
+
+%% \end {document}
+

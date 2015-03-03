@@ -1,0 +1,44 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Class diagram for Students 
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\MinNodeSize(40,40)
+
+\RectNode (classA)(--\underline {ClassA}~~~~--)
+\MoveToExit(4,0)
+\RectNode (classB)(--\underline {ClassB}~~~~--)
+
+\ArrowHeads(1)
+\EdgeSpec (D)
+\Edge(classA, classB)
+
+\EndDraw
+
+\caption {Class diagram showing a client (ClassA) and server
+	(ClassB) }
+
+
+\label {fig:clientServerAB}
+
+\end {figure}
+
+%% \end {document}
+

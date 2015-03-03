@@ -1,0 +1,42 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Table of results for compareTo on Strings
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+\begin {tabular}{|l|l|}
+\hline
+comparison 				& 	result		\\
+\hline
+\texttt { "abc".compareTo("def")}	&	negative	\\
+\texttt { "abc".compareTo("abc")}	&	zero    	\\
+\texttt { "def".compareTo("abc")}	&	positive	\\
+\texttt { "abc".compareTo("aba")}	&	positive	\\
+\texttt { "abc".compareTo("abaci")}	&	negative	\\
+\texttt { "abc".compareTo("Bbc")}	&	positive	\\
+\texttt { "99".compareTo("100")}	&	positive	\\
+\hline
+
+\end {tabular}
+
+
+
+\caption {Returned values for the compareTo method, applied
+to Strings}
+
+\label {fig:compareTo}
+
+\end {figure}
+
+%% \end {document}
+

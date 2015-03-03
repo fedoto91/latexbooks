@@ -1,0 +1,36 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%  Efficiency of ArrayList vs LinkedList
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+%% Wrapper classes for primitive types       
+
+\begin {figure}
+
+\begin {tabular} {l | c | c}
+Operation      		&  ArrayList    & LinkedList		\\
+\hline
+get(int inx)		& fast		& slow			\\
+set(int ndx, E item)	& fast		& slow			\\
+add(E item)		& ok		& fast			\\
+add(int ndx, E item)	& slow		& fast			\\
+remove (int ndx) 	& slow		& fast
+	
+\end {tabular}
+
+
+\caption {Relative efficiency of operations on ArrayLists vs. LinkedLists}
+\label {fig:ArrayListVsLinkedList}
+
+\end {figure}
+
+%% \end {document}
+

@@ -1,0 +1,57 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Exercise.  Draw object diagram for variable
+%% storing ref to a HashMap of size 1.
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% 
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+
+\Indirect \Table <keyPrims>
+ {  1, ,"six" }
+  
+\Indirect \Table <keyObjs >
+ {  0, , , , , , ,  }
+
+\Indirect \Table <valuePrims>
+ {  1, , 6 }
+  
+\Indirect \Table <valueObjs>
+ {  0, , , , , , ,  }
+  
+%% cp to solutions
+%% \Node(tag)(--mapper--)
+%% { \MoveToExit(2.5,0)
+%%   \ORectNode(tag)(--null--)
+%% }
+%% \MoveToExit(0,2)
+%% 
+
+\Obj (5, mapper,HashMap~$<String{,}Integer>$,1, 
+   keyPrims,keyObjs,valuePrims,valueObjs)
+    
+\EndDraw
+
+\caption {Object diagram for a variable storing a
+reference to a Map (see Exercises)}
+
+\label {fig:MapEx}
+
+\end {figure}
+
+%% \end {document}
+

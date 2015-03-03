@@ -1,0 +1,41 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+%% Examples of calls to print methods 
+
+\begin {figure}
+
+\begin {verbatim}
+String name = "joe";
+int total = 99;
+\end{verbatim}
+
+\begin{tabular} {l l l  }
+Method call 		&    output   							\\
+\hline
+\texttt{System.out.println ("hello"); }		&	\texttt{hello}	  		\\
+\texttt{System.out.println (name); }		&	\texttt{joe}	  		\\
+\texttt{System.out.println ("hello " + name); }	&	\texttt{hello joe}	  	\\
+\texttt{System.out.print ("hello "); }		&					\\
+\texttt{System.out.println (joe); }		&	\texttt{hello joe}	  	\\
+\texttt{System.out.println ("The total is " + total);}
+						&	\texttt{The total is 99}  	\\
+
+\end {tabular}
+
+\caption {Examples of calls to print methods}
+
+\label {fig:print}
+
+\end {figure}
+
+%% \end {document}
+

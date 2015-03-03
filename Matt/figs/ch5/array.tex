@@ -1,0 +1,55 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for an array of ints
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\Move(-50,0)
+\Node(tag)(--grades--)
+\MoveToExit(1,0)
+\Move(20,0)
+\ORectNode(gr)(-- --)
+\Move (25,-25)
+
+\MinNodeSize(20,20)
+\Node(start)(----)
+\Do(0,11)
+{  \IF \EqInt(\DoReg,2) \THEN
+ 	\RectNode(rec)(--95--)
+   \ELSE
+ 	\RectNode(rec)(--0--)
+   \FI
+   { 	\MoveToExit(0,-1.8)
+ 	\Node(tag)(--\DoReg--)
+   }
+   \MoveToExit(2,0)
+}
+    
+\ArrowHeads(1)
+\CurvedEdgeAt(gr,0,-0.5,start,-1,0) (-90,0.2,180,0.2)
+\EndDraw
+
+\caption {An array of ints, showing values and position numbers.}
+
+\label {fig:array}
+
+\end {figure}
+
+%% \end {document}
+

@@ -1,0 +1,96 @@
+%%Create an Array Diagram
+%%Matthew Douglass
+
+\documentclass{article}
+
+\usepackage{cmds}
+\usepackage{DraTex}
+\usepackage{AlDraTex}
+
+\begin{document}
+
+%%User Input Below
+\newcommand{\ArrayName}
+{ARRAY NAME HERE}
+\newcommand{\Caption}
+{CAPTION HERE}
+\newcommand{\ArrayLengthMinusOne}
+{6}
+\newcommand{\0}
+{0}
+\newcommand{\1}
+{0}
+\newcommand{\2}
+{95}
+\newcommand{\3}
+{0}
+\newcommand{\4}
+{0}
+\newcommand{\5}
+{0}
+\newcommand{\6}
+{0}
+\newcommand{\7}
+{0}
+\newcommand{\8}
+{0}
+\newcommand{\9}
+{0}
+\newcommand{\ten}
+{0}
+\newcommand{\eleven}
+{0}
+%%User Input Above
+
+\begin {figure}
+
+\Draw
+
+\input {object}
+%%Array Name Draw
+\Move(-50,0)
+\Node(tag)(--\ArrayName--)
+\MoveToExit(1,0)
+\Move(20,0)
+\ORectNode(gr)(----)
+\Move (25,-25)
+
+%%Array Draw
+\MinNodeSize(20,20)
+\Node(start)(----)
+\newcounter{Counter}
+
+\Do(0,\ArrayLengthMinusOne)
+{  
+	\IF 
+    	\EqInt(\value{Counter},0) 				
+        	\THEN
+ 				\RectNode(rec)(--\0--)
+                \stepcounter{Counter}
+   \ELSE
+   		\IF
+        \EqInt(\value{Counter},1) 				
+        	\THEN
+ 				\RectNode(rec)(--\1--)
+                \stepcounter{Counter}
+                \ELSE
+   		\RectNode(rec)(--\2--)
+        \stepcounter{Counter}
+   \FI
+   { 	\MoveToExit(0,-1.8)
+ 	\Node(tag)(--\DoReg--)
+   }
+   \MoveToExit(2,0)
+}
+
+%%Arrow
+\ArrowHeads(1)
+\CurvedEdgeAt(gr,0,-0.5,start,-1,0) (-90,0.2,180,0.2)
+\EndDraw
+
+\caption {\Caption}
+
+\label {fig:array}
+
+\end {figure}
+\end {document}

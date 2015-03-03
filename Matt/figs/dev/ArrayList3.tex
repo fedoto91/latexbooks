@@ -1,0 +1,76 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for an ArrayList of size 3
+
+\documentclass{article}
+
+\usepackage{../../cmds}
+\usepackage{../../DraTex}
+\usepackage{../../AlDraTex}
+
+
+\begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+\input {../object}
+%% \input {figs/object}
+
+
+\Indirect \Table <studentPrims>
+{ 1, name, "joe" &
+  1, ssn, "256"  &
+  1, gpa, 3.5  
+}
+
+\Indirect \Table <studentObjs>
+{ 0, foo, foo, foo, foo }
+
+\Indirect \Table <student2Prims>
+{ 1, name, "jim" &
+  1, ssn, "222"  &
+  1, gpa, 2.5  
+}
+
+\Indirect \Table <student2Objs>
+{ 0, foo, foo, foo, foo }
+
+\Indirect \Table <student3Prims>
+{ 1, name, "mary" &
+  1, ssn, "252"  &
+  1, gpa, 4.0  
+}
+
+\Indirect \Table <student3Objs>
+{ 0, foo, foo, foo, foo }
+
+\Indirect \Table <arrayListPrims>
+{1,size, 3}
+
+
+\Indirect \Table <arrayListObjs>
+ {  1,0,Student,studentPrims,studentObjs &
+    1,1,Student,student2Prims,student2Objs &
+    1,2,Student,student3Prims,student3Objs }
+  
+
+
+%% \Scale(0.8,0.8)
+\Obj (1, roster,ArrayList$<Student>$,arrayListPrims,arrayListObjs)
+    
+\EndDraw
+
+\caption {An object diagram showing the value of the
+variable \texttt {roster} after three Students have been
+added}
+
+\label {fig:ArrayList3}
+
+\end {figure}
+
+\end {document}
+

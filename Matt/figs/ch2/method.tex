@@ -1,0 +1,38 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+%% An example of a method definition 
+
+\begin {figure}
+
+\begin {verbatim}
+/** Calculate this student's gpa.
+ *  Precondition: Both parameters are positive.
+ *  Postcondition: This student's gpa is set
+ *                 as the result of dividing
+ *                 the grade points by the credits
+ */
+public void calculateGPA(int gradePoints, int credits)
+{  double creditsAsDouble;
+   creditsAsDouble = credits;
+   gpa = gradePoints / creditsAsDouble;
+}
+\end{verbatim}
+
+\caption {Method which calculates, and sets,
+this Student's gpa, given total number of
+grade points and total number of credits}
+\label {fig:method}
+
+\end {figure}
+
+%% \end {document}
+

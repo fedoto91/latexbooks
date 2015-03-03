@@ -1,0 +1,70 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw a diagram depicting method abstraction
+%% Building useful tools 
+
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\MinNodeSize(110,30)
+\RectNode(tag)(--Useful tool--)
+\Move(0,-65)
+
+\MinNodeSize(110,100)
+
+\RectNode(tool1)(--\underline{Implementation}~~
+		Details:
+		How this tool is
+		constructed~~--)
+
+
+\MinNodeSize(50,50)   
+\MoveToExit(2,1)
+\RectNode(tool2)(--Older
+			Tool--)
+\MoveToExit (0,-2.5)
+\RectNode(tool3)(--Older
+			Tool--)
+\MoveToExit (0,-2.5)
+\RectNode(tool4)(--Older
+			Tool--)
+\MoveToExit (3,1)
+\RectNode(tool5)(--Older
+			Tool--)
+\MoveToExit (0,-2.5)
+\RectNode(tool6)(--Older
+			Tool--)
+
+\Edge(tool1,tool2)
+\Edge(tool1,tool3)
+\Edge(tool1,tool4)
+\Edge(tool4,tool5)
+\Edge(tool4,tool6)
+
+\EndDraw
+
+\caption {Abstraction: 
+Build useful tools in order to build other useful tools}
+
+\label {fig:methAbstr2}
+
+\end {figure}
+
+%% \end {document}
+

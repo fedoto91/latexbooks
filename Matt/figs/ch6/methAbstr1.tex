@@ -1,0 +1,80 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw a diagram depicting method abstraction
+%% Interface vs Implementation
+
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+
+\input {figs/object}
+
+\MinNodeSize(220,30)
+\RectNode(tag)(--Useful tool--)
+\Move(-55,-65)
+
+\MinNodeSize(110,100)
+\RectNode(tag)(--\underline{Interface}
+		(Exposed)~~
+		What you need to
+		know to use this
+		tool
+		(API)--)
+{ \MoveToExit(-1,0.8) \MarkGLoc(int)      }
+{ \MoveToExit(-2,0)  \MarkGLoc(interface)  }
+
+\MoveToExit (2,0)
+\RectNode(tag)(--\underline{Implementation}
+		(Hidden from view)~~
+		Details:
+		How this tool is
+		constructed~~--)
+
+\MoveToLoc(interface)
+\Move(0,50)
+\DrawCircle(10)
+{ \Move(6,3) \PaintCircle(1) \Move (5,0) \MarkGLoc(eye)  	% eye
+  \Move(-4,0) \DrawOvalArc (9,9)(-135,-90)			% mouth
+}
+\Move (0,-10)
+\Line(0,-50)
+{ \Move(0,25) \Line(20,20) }
+{ \Move(0,25) \Line(-20,20) }
+{ \Line(20,-20) }
+{ \Line(-20,-20) }
+
+%  line of sight
+\MoveToLoc(eye) \FcNode(eyeNode)   
+\MoveToLoc(int) \FcNode(intNode)   
+\EdgeSpec(D)						% dashed edge
+\Edge (intNode,eyeNode)
+
+
+
+\EndDraw
+
+\caption {Abstraction: 
+There is no need to know the implementation 
+details of the tools being used.}
+
+
+\label {fig:methAbstr1}
+
+\end {figure}
+
+%% \end {document}
+

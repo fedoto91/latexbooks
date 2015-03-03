@@ -1,0 +1,80 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for a HashMap of size 2
+%% Keys are students, values are ints.
+%% Values count courses for each student.
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+
+\Indirect \Table <student1Prims>
+{ 1, name, "joe" 	&
+  1, ssn, "256-44-0321"	&
+  1, gpa, 3.5  
+}
+
+\Indirect \Table <student1Objs>
+{ 0,  ,  ,  ,  ,  ,  ,   }
+
+\Indirect \Table <student2Prims>
+{ 1, name, "jim" 	&
+  1, ssn, "494-32-0909"	&
+  1, gpa, 2.5  
+}
+
+\Indirect \Table <student2Objs>
+{ 0,  ,  ,  ,  ,  ,  ,   }
+
+\Indirect \Table <keyPrims>
+ {  0,0,    }
+  
+\Indirect \Table <keyObjs >
+ {  3, ,Student,student1Prims,student1Objs, , ,   &	%% keys have code=2
+    3, ,Student,student2Prims,student2Objs, , ,  
+ }
+
+\Indirect \Table <valuePrims>
+ {  1, , 3  	&
+    1, , 1	
+ }
+  
+\Indirect \Table <valueObjs>
+ {  0, , ,  ,  ,  ,  ,     }
+  
+\Indirect \Table <ccPrims>
+{  0,  ,   }
+
+\Indirect \Table <ccObjs>
+{ 5, courseCounts, HashMap~$<Student{,}Integer>$,2,
+     keyPrims, keyObjs, valuePrims, valueObjs}
+
+\Obj(1, cc,CourseCounter, ccPrims, ccObjs, , , )
+
+\EndDraw
+
+\caption {An object diagram showing the value of the
+variable \texttt {cc} storing a reference to a CourseCounter object, 
+which stores a reference to a map,
+in which the keys are students and the values are the
+number of courses for which the corresponding Student
+has registered}
+
+\label {fig:HashMapCourses}
+
+\end {figure}
+
+%% \end {document}
+

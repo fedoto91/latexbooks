@@ -1,0 +1,39 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Distinguish between is-a and has-a
+
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+\begin {tabular} {l | l }
+Code	&	Comments	\\
+\hline
+Student st;			&			\\
+Undergrad ug;			&			\\
+st = new Undergrad("joe", "23");& 			\\
+ug = st;			& ERROR (at compile time)	\\
+ug = (Undergrad) st;		& cast down to Undergrad		\\
+st = new GradStudent("jim","32");& 			\\
+ug = (Undergrad) st;		& ERROR (at run time)	
+
+\end {tabular}
+
+\caption {Assignment to super-class variable, with a cast}
+
+
+\label {fig:inherCast}
+
+\end {figure}
+
+%% \end {document}
+

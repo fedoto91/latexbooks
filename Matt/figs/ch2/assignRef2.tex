@@ -1,0 +1,61 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Object diagram showing effect of assignment of ref
+
+%% \documentclass{article}
+
+%% \usepackage{cmds}
+%% \usepackage{../DraTex}
+%% \usepackage{../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+\input {figs/object}
+
+\Indirect \Table <studentPrims>
+{  
+   1, name, "joe" 		&
+   1, ssn,  "121-33-8493"		&
+   1, gpa,  0.0			
+}
+
+
+\Indirect \Table <studentObjs>
+ {  0,,,,, , , }
+  
+
+
+\Scale (0.8,0.8)
+\Obj (1, s1,Student,studentPrims,studentObjs, , , )
+\Move(120,30)
+\FcNode(obj)
+\Move(-105,-50)
+\Node(s2)(--s2--)
+\MoveToExit(2.5, 0)
+\ORectNode(ref)(-- --)
+
+\PenSize(0.25pt)
+\CurvedEdgeAt(ref,1,0,obj,-1,0)(0,0.2,180,0.2)
+
+
+\PenSize(0.75pt)
+
+
+\EndDraw
+
+\caption {An object diagram showing the effect of assignment
+of a reference to a variable: \texttt{s1 = s2;}}
+
+\label {fig:assignRef2}
+
+\end {figure}
+
+%% \end {document}
+

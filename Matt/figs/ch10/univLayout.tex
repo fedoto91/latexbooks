@@ -1,0 +1,69 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Diagram of the layout of university-v1 GUI
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% \begin{document}
+  
+\begin {figure}
+
+\Draw
+
+\MinNodeSize(128,32)
+
+\PenSize(0.1pt)
+\RectNode(t)(--Title
+		(State U)--)
+\Move(0,-32)
+
+\PenSize(0.75pt)
+
+\RectNode(n)(--NORTH
+		(buttonPanel - FlowLayout)--)
+
+
+\MinNodeSize(128,64)
+%% \MinNodeSize(94,64)
+\Move(0,-48)
+\RectNode(c)(--CENTER ~~
+		(searchPanel ~~
+		GridLayout(3,1))--)
+
+\MinNodeSize(128,40)
+\Move(0,-52)
+\RectNode(sw)(--SOUTH
+		(outLabel)--)
+
+%% Show grid
+\PenSize(0.1pt)
+\MoveToLoc(c)
+%% \Move(0,32) \Line(0,-64)
+\Move(-64,11) \Line(128,0)
+\Move(0,-21) \Line(-128,0)
+
+\MoveToLoc(n)
+\Move(150,-30)
+\Node(cp)(--contentPane
+	    (BorderLayout)--)
+
+\ArrowHeads(1)
+\CurvedEdgeAt(cp,-1,0,n,1,1)
+	     (-180,0.3,0,0.3)
+
+
+
+\EndDraw
+
+\caption {Diagram of the GUI for the University Information System,
+version 1}
+
+\label {fig:univLayout}
+
+\end {figure}
+
+%% \end {document}
+

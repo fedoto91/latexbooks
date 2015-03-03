@@ -1,0 +1,56 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+%% Explain formal definition of expr by putting
+%% boxes around subexpressions
+%% Do not include rule numbers
+
+\begin {figure}
+
+\Draw
+\input figs/boxIt
+
+\MarkLoc(a)
+\Move(50,0)
+\MarkLoc(b)
+\Move(75,0)
+\MarkLoc(c)
+
+\boxItNoRulesDefault(3,1,a)
+\boxItNoRulesDefault(4,1,b)
+\boxItNoRulesDefault(7,1,c)
+
+\MoveToLoc(a)
+\Move(25,0)
+\MarkLoc(d)
+\Move(25,0)
+\MarkLoc(e)
+
+\Move(0,-200)
+\MarkLoc(fooLoc)
+
+
+\boxItNoRules(~$  +  $~,2,d,105, 25)
+\boxItNoRules($($\hspace{0.8in}\hfill\hspace{0.8in}$)$,6,d, 150, 35)
+\boxItNoRules(\hspace{135pt}\hfill*\hspace{20pt},3,e, 210, 45)
+
+\EndDraw
+
+
+\caption {Applying the definition of 
+expression to $(3+4)*7$ }
+\label {fig:exprsBoxedNoRules}
+
+\end {figure}
+
+%% \end {document}
+

@@ -1,0 +1,80 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Diagram of a run-time error buried several layers deep
+%% in method calls.
+
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% \begin{document}
+ 
+\begin {figure}
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\MinNodeSize(40,30)
+
+\ORectNode(one)(--public void meth1()	\hfill
+               \{  ... 		\hfill
+                  a = 4;  	\hfill
+                  meth2(a);	\hfill
+                  ...		\hfill
+               \} 		\hfill
+		--)
+
+\MoveToExit(0,-2.5)
+
+\ORectNode(two)(--public void meth2(int b)	\hfill
+               \{  ... 		\hfill
+                  c = b+2;	\hfill
+                  meth3(c);	\hfill
+                  ...		\hfill
+               \} 		\hfill
+		--)
+
+\MoveToExit(0,-2.5)
+
+\ORectNode(three)(--public void meth3(int d)	\hfill
+               \{  ... 		\hfill
+                  e = d - 6;	\hfill
+                  f = 3 / e;   	\hfill
+                  ...		\hfill
+               \} 		\hfill
+		--)
+
+
+\CurvedEdgeAt(one,-0.9,0,two,-0.9,0.9)(180,0.4,180,0.4)
+\CurvedEdgeAt(two,-0.9,0,three,-0.9,0.9)(180,0.4,180,0.4)
+
+\MoveToLoc(one)
+\Move(135,5)
+\Node(errorLoc)(--Programming error here:
+\texttt{a} should not be 4--)
+
+\MoveToLoc(three)
+\Move(135,5)
+\Node(crashLoc)(--Program crashes here:
+division by zero--)
+
+\ArrowSpec(V)
+\CurvedEdgeAt(errorLoc,-1.1,0.6,one,1,0.2)(180,0.4,0,0.4)
+\CurvedEdgeAt(crashLoc,-1.1,0.6,three,1,0)(180,0.4,0,0.4)
+
+
+\EndDraw
+
+\caption {A run-time error buried deep in a series of 
+method calls}
+
+\label {fig:buriedError}
+
+\end {figure}
+
+%% \end {document}
+

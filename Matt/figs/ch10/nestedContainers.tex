@@ -1,0 +1,78 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Diagram of a frame with nested containers
+
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% \begin{document}
+  
+\begin {figure}
+
+\Draw
+
+\MinNodeSize(128,32)
+
+\RectNode(n)(--NORTH
+		(Flow layout)--)
+
+
+\MinNodeSize(94,64)
+\Move(17,-48)
+\RectNode(c)(--CENTER
+		(Label)--)
+
+\MinNodeSize(34,64)
+\Move(-64,0)
+\RectNode(w)(--WEST~~~~  
+		(Grid)--)
+
+\MinNodeSize(38,40)
+\Move(2,-52)
+\RectNode(sw)(--SOUTH
+		WEST--)
+
+\MinNodeSize(52,40)
+\Move(45,0)
+\RectNode(sc)(--SOUTH
+		(Border)
+		CENTER--)
+
+\MinNodeSize(38,40)
+\Move(45,0)
+\RectNode(se)(--SOUTH
+		EAST--)
+
+%% Show grid
+\PenSize(0.1pt)
+\MoveToLoc(w)
+\Move(0,32) \Line(0,-64)
+\Move(-16,21) \Line(32,0)
+\Move(0,22) \Line(-32,0)
+
+\MoveToLoc(n)
+\Move(150,-30)
+\Node(cp)(--contentPane
+	    (Border layout)--)
+
+\ArrowHeads(1)
+\CurvedEdgeAt(cp,-1,0,n,1,1)
+	     (-180,0.3,0,0.3)
+
+
+
+\EndDraw
+
+\caption {A contentPane with BorderLayout, in which containers
+have been placed in the north, west, and south regions -- the container
+in the south region also uses BorderLayout}
+
+\label {fig:nestedContainers}
+
+\end {figure}
+
+%% \end {document}
+

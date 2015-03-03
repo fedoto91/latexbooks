@@ -1,0 +1,59 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+%% Apply definition of if stmt with else part by drawing boxes 
+%% around substatements
+
+\begin {figure}
+
+\Draw
+
+\MarkLoc(ifElse)
+
+\Move(10,13)
+\MarkLoc(if)
+
+\Move(-40,-50)
+\MarkLoc(else)
+
+
+
+\input{figs/boxIt}
+\boxIt ($if (credits > 0)$ \hfill	~~~~
+       \hspace{10pt} $gpa = gradePoints / credits;$\hfill ~~~~
+       $else$\hfill			~~~~
+       \hspace{10pt} $gpa = 2.0;$ \hfill, 3,ifElse, 200,120)
+
+\boxIt (~,1,if,150,20)
+\boxIt (~,1,else,75,20)
+
+\EndDraw
+
+%% \caption {Applying the definition of 
+%% Statement to: 					\newline
+%% $if (credits > 0)$ 					\newline
+%% \hspace{10pt} $gpa = gradePoints / credits; $ 	\newline
+%% $else$						\newline
+%% $gpa = 0.0;
+%% }
+%% 
+
+\caption {Applying the definition of 
+ Statement to: 	
+if credits $>$ 0) gpa = gradePoints / credits;
+else gpa = 0.0;
+}
+ \label {fig:ifElseStmt}
+
+\end {figure}
+
+%% \end {document}
+

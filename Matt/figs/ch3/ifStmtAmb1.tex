@@ -1,0 +1,57 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+%% Draw boxes to demonstrate dangling else ambiguity
+%% This is the correct interpretation.
+
+\begin {figure}
+
+\Draw
+
+\MarkLoc(if)
+
+\Move(10,-7)
+\MarkLoc(ifElse)
+
+\Move(0,15)
+\MarkLoc(true)
+
+\Move(-25,-45)
+\MarkLoc(false)
+
+\input{figs/boxIt}
+\boxIt($if (credits > 0)$ \hfill			~~~~
+  	\hspace{10pt}$if (gradePoints > 0)$\hfill	~~~~
+       	\hspace{20pt} $gpa = gradePoints / credits;$\hfill ~~~~
+	\hspace{10pt}$else$\hfill			~~~~
+	\hspace{20pt}$gpa = 2.0;$ \hfill		~~~~
+	,2,if,230,110)
+
+\boxIt(~,3,ifElse,200,100)
+\boxIt(~,1,true,160,19)
+\boxIt(~,1,false,80,19)
+
+
+
+\EndDraw
+
+\caption {Applying the definition of 
+Statement to
+an \texttt{if} statement which
+contains another \texttt{if}
+statement} 
+
+\label {fig:ifStmtAmb1}
+
+\end {figure}
+
+%% \end {document}
+

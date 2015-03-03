@@ -1,0 +1,86 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+
+\Define \boxItDefault (3)
+% parms
+% #1  Text in the box
+% #2  Rule number
+% #3  Location for the box
+%  Default node size
+{
+   \MinNodeSize(25,15)
+   \MoveToLoc(#3)
+   \EntryExit (0,0,1,1)
+  % \RectNode(tag)(--$#1 ^{#2}$--)
+   \RectNode(tag)(--#1--)
+ {
+    \MinNodeSize(0,0)
+    \Move(-4,-4)
+    \RectNode(tag)(--$\scriptscriptstyle #2 $--) 
+ }
+}
+
+\Define \boxIt (5)
+% parms
+% #1  Text in the box
+% #2  Rule number
+% #3  Location for the box
+% #4  Min node size, x component
+% #5  Min node size, y component
+{
+   \MinNodeSize(#4,#5)
+   \MoveToLoc(#3)
+   \EntryExit (0,0,1,1)
+   \RectNode(tag)(--#1--)
+ {
+    \MinNodeSize(0,0)
+    \Move(-4,-4)
+    \RectNode(tag)(--$\scriptscriptstyle #2 $--) 
+ }
+
+}
+
+\Define \boxItNoRulesDefault (3)
+% parms
+% #1  Text in the box
+% #2  Rule number
+% #3  Location for the box
+%  Default node size
+{
+   \MinNodeSize(25,15)
+   \MoveToLoc(#3)
+   \EntryExit (0,0,1,1)
+   \RectNode(tag)(--#1--)
+}
+
+\Define \boxItNoRules (5)
+% parms
+% #1  Text in the box
+% #2  Rule number
+% #3  Location for the box
+% #4  Min node size, x component
+% #5  Min node size, y component
+{
+   \MinNodeSize(#4,#5)
+   \MoveToLoc(#3)
+   \EntryExit (0,0,1,1)
+   \RectNode(tag)(--#1--)
+}
+
+
+\Define \simpleBox (3)
+% parms
+% #1  Rule number
+% #2  Min node size, x component
+% #3  Min node size, y component
+{
+   \MinNodeSize(#2,#3)
+ {
+   \EntryExit (0,0,1,1)
+   \RectNode(tag)(-- --)
+    \MinNodeSize(0,0)
+    \Move(-4,-4)
+    \RectNode(tag)(--$\scriptscriptstyle #1 $--) 
+ }
+}

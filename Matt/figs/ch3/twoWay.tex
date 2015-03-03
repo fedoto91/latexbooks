@@ -1,0 +1,59 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%%  \begin{document}
+%% Flow diagram for a two-way selection structure
+
+\begin {figure}
+
+\Draw
+
+\FcNode(blankA)		%% Factious node
+\Move(0,-50)
+\DiamondNode(cond)(--Condition--)
+{ \MoveToExit(1,0) \Move(11,8) \Text(--true--) }
+{ \MoveToExit(-1,0) \Move(-11,8) \Text(--false--) }
+\Move(85,0) \RectNode(true)(--Statement1--)
+\Move(-170,0) \RectNode(false)(--Statement2--)
+\Move(0,-50)
+\FcNode(blankB)
+\Move(85,0)
+\FcNode(blankC)
+\Move(85,0)
+\FcNode(blankD)
+\Move(-85,-50)
+\FcNode(blankE)
+
+
+\ArrowHeads(1)
+\Edge (blankA,cond)
+\Edge (cond,true)
+\Edge (cond,false)
+\Edge (blankB,blankC)
+\Edge (blankD,blankC)
+\Edge (blankC,blankE)
+
+\ArrowHeads(0)
+\Edge (false,blankB)
+\Edge (true,blankD)
+
+
+
+\EndDraw
+
+
+\caption {Flow diagram for a two-way selection structure}
+
+\label {fig:twoWay}
+
+\end {figure}
+
+%% \end {document}
+

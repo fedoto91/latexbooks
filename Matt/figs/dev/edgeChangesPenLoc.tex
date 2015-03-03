@@ -1,0 +1,44 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Determine if and how an edge changes the pen location
+
+\documentclass{article}
+
+\usepackage{../../cmds}
+\usepackage{../../DraTex}
+\usepackage{../../AlDraTex}
+
+
+\begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../objectDev}
+%% \input {figs/object}
+
+\MinNodeSize(50,50)
+\RectNode(r)(--rect--)
+\Move (150,-150)
+\CircleNode(c)(-- --)
+
+\Node(pre)(--pre--)
+\Edge(r,c)
+\Node(post)(--prost--)
+
+    
+\EndDraw
+
+\caption {An object diagram showing the value of the
+variable \texttt {roster} after three Students have been
+added}
+
+\label {fig:ArrayList3}
+
+\end {figure}
+
+\end {document}
+

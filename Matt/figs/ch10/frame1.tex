@@ -1,0 +1,45 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Diagram of a computer and peripherals
+
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% \usepackage{graphics}
+%% \begin{document}
+%% 
+\begin {figure}
+
+\Draw
+
+
+\MinNodeSize(50,10)
+\RectNode(title)(--Title--)
+
+\MoveToExit(0,-4.5)
+\MinNodeSize(50,40)
+\RectNode(contentPane)(-- --)
+
+\MoveToExit(4.5,1.0)
+\Node(cp)(--contentPane--)
+\Move(-60,-10)
+\FcNode(mid)
+
+
+\CurvedEdgeAt(cp,-1,0,mid,-1,0)(190,1.0,170,0.2)
+\ArrowHeads(1)
+\CurvedEdgeAt(mid,1,0,contentPane,0.5,0)(-20,0.2,0,0.2)
+
+
+\EndDraw
+
+\caption {A simple frame with a title and contentPane}
+
+\label {fig:frame1}
+
+\end {figure}
+
+%%  \end {document}

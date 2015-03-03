@@ -1,0 +1,47 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Draw an object diagram for a HashMap of size 3
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\Indirect \Table <keyPrims>
+ {  0, ,  }
+  
+\Indirect \Table <keyObjs>
+ {  0, , , , , , ,  }
+  
+\Indirect \Table <valuePrims>
+ {  0, ,   }
+  
+\Indirect \Table <valueObjs>
+ {  0, ,  ,  , , , ,  }
+
+\Obj (5, roster,HashMap~$<String{,}Student>$,0, 
+	keyPrims,keyObjs,valuePrims,valueObjs)
+    
+\EndDraw
+
+\caption {An empty map in which the keys are Strings and the values
+are Students}
+
+\label {fig:HashMap0}
+
+\end {figure}
+
+%% \end {document}
+

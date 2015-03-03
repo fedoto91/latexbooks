@@ -1,0 +1,68 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+%% Apply definition of stmt to stmt containing compound stmts
+
+\begin {figure}
+
+\Draw
+
+\MarkLoc(ifElse)
+
+\Move(2,35)
+\MarkLoc(true)
+
+\Move(8,24)
+\MarkLoc(credits)
+
+\Move(0,-24)
+\MarkLoc(gpa)
+
+\Move(-8,-95)
+\MarkLoc(false)
+
+\Move(8,24)
+\MarkLoc(tuition)
+
+\Move(0,-24)
+\MarkLoc(active)
+
+\input{figs/boxIt}
+\boxIt ($if~(credits > 0)$ \hfill				~~~~
+       $\{ \hspace{20pt}creditsAsDouble = credits; $\hfill	~~~~
+       \hspace{24pt} $gpa = gradePoints / credits;$\hfill	~~~~
+	$\}\hfill$						~~~~
+       	$else$\hfill						~~~~
+	$\{  \hspace{20pt}tuition = 0; $\hfill			~~~~
+	\hspace{24pt}$active = false; $\hfill 			~~~~
+	$\}$\hfill,
+	3,ifElse,210,210)
+
+\boxIt (~,5,true,180,75)
+\boxIt (~,1,credits,140,20)
+\boxIt (~,1,gpa,140,20)
+\boxIt (~,5,false,180,75)
+\boxIt (~,1,tuition,140,20)
+\boxIt (~,1,active,140,20)
+
+\EndDraw
+
+\caption {Applying the definition of 
+Statement to an \texttt{if} statement containing
+compound statements	}
+%%% verbatim won't handle this 
+
+\label {fig:compoundStmt}
+
+\end {figure}
+
+%% \end {document}
+

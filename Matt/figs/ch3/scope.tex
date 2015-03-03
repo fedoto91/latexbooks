@@ -1,0 +1,41 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+%% Demonstrate scope of local variables.
+
+\begin {figure}
+
+\begin {tabular} {l c c c}
+Program code    	&  value of a	&  value of b 	& value of c \\
+\hline
+int a,b;		&		&	&		\\
+a = 3;			&  3 		&	&		\\
+b = 7;			&  3 		&  7	&		\\
+\{    // compound stmt	&  3 		&	&		\\
+  int b;		&  3		&	&		\\
+  int c;		&  3		&	&		\\
+  b = 5;		&  3		&  5	&		\\
+  a = 9;		&  9		&  5	&		\\
+  c = 11;		&  9		&  5	&  11		\\
+\}
+			&  9		&  7		\\
+\end {tabular}
+ 	
+
+
+\caption {Scope of local variables}
+
+\label {fig:scope}
+
+\end {figure}
+
+%% \end {document}
+

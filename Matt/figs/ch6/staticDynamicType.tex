@@ -1,0 +1,43 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Distinguish between is-a and has-a
+
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+\begin {tabular} {l | c |c|c|c}
+	& \multicolumn{4}{c}{Variable}		\\
+\cline{2-5}
+	& \multicolumn{2}{c|}{st}	&  \multicolumn{2}{c}{ug}	\\ 
+	\cline{2-5}	
+				& static 	& dynamic	& static	& dynamic	\\
+Code				&  type		&  type		& type 	 	&  type		\\
+\hline
+Student st;			& Student	& 		&		&		\\
+Undergrad ug;			& Student   	& 		& Undergrad	&		\\
+ug = new Undergrad("jim","22") 	& Student	& 		& Undergrad	& Undergrad	\\
+st = ug; 		 	& Student	& UnderGrad	& Undergrad	& Undergrad	\\
+st = new GradStudent ("joe","33");& Student	& GradStudent	& Undergrad	& Undergrad	\\
+
+\end {tabular}
+
+\caption {Static type versus dynamic type. Static type changes as the
+code executes.}
+
+
+\label {fig:staticDynamicType}
+
+\end {figure}
+
+%% \end {document}
+

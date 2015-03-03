@@ -1,0 +1,49 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Class diagram used in exercise on dynamic method lookup (Polymorphism)
+
+
+%% \documentclass{article}
+
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+
+
+%% \begin{document}
+
+\begin {figure}
+
+
+\Draw
+
+%% \input {../object}
+\input {figs/object}
+
+\TreeSpec(\RectNode)()()
+
+\MinNodeSize(80,40)
+%%% Wanted hollow arrowheads pointing to superclasses
+%% \ArrowHeads(1)  \Define\TreeEdge(2){\VVEdge(#2,#1,EdgeGuide)}
+%% \TreeSpec()()(\TreeEdge)     
+
+\Tree()(      2, \underline{Class1} 
+~~ ~~ method1 \symbol{40}\symbol{41}			//
+	      0, \underline{Class2} & 
+		2,\underline{Class3}	~~ ~~ method2 \symbol{40}\symbol{41} //
+	 0,\underline{Class4} ~~ ~~ method1 \symbol{40}\symbol{41}	
+	& 0,\underline{Class5}	~~ ~~ method2 \symbol{40}\symbol{41}	//)
+
+\EndDraw
+
+\caption {Class diagram for exercise on dynamic method lookup.  Each method
+is public void.}
+
+
+\label {fig:polyExercise}
+
+\end {figure}
+
+%% \end {document}
+

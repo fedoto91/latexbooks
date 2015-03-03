@@ -1,0 +1,78 @@
+% LaTeX source for Introduction to Computer Science and Programming (Java)
+% Primary Author:  Seth D. Bergmann
+
+%% Diagram of a frame with menu bar
+
+%% \documentclass{article}
+%% \usepackage{../../cmds}
+%% \usepackage{../../DraTex}
+%% \usepackage{../../AlDraTex}
+%% \usepackage{graphics}
+%% \begin{document}
+%% 
+\begin {figure}
+
+\Draw
+
+
+\MinNodeSize(150,20)
+\RectNode(title)(--Title--)
+
+\MoveToExit(0,-2.0)
+\MinNodeSize(150,20)
+\RectNode(menuBar)(-- --)
+
+\MoveToExit(-0.65,0)
+\MinNodeSize (50,20)
+\RectNode(file)(--File--)
+
+\MoveToExit(0,-2) \Node(save)(--Save ~ ~ ~ --)
+\MoveToExit(0,-2) \Node(saveAs)(-- ~ Save As ~ ~ ~--)
+\MoveToExit(0,-2) \Node(open)(--Open ~ ~ ~ --)
+\MoveToExit(0,-2) \Node(quit)(--Quit ~ ~ ~ --)
+
+\MoveToLoc(file) \Move (50,0)
+\RectNode(help)(--Help--)
+
+
+\MoveToLoc(menuBar) \Move(0,-70)
+
+\MinNodeSize(150,120)
+\RectNode(contentPane)(-- --)
+
+\MinNodeSize(50,20)
+\MoveToExit(2.0,-1.0)
+\Node(cp)(--contentPane--)
+\Move(-160,-10)
+
+\MoveToLoc(menuBar)
+\Move (150,30)   
+\Node(mb)(--Menu Bar--)
+
+\Move (0,-30)
+\Node(m)(--Menus--)
+
+\Move (0,-30)
+\Node(mi)(--Menu Items--)
+
+
+\ArrowHeads(1)
+\CurvedEdgeAt(cp,-1,0,contentPane,0.5,-0.2)(-180,0.2,0,0.2)
+\CurvedEdgeAt(mb,-1,0,menuBar,1,0)(-180,0.2,0,0.2)
+\CurvedEdgeAt(m,-1,0,help,0,-1)(-180,0.2,-90,0.2)
+\CurvedEdgeAt(m,-1,0,file,0.7,-1)(-180,0.2,-75,0.2)
+\CurvedEdgeAt(mi,-1,0,saveAs,0.7,0)(-180,0.2,0,0.2)
+\CurvedEdgeAt(mi,-1,0,open,0.7,0)(-180,0.2,0,0.2)
+\CurvedEdgeAt(mi,-1,0,quit,0.7,0)(-180,0.2,0,0.2)
+
+
+\EndDraw
+
+
+\caption {A simple frame with a title, menu bar, and contentPane}
+
+\label {fig:frame1}
+
+\end {figure}
+
+%%  \end {document}
