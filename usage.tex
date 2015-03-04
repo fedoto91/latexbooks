@@ -1656,5 +1656,49 @@ The \texttt{codeonly} option is useful in conjunction with \texttt{dot2texi}, es
 
 \includegraphics{pdf/dot2texiex2}
 \end{figure}
+\newpage
+%%matts stuff
+\begin{flushleft}
+\section{Matt}
+Ill be working on the following diagrams from Bergmann's ioop book
+%%If I just want to link the images instead of the code
+%%\includegraphics{class1.PNG}
+\subsection{Arrays}
 
+\subsection{Expressions}
+
+\subsection{Classes}
+
+\subsection{Objects}
+
+\subsection{State Machines}
+
+\section{User Input}
+Users will be able to create diagrams by editing a section near the top of the latex code.  This section will be clearly defined, easily editedable and understandable.  Below is a work in progress of some latex code that the user will have to edit to create a diagram that fits their specs. The example below is specifically used when making array diagrams and is far from final.
+
+\begin{quote}{\ttfamily \raggedright \noindent
+User Input Below~\\
+{\textbackslash}newcommand{\{}{\textbackslash}ArrayName{\}}~\\
+{\{}ARRAY NAME HERE{\}}~\\
+{\textbackslash}newcommand{\{}{\textbackslash}Caption{\}}~\\
+{\{}CAPTION HERE{\}}~\\
+{\textbackslash}newcommand{\{}{\textbackslash}ArrayLengthMinusOne{\}}~\\
+{\{}ARRAY LENGTH HERE{\}}~\\
+{\textbackslash}newcommand{\{}{\textbackslash}0{\}}~\\
+{\{}PLACE 0 VALUE HERE{\}}~\\
+{\textbackslash}newcommand{\{}{\textbackslash}1{\}}~\\
+{\{}PLACE 1 VALUE HERE{\}}~\\
+{\textbackslash}newcommand{\{}{\textbackslash}2{\}}~\\
+{\{}PLACE 2 VALUE HERE{\}}~\\
+{\textbackslash}newcommand{\{}{\textbackslash}3{\}}~\\
+{\{}PLACE 3 VALUE HERE{\}}~\\
+{\textbackslash}newcommand{\{}{\textbackslash}4{\}}~\\
+{\{}PLACE 4 VALUE HERE{\}}~\\
+User Input Above~\\
+}\end{quote}
+
+The user will find the location in the template that clearly states "User Input Below" and edit below that until they come to "User Input Above".  The user will edit only the statements that are in CAPS being careful not to edit anything besides that.  For example if the user wanted to create an array diagram that holds 4 values they would look for "ARRAY LENGTH HERE".  After finding this they would replace the text in CAPS with an integer.  The user would then compile the LATEX code to find a array diagram to the users specs.  Above the user input area there will be information regarding what inputs are acceptable for the template. 
+
+
+\end{flushleft}
 \end{document}
