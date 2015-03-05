@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.2)  4 MAR 2015 16:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.2)  5 MAR 2015 11:39
 entering extended mode
-**C:/Users/Matt/latexbooks/usage.tex
-(C:/Users/Matt/latexbooks/usage.tex
+**usage.tex
+(C:\Users\Eugene\latexbooks\usage.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -39,9 +39,8 @@ Package: babel 2008/07/08 v3.8m The Babel package
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg"
 File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\english.ldf"
-Language: english 2005/03/30 v3.3o English support from the babel system
-
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\babel-english\english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.def"
 File: babel.def 2008/07/08 v3.8m Babel common definitions
 \babel@savecnt=\count87
@@ -66,7 +65,7 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aer.fd"
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\aeguill\aeguill.sty"
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\aeguill\aeguill.sty
 Package: aeguill 2003/08/02 1.02 AE fonts with french guillemets (D. Roegel)
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\shortvrb.sty"
@@ -117,9 +116,57 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count93
 \LT@p@ftn=\toks18
 )
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\multicol.sty"
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+\c@tracingmulticols=\count94
+\mult@box=\box30
+\multicol@leftmargin=\dimen112
+\c@unbalance=\count95
+\c@collectmore=\count96
+\doublecol@number=\count97
+\multicoltolerance=\count98
+\multicolpretolerance=\count99
+\full@width=\dimen113
+\page@free=\dimen114
+\premulticols=\dimen115
+\postmulticols=\dimen116
+\multicolsep=\skip49
+\multicolbaselineskip=\skip50
+\partial@page=\box31
+\last@line=\box32
+\mult@rightbox=\box33
+\mult@grightbox=\box34
+\mult@gfirstbox=\box35
+\mult@firstbox=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\@tempa=\box53
+\c@columnbadness=\count100
+\c@finalcolumnbadness=\count101
+\last@try=\dimen117
+\multicolovershoot=\dimen118
+\multicolundershoot=\dimen119
+\mult@nat@firstbox=\box54
+\colbreak@box=\box55
+\multicol@sort@counter=\count102
+)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
 Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip49
+\@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
@@ -128,49 +175,49 @@ Package: amstext 2000/06/29 v2.01
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks19
-\ex@=\dimen112
+\ex@=\dimen120
 ))
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen113
+\pmbraise@=\dimen121
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count94
+\inf@bad=\count103
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count95
-\leftroot@=\count96
+\uproot@=\count104
+\leftroot@=\count105
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count97
-\DOTSCASE@=\count98
+\classnum@=\count106
+\DOTSCASE@=\count107
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
-\Mathstrutbox@=\box30
-\strutbox@=\box31
-\big@size=\dimen114
+\Mathstrutbox@=\box56
+\strutbox@=\box57
+\big@size=\dimen122
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count99
-\c@MaxMatrixCols=\count100
+\macc@depth=\count108
+\c@MaxMatrixCols=\count109
 \dotsspace@=\muskip10
-\c@parentequation=\count101
-\dspbrk@lvl=\count102
+\c@parentequation=\count110
+\dspbrk@lvl=\count111
 \tag@help=\toks20
-\row@=\count103
-\column@=\count104
-\maxfields@=\count105
+\row@=\count112
+\column@=\count113
+\maxfields@=\count114
 \andhelp@=\toks21
-\eqnshift@=\dimen115
-\alignsep@=\dimen116
-\tagshift@=\dimen117
-\tagwidth@=\dimen118
-\totwidth@=\dimen119
-\lineht@=\dimen120
+\eqnshift@=\dimen123
+\alignsep@=\dimen124
+\tagshift@=\dimen125
+\tagwidth@=\dimen126
+\totwidth@=\dimen127
+\lineht@=\dimen128
 \@envbody=\toks22
-\multlinegap=\skip50
-\multlinetaggap=\skip51
+\multlinegap=\skip52
+\multlinetaggap=\skip53
 \mathdisplay@stack=\toks23
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
@@ -202,10 +249,10 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count106
+\Gread@gobject=\count115
 ))
-\Gin@req@height=\dimen121
-\Gin@req@width=\dimen122
+\Gin@req@height=\dimen129
+\Gin@req@width=\dimen130
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\color.sty"
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
@@ -216,53 +263,72 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 Package color Info: Driver file: pdftex.def on input line 130.
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
-\bigstrutjot=\dimen123
+\bigstrutjot=\dimen131
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count107
+\c@float@type=\count116
 \float@exts=\toks25
-\float@box=\box32
+\float@box=\box58
 \@float@everytoks=\toks26
-\@floatcapt=\box33
+\@floatcapt=\box59
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\typearea.sty"
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\titlesec\titletoc.sty
+Package: titletoc 2011/12/15 v1.6 TOC entries
+\ttl@leftsep=\dimen132
+)
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\lipsum\lipsum.sty
+Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+\c@lips@count=\count117
+)
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
+\fancy@headwidth=\skip54
+\f@ncyO@elh=\skip55
+\f@ncyO@erh=\skip56
+\f@ncyO@olh=\skip57
+\f@ncyO@orh=\skip58
+\f@ncyO@elf=\skip59
+\f@ncyO@erf=\skip60
+\f@ncyO@olf=\skip61
+\f@ncyO@orf=\skip62
+)
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\koma-script\typearea.sty
 Package: typearea 2015/02/07 v3.16 KOMA-Script package (type area)
 
 Package typearea, 2015/02/07 v3.16 KOMA-Script package (type area)
                   Copyright (C) Frank Neukam, 1992-1994
                   Copyright (C) Markus Kohm, 1994-
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\scrkbase.sty"
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\koma-script\scrkbase.sty
 Package: scrkbase 2015/02/07 v3.16 KOMA-Script package (KOMA-Script-dependent b
 asics and keyval usage)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\scrbase.sty"
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\koma-script\scrbase.sty
 Package: scrbase 2015/02/07 v3.16 KOMA-Script package (KOMA-Script-independent 
 basics and keyval usage)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\koma-script\scrlfile.sty"
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\koma-script\scrlfile.sty
 Package: scrlfile 2015/02/07 v3.16 KOMA-Script package (loading files)
 
 Package scrlfile, 2015/02/07 v3.16 KOMA-Script package (loading files)
                   Copyright (C) Markus Kohm
 
 )))
-\ta@bcor=\skip52
-\ta@div=\count108
+\ta@bcor=\skip63
+\ta@div=\count118
 Package typearea Info: You've used standard option `a4paper'.
 (typearea)             This is correct!
 (typearea)             Internally I'm using `paper=a4'.
 (typearea)             If you'd like to set the option with \KOMAoptions,
 (typearea)             you'd have to use `paper=a4' there
 (typearea)             instead of `a4paper', too.
-\ta@hblk=\skip53
-\ta@vblk=\skip54
-\ta@temp=\skip55
-\footheight=\skip56
+\ta@hblk=\skip64
+\ta@vblk=\skip65
+\ta@temp=\skip66
+\footheight=\skip67
 
 
 Package typearea Warning: Bad type area settings!
@@ -289,10 +355,10 @@ Package typearea Info: These are the values describing the layout:
 (typearea)              \baselineskip   = 12.0pt
 (typearea)              on input line 1342.
 )
-\admonitionwidth=\skip57
-\docinfowidth=\skip58
-\locallinewidth=\skip59
-\lineblockindentation=\skip60
+\admonitionwidth=\skip68
+\docinfowidth=\skip69
+\locallinewidth=\skip70
+\lineblockindentation=\skip71
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
@@ -350,14 +416,14 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen124
-\Hy@linkcounter=\count109
-\Hy@pagecounter=\count110
+\@linkdim=\dimen133
+\Hy@linkcounter=\count119
+\Hy@pagecounter=\count120
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count111
+\Hy@SavedSpaceFactor=\count121
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -370,17 +436,17 @@ Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count112
+\c@Hy@tempcnt=\count122
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty"
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen125
-\Fld@menulength=\count113
-\Field@Width=\dimen126
-\Fld@charsize=\dimen127
+\XeTeXLinkMargin=\dimen134
+\Fld@menulength=\count123
+\Field@Width=\dimen135
+\Fld@charsize=\dimen136
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -390,371 +456,147 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count114
-\c@Item=\count115
-\c@Hfootnote=\count116
+\Hy@abspage=\count124
+\c@Item=\count125
+\c@Hfootnote=\count126
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count117
-\c@bookmark@seq@number=\count118
+\Fld@listcount=\count127
+\c@bookmark@seq@number=\count128
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip61
+\Hy@SectionHShift=\skip72
 )
-(C:\Users\Matt\latexbooks\usage.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
+(C:\Users\Eugene\latexbooks\usage.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\Eugene\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count119
-\scratchdimen=\dimen128
-\scratchbox=\box34
-\nofMPsegments=\count120
-\nofMParguments=\count121
+\scratchcounter=\count129
+\scratchdimen=\dimen137
+\scratchbox=\box60
+\nofMPsegments=\count130
+\nofMParguments=\count131
 \everyMPshowfont=\toks27
-\MPscratchCnt=\count122
-\MPscratchDim=\dimen129
-\MPnumerator=\count123
-\makeMPintoPDFobject=\count124
+\MPscratchCnt=\count132
+\MPscratchDim=\dimen138
+\MPnumerator=\count133
+\makeMPintoPDFobject=\count134
 \everyMPtoPDFconversion=\toks28
 )
-\AtBeginShipoutBox=\box35
-Package hyperref Info: Link coloring ON on input line 68.
+\AtBeginShipoutBox=\box61
+Package hyperref Info: Link coloring ON on input line 73.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count125
+\c@section@level=\count135
 )
-LaTeX Info: Redefining \ref on input line 68.
-LaTeX Info: Redefining \pageref on input line 68.
-LaTeX Info: Redefining \nameref on input line 68.
+LaTeX Info: Redefining \ref on input line 73.
+LaTeX Info: Redefining \pageref on input line 73.
+LaTeX Info: Redefining \nameref on input line 73.
 
-(C:\Users\Matt\latexbooks\usage.out) (C:\Users\Matt\latexbooks\usage.out)
+(C:\Users\Eugene\latexbooks\usage.out) (C:\Users\Eugene\latexbooks\usage.out)
 \@outlinefile=\write3
-LaTeX Font Info:    Try loading font information for OMS+aer on input line 97.
+LaTeX Font Info:    Try loading font information for OMS+aer on input line 102.
+
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 97.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 160.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 102.
+ [1
+
+{C:/Users/Eugene/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+LaTeX Font Info:    Try loading font information for T1+aett on input line 166.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-LaTeX Font Info:    Try loading font information for T1+aess on input line 167.
+) [2]
+Overfull \vbox (33.88983pt too high) has occurred while \output is active []
 
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aess.fd"
-File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
-)
-
-LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
-(Font)              using `T1/aett/m/n' instead on input line 194.
-
-[1
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Overfull \hbox (6.12117pt too wide) in paragraph at lines 236--237
-[]\T1/aer/m/n/10 Output only the draw-ing com-mands, with-out wrap-ping it in a
- \T1/aett/bx/n/10 tikzpic-
- []
-
-[2] [3] [4]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/ex1comb.pdf): P
-DF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/ex1comb.pdf, id=258, 242.95168pt x 186.28296pt>
-File: pdf/ex1comb.pdf Graphic file (type pdf)
- <use pdf/ex1comb.pdf>
-Package pdftex.def Info: pdf/ex1comb.pdf used on input line 457.
-(pdftex.def)             Requested size: 242.95107pt x 186.28249pt.
+Overfull \vbox (32.88983pt too high) has occurred while \output is active []
 
 
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/ex2.pdf): PDF i
-nclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/ex2.pdf, id=259, 83.31125pt x 182.6825pt>
-File: pdf/ex2.pdf Graphic file (type pdf)
- <use pdf/ex2.pdf>
-Package pdftex.def Info: pdf/ex2.pdf used on input line 470.
-(pdftex.def)             Requested size: 83.31104pt x 182.68204pt.
- [5 <C:/Users/Matt/latexbooks/pdf/ex1comb.pdf> <C:/Users/Matt/latexbooks/pdf/ex
-2.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/texmode.pdf): P
-DF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/texmode.pdf, id=295, 241.90375pt x 327.2225pt>
-File: pdf/texmode.pdf Graphic file (type pdf)
- <use pdf/texmode.pdf>
-Package pdftex.def Info: pdf/texmode.pdf used on input line 489.
-(pdftex.def)             Requested size: 241.90315pt x 327.2217pt.
+Overfull \vbox (31.88983pt too high) has occurred while \output is active []
 
 
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/texmodeb.pdf): 
-PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/texmodeb.pdf, id=296, 193.72375pt x 327.2225pt>
-File: pdf/texmodeb.pdf Graphic file (type pdf)
- <use pdf/texmodeb.pdf>
-Package pdftex.def Info: pdf/texmodeb.pdf used on input line 511.
-(pdftex.def)             Requested size: 193.72327pt x 327.2217pt.
-
-[6 <C:/Users/Matt/latexbooks/pdf/texmode.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/valignmode0.pdf
-): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/valignmode0.pdf, id=323, 168.63pt x 38.1425pt>
-File: pdf/valignmode0.pdf Graphic file (type pdf)
- <use pdf/valignmode0.pdf>
-Package pdftex.def Info: pdf/valignmode0.pdf used on input line 538.
-(pdftex.def)             Requested size: 168.62958pt x 38.1424pt.
+Overfull \vbox (30.88983pt too high) has occurred while \output is active []
 
 
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/valignmode1.pdf
-): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/valignmode1.pdf, id=324, 168.63pt x 38.1425pt>
-File: pdf/valignmode1.pdf Graphic file (type pdf)
- <use pdf/valignmode1.pdf>
-Package pdftex.def Info: pdf/valignmode1.pdf used on input line 547.
-(pdftex.def)             Requested size: 168.62958pt x 38.1424pt.
-
-[7 <C:/Users/Matt/latexbooks/pdf/texmodeb.pdf> <C:/Users/Matt/latexbooks/pdf/va
-lignmode0.pdf> <C:/Users/Matt/latexbooks/pdf/valignmode1.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/valignmode2.pdf
-): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/valignmode2.pdf, id=360, 168.63pt x 38.1425pt>
-File: pdf/valignmode2.pdf Graphic file (type pdf)
- <use pdf/valignmode2.pdf>
-Package pdftex.def Info: pdf/valignmode2.pdf used on input line 562.
-(pdftex.def)             Requested size: 168.62958pt x 38.1424pt.
+Overfull \vbox (29.88983pt too high) has occurred while \output is active []
 
 
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/valignmode3.pdf
-): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/valignmode3.pdf, id=361, 155.58125pt x 38.1425pt>
-File: pdf/valignmode3.pdf Graphic file (type pdf)
-
-<use pdf/valignmode3.pdf>
-Package pdftex.def Info: pdf/valignmode3.pdf used on input line 578.
-(pdftex.def)             Requested size: 155.58086pt x 38.1424pt.
-\c@listcnt0=\count126
- [8 <C:/Users/Matt/latexbooks/pdf/valignmode2.pdf> <C:/Users/Matt/latexbooks/pd
-f/valignmode3.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/preproc1a.pdf):
- PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/preproc1a.pdf, id=381, 91.58516pt x 156.585pt>
-File: pdf/preproc1a.pdf Graphic file (type pdf)
- <use pdf/preproc1a.pdf>
-Package pdftex.def Info: pdf/preproc1a.pdf used on input line 663.
-(pdftex.def)             Requested size: 91.58492pt x 156.58461pt.
+Overfull \vbox (28.88983pt too high) has occurred while \output is active []
 
 
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/preproc1b.pdf):
- PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/preproc1b.pdf, id=382, 113.42375pt x 214.8025pt>
-File: pdf/preproc1b.pdf Graphic file (type pdf)
- <use pdf/preproc1b.pdf>
-Package pdftex.def Info: pdf/preproc1b.pdf used on input line 686.
-(pdftex.def)             Requested size: 113.42346pt x 214.80197pt.
-
-[9 <C:/Users/Matt/latexbooks/pdf/preproc1a.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/nodewidth1.pdf)
-: PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/nodewidth1.pdf, id=405, 175.65625pt x 252.945pt>
-File: pdf/nodewidth1.pdf Graphic file (type pdf)
- <use pdf/nodewidth1.pdf>
-Package pdftex.def Info: pdf/nodewidth1.pdf used on input line 709.
-(pdftex.def)             Requested size: 175.6558pt x 252.94438pt.
-
-[10 <C:/Users/Matt/latexbooks/pdf/preproc1b.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/nodewidth2.pdf)
-: PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/nodewidth2.pdf, id=426, 134.5025pt x 176.66pt>
-File: pdf/nodewidth2.pdf Graphic file (type pdf)
- <use pdf/nodewidth2.pdf>
-Package pdftex.def Info: pdf/nodewidth2.pdf used on input line 717.
-(pdftex.def)             Requested size: 134.50215pt x 176.65956pt.
-
-[11 <C:/Users/Matt/latexbooks/pdf/nodewidth1.pdf> <C:/Users/Matt/latexbooks/pdf
-/nodewidth2.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/balls.pdf): PDF
- inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/balls.pdf, id=449, 112.42pt x 110.4125pt>
-File: pdf/balls.pdf Graphic file (type pdf)
- <use pdf/balls.pdf>
-Package pdftex.def Info: pdf/balls.pdf used on input line 763.
-(pdftex.def)             Requested size: 112.41972pt x 110.41222pt.
- [12 <C:/Users/Matt/latexbooks/pdf/balls.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/pgfarrows.pdf):
- PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/pgfarrows.pdf, id=463, 210.7875pt x 216.81pt>
-File: pdf/pgfarrows.pdf Graphic file (type pdf)
- <use pdf/pgfarrows.pdf>
-Package pdftex.def Info: pdf/pgfarrows.pdf used on input line 808.
-(pdftex.def)             Requested size: 210.78699pt x 216.80946pt.
-
-<pdf/ex1gstyle.pdf, id=464, 82.3075pt x 181.67876pt>
-File: pdf/ex1gstyle.pdf Graphic file (type pdf)
- <use pdf/ex1gstyle.pdf>
-Package pdftex.def Info: pdf/ex1gstyle.pdf used on input line 818.
-(pdftex.def)             Requested size: 82.30728pt x 181.6783pt.
-
-[13 <C:/Users/Matt/latexbooks/pdf/pgfarrows.pdf> <C:/Users/Matt/latexbooks/pdf/
-ex1gstyle.pdf>] <pdf/pstarrows.pdf, id=484, 167.62625pt x 174.6525pt>
-File: pdf/pstarrows.pdf Graphic file (type pdf)
-
-<use pdf/pstarrows.pdf>
-Package pdftex.def Info: pdf/pstarrows.pdf used on input line 844.
-(pdftex.def)             Requested size: 167.62582pt x 174.65207pt.
+Overfull \vbox (27.88983pt too high) has occurred while \output is active []
 
 
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/lblstyle.pdf): 
-PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/lblstyle.pdf, id=485, 248.93pt x 74.02455pt>
-File: pdf/lblstyle.pdf Graphic file (type pdf)
- <use pdf/lblstyle.pdf>
-Package pdftex.def Info: pdf/lblstyle.pdf used on input line 889.
-(pdftex.def)             Requested size: 248.92938pt x 74.02435pt.
+Overfull \vbox (26.88983pt too high) has occurred while \output is active []
 
-[14 <C:/Users/Matt/latexbooks/pdf/pstarrows.pdf>] [15 <C:/Users/Matt/latexbooks
-/pdf/lblstyle.pdf>] <pdf/tikzedgelabels.pdf, id=517, 320.22336pt x 96.61797pt>
-File: pdf/tikzedgelabels.pdf Graphic file (type pdf)
 
-<use pdf/tikzedgelabels.pdf>
-Package pdftex.def Info: pdf/tikzedgelabels.pdf used on input line 979.
-(pdftex.def)             Requested size: 320.22256pt x 96.61772pt.
+Overfull \vbox (25.88983pt too high) has occurred while \output is active []
 
-<pdf/topaths1.pdf, id=518, 81.30405pt x 106.14696pt>
-File: pdf/topaths1.pdf Graphic file (type pdf)
- <use pdf/topaths1.pdf>
-Package pdftex.def Info: pdf/topaths1.pdf used on input line 1023.
-(pdftex.def)             Requested size: 81.30383pt x 106.14668pt.
 
-[16 <C:/Users/Matt/latexbooks/pdf/tikzedgelabels.pdf>]
-<pdf/fsm1.pdf, id=555, 201.1264pt x 182.547pt>
-File: pdf/fsm1.pdf Graphic file (type pdf)
- <use pdf/fsm1.pdf>
-Package pdftex.def Info: pdf/fsm1.pdf used on input line 1073.
-(pdftex.def)             Requested size: 201.12592pt x 182.54654pt.
- [17 <C:/Users/Matt/latexbooks/pdf/topaths1.pdf>] [18 <C:/Users/Matt/latexbooks
-/pdf/fsm1.pdf>] [19] [20] [21]
+Overfull \vbox (24.88983pt too high) has occurred while \output is active []
 
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/ex1huge.pdf): P
-DF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/ex1huge.pdf, id=602, 83.31125pt x 182.6825pt>
-File: pdf/ex1huge.pdf Graphic file (type pdf)
- <use pdf/ex1huge.pdf>
-Package pdftex.def Info: pdf/ex1huge.pdf used on input line 1412.
-(pdftex.def)             Requested size: 83.31104pt x 182.68204pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 201.
 
-[22 <C:/Users/Matt/latexbooks/pdf/ex1huge.pdf>]
-<pdf/consistent.pdf, id=624, 125.29811pt x 160.08609pt>
-File: pdf/consistent.pdf Graphic file (type pdf)
-
-<use pdf/consistent.pdf>
-Package pdftex.def Info: pdf/consistent.pdf used on input line 1454.
-(pdftex.def)             Requested size: 125.29779pt x 160.08568pt.
- [23 <C:/Users/Matt/latexbooks/pdf/consistent.pdf>]
-<pdf/pgftikzsimple.pdf, id=668, 168.37003pt x 112.87068pt>
-File: pdf/pgftikzsimple.pdf Graphic file (type pdf)
-
-<use pdf/pgftikzsimple.pdf>
-Package pdftex.def Info: pdf/pgftikzsimple.pdf used on input line 1517.
-(pdftex.def)             Requested size: 168.3696pt x 112.87039pt.
- [24 <C:/Users/Matt/latexbooks/pdf/pgftikzsimple.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/dot2texiex1.pdf
-): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/dot2texiex1.pdf, id=693, 143.78719pt x 137.01187pt>
-File: pdf/dot2texiex1.pdf Graphic file (type pdf)
-
-<use pdf/dot2texiex1.pdf>
-Package pdftex.def Info: pdf/dot2texiex1.pdf used on input line 1604.
-(pdftex.def)             Requested size: 143.78683pt x 137.01154pt.
- [25] [26 <C:/Users/Matt/latexbooks/pdf/dot2texiex1.pdf>]
-
-pdfTeX warning: pdflatex.EXE (file C:/Users/Matt/latexbooks/pdf/dot2texiex2.pdf
-): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<pdf/dot2texiex2.pdf, id=731, 242.96973pt x 146.65489pt>
-File: pdf/dot2texiex2.pdf Graphic file (type pdf)
-
-<use pdf/dot2texiex2.pdf>
-Package pdftex.def Info: pdf/dot2texiex2.pdf used on input line 1657.
-(pdftex.def)             Requested size: 242.96913pt x 146.65453pt.
- [27 <C:/Users/Matt/latexbooks/pdf/dot2texiex2.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1704.
-
-[28]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1704.
- (C:\Users\Matt\latexbooks\usage.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1704.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1704.
-
+[3]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 201.
+ (C:\Users\Eugene\latexbooks\usage.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 201.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 201.
 Package rerunfilecheck Info: File `usage.out' has not changed.
-(rerunfilecheck)             Checksum: B908182E283C3E9F3F17B31AA8713D4B;3263.
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1704.
+(rerunfilecheck)             Checksum: 6FF8EFFC84DD0B0F45A64B9F1BCA98B0;603.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 201.
  ) 
 Here is how much of TeX's memory you used:
- 7533 strings out of 493921
- 110439 string characters out of 3144880
- 209298 words of memory out of 3000000
- 10500 multiletter control sequences out of 15000+200000
- 33207 words of font info for 69 fonts, out of 3000000 for 9000
+ 7702 strings out of 493921
+ 111257 string characters out of 3144874
+ 316418 words of memory out of 3000000
+ 10811 multiletter control sequences out of 15000+200000
+ 32583 words of font info for 69 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 36i,8n,42p,790b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,11n,43p,654b,372s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/
-Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on usage.pdf (28 pages, 411239 bytes).
+:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Pr
+ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program 
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on usage.pdf (3 pages, 111264 bytes).
 PDF statistics:
- 815 PDF objects out of 1000 (max. 8388607)
- 160 named destinations out of 1000 (max. 500000)
- 502 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 113 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
