@@ -153,68 +153,19 @@ The following libraries are required to run PBK:
 \newpage
 \thispagestyle{fancy}
 %%matts stuff
-\begin{flushleft}
-%%%%%%%%%%OBJECT DIAGRAM
-\begin {figure}
-\Draw
-\input {object}
-\Indirect \Table <studentPrims>
-{  1, info, "1" 		&
-   1, info2,  "2"		&
-   1, info3,  "3"		
-}
-\Indirect \Table <studentObjs>
- {  0, home,Address,addrAPrims,addrAObjs, , , }
-  \Scale (0.8,0.8)
-\OD (OBJECT NAME, studentPrims, studentObjs, 6)
-    \EndDraw
-\caption {CAPTION HERE}
-\label {fig:simpleStudent}
-\end {figure}
 
 \subsection*{Arrays}
 
-%%ARRAY EXAMPLE 
+%_____________________________________________________________ARRAY EXAMPLE 
 %%User Input Below
-\newcommand{\ArrayName}
-{ARRAY NAME HERE}
-\newcommand{\Caption}
-{CAPTION HERE}
-\newcommand{\ArrayLengthMinusOne}
-{6}
-\newcommand{\0}
-{0}
-\newcommand{\1}
-{0}
-\newcommand{\2}
-{95}
-\newcommand{\3}
-{0}
-\newcommand{\4}
-{0}
-\newcommand{\5}
-{0}
-\newcommand{\6}
-{0}
-\newcommand{\7}
-{0}
-\newcommand{\8}
-{0}
-\newcommand{\9}
-{0}
-\newcommand{\ten}
-{0}
-\newcommand{\eleven}
-{0}
-%%User Input Above
-\begin {figure}
+\begin {figure}[!htbp]
 
 \Draw
 
 \input {object}
 %%Array Name Draw
 \Move(-50,0)
-\Node(tag)(--\ArrayName--)
+\Node(tag)(--ARRAY NAME HERE--)
 \MoveToExit(1,0)
 \Move(20,0)
 \ORectNode(gr)(----)
@@ -223,15 +174,13 @@ The following libraries are required to run PBK:
 %%Array Draw
 \MinNodeSize(20,20)
 \Node(start)(----)
-%%\newcounter{Counter}
-
-\Do(0,\ArrayLengthMinusOne)
+\Do(0,6)
 {  
 	\IF 
     	\EqInt(0,0) 				
         	\THEN
  				\RectNode(rec)(--0--)
-                %%\stepcounter{Counter}
+            
    \ELSE
    		\RectNode(rec)(--1--)
    		
@@ -245,7 +194,7 @@ The following libraries are required to run PBK:
 \ArrowHeads(1)
 \CurvedEdgeAt(gr,0,-0.5,start,-1,0) (-90,0.2,180,0.2)
 \EndDraw
-\caption {\Caption}
+\caption {CAPTION HERE}
 \label {fig:array}
 \end {figure}
 
@@ -253,8 +202,8 @@ With Arrays the user will be able to input the information for the array name, c
 
 \subsection*{Expressions}
 
-%%Expression Example
-\begin {figure}
+%_____________________________________________________________Expression Example
+\begin {figure}[!htbp]
 \Draw
 \input boxIt
 \input boxIt
@@ -276,12 +225,12 @@ With Arrays the user will be able to input the information for the array name, c
 \label {fig:exprsBoxedAmb1}
 \end {figure}
 
-With Expressions the user will be able to edit the caption name, ??????
+With Expressions the user will be able to edit the caption name and all of the values.
 
 \subsection*{Classes}
 
-%%Classes Example
-\begin {figure}
+%_________________________________________________________________________Classes Example
+\begin {figure}[!htbp]
 \Draw
 \input {object}
 \MinNodeSize(40,40)
@@ -298,9 +247,29 @@ With Expressions the user will be able to edit the caption name, ??????
 \label {fig:studentClasses}
 \end {figure}
 
+The classes diagrams will be a tree of parents and their children.  The name of each class will be editabnle as well as the shape of the tree and the caption name.
+\newpage
 \subsection*{Objects}
 
-\subsection*{State Machines}
+%___________________________________________________________OBJECT DIAGRAM
+\begin {figure}[!htbp]
+\Draw
+\input {object}
+\Indirect \Table <studentPrims>
+{  1, info, "1" 		&
+   1, info2,  "2"		&
+   1, info3,  "3"		
+}
+\Indirect \Table <studentObjs>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+  \Scale (0.8,0.8)
+\OD (OBJECT NAME, studentPrims, studentObjs, 6)
+    \EndDraw
+\caption {CAPTION HERE}
+\label {fig:simpleStudent}
+\end {figure}
+
+The object diagrams will display a single object with all of its values accepting input.  The caption name will be editable as well as the objects name.
 
 \section{User Input}
 Users will be able to create diagrams by editing a section near the top of the latex code.  This section will be clearly defined, easily editedable and understandable.  Below is a work in progress of some latex code that the user will have to edit to create a diagram that fits their specs. The example below is specifically used when making array diagrams and is far from final.
@@ -329,7 +298,6 @@ User Input Above~\\
 The user will find the location in the template that clearly states "User Input Below" and edit below that until they come to "User Input Above".  The user will edit only the statements that are in CAPS being careful not to edit anything besides that.  For example if the user wanted to create an array diagram that holds 4 values they would look for "ARRAY LENGTH HERE".  After finding this they would replace the text in CAPS with an integer.  The user would then compile the LATEX code to find a array diagram to the users specs.  Above the user input area there will be information regarding what inputs are acceptable for the template. 
 
 
-\end{flushleft}
 
 \pdfbookmark[1]{Change History}{change}
 \newpage
