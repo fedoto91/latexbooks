@@ -72,7 +72,9 @@ pdftitle=TexBooks,
 pdfauthor={INSERT AUTHOR}
 }
 \raggedbottom
-\lhead{Example Template by Matt}
+\lhead{Matt}
+\rhead{Jovaughn}
+\chead{Eugene}
 \begin{document}
 \maketitle
 %___________________________________________________________________________
@@ -125,47 +127,125 @@ The following libraries are required to run PBK:
 \subsection{Sprint 1 : 3/9 - 3/13}
 \begin{enumerate}
 \item Decide on a set of diagrams for each person.
-\item Pick one diagram. Create a hard (specific with no customization) example that illustrates the exact look.
+\item Update design doc with a diagram example from the set that illustrates the output look.
+\item Consider what possible options can be implemented.
+\item Create a function, customized by user input, to generate diagram(s).
 \end{enumerate}
 \subsection{Sprint 2 : 3/16 - 3/20}
 \begin{enumerate}
-\item Consider what possible options can be implemented.
-\item Refactor the code to implement those options.
+\item Repeat Sprint 1, with next set of diagrams(CS discipline).
+\item Update doc
 \end{enumerate}
 \subsection{Sprint 3 : 3/23 - 3/27}
-\begin{enumerate}
-\item Check for issues. Scalability? Color? 
-\item Add the function to the package.
-\item Update doc.
+\begin{enumerate} 
+\item Repeat Sprint 1, with next set of diagrams from other disciplines(bio,physics,math..)
+\item Update doc
 \end{enumerate}
 \subsection{Sprint 3 : 3/30 - 4/3}
 \begin{enumerate}
-\item Work on the next diagram.
+\item Work on special features mentioned in spec.
+\item define function for color interchangeability
+\item define function for pdf content links(bookmarking)
 \end{enumerate}
 \subsection{Sprint 4 : 4/6 - 4/9}
 \begin{enumerate}
-\item TBD
+\item Test, upload the functions to the package, then CTAN.
+\item Work on demo
+\item Work on Symposium poster
 \end{enumerate}
 %___________________________________________________________________________
 
-
-
 \newpage
 \thispagestyle{fancy}
+%%Jovaughn stuff
+\begin{flushleft}
+\section*{API}
+\section*{Diagrams \small{(subject to change)}}
+\subsection*{UML diagrams}
+\begin{enumerate}
+\item Class diagram
+\item Object diagram
+\item State diagram
+
+\includegraphics{UML.jpg}
+\includegraphics{29.jpg}
+\end{enumerate}
+\subsection*{Pushdown Stack}
+\includegraphics{80.jpg}
+\subsection*{Linked List}
+\subsection*{Hash Table}
+\includegraphics{48.jpg}
+\subsection*{Trees}
+\includegraphics{148.jpg}
+\subsection*{Syntax Diagram}
+\includegraphics{if_statement.gif}
+
+\end{flushleft}
+%_______________________________________________
+
 %%matts stuff
+\begin{flushleft}
+%%%%%%%%%%OBJECT DIAGRAM
+\begin {figure}
+\Draw
+\input {object}
+\Indirect \Table <studentPrims>
+{  1, info, "1" 		&
+   1, info2,  "2"		&
+   1, info3,  "3"		
+}
+\Indirect \Table <studentObjs>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+  \Scale (0.8,0.8)
+\OD (OBJECT NAME, studentPrims, studentObjs, 6)
+    \EndDraw
+\caption {CAPTION HERE}
+\label {fig:simpleStudent}
+\end {figure}
 
 \subsection*{Arrays}
 
-%_____________________________________________________________ARRAY EXAMPLE 
+%%ARRAY EXAMPLE 
 %%User Input Below
-\begin {figure}[!htbp]
+\newcommand{\ArrayName}
+{ARRAY NAME HERE}
+\newcommand{\Caption}
+{CAPTION HERE}
+\newcommand{\ArrayLengthMinusOne}
+{6}
+\newcommand{\0}
+{0}
+\newcommand{\1}
+{0}
+\newcommand{\2}
+{95}
+\newcommand{\3}
+{0}
+\newcommand{\4}
+{0}
+\newcommand{\5}
+{0}
+\newcommand{\6}
+{0}
+\newcommand{\7}
+{0}
+\newcommand{\8}
+{0}
+\newcommand{\9}
+{0}
+\newcommand{\ten}
+{0}
+\newcommand{\eleven}
+{0}
+%%User Input Above
+\begin {figure}
 
 \Draw
 
 \input {object}
 %%Array Name Draw
 \Move(-50,0)
-\Node(tag)(--ARRAY NAME HERE--)
+\Node(tag)(--\ArrayName--)
 \MoveToExit(1,0)
 \Move(20,0)
 \ORectNode(gr)(----)
@@ -174,13 +254,15 @@ The following libraries are required to run PBK:
 %%Array Draw
 \MinNodeSize(20,20)
 \Node(start)(----)
-\Do(0,6)
+%%\newcounter{Counter}
+
+\Do(0,\ArrayLengthMinusOne)
 {  
 	\IF 
     	\EqInt(0,0) 				
         	\THEN
  				\RectNode(rec)(--0--)
-            
+                %%\stepcounter{Counter}
    \ELSE
    		\RectNode(rec)(--1--)
    		
@@ -194,7 +276,7 @@ The following libraries are required to run PBK:
 \ArrowHeads(1)
 \CurvedEdgeAt(gr,0,-0.5,start,-1,0) (-90,0.2,180,0.2)
 \EndDraw
-\caption {CAPTION HERE}
+\caption {\Caption}
 \label {fig:array}
 \end {figure}
 
@@ -202,8 +284,8 @@ With Arrays the user will be able to input the information for the array name, c
 
 \subsection*{Expressions}
 
-%_____________________________________________________________Expression Example
-\begin {figure}[!htbp]
+%%Expression Example
+\begin {figure}
 \Draw
 \input boxIt
 \input boxIt
@@ -225,12 +307,12 @@ With Arrays the user will be able to input the information for the array name, c
 \label {fig:exprsBoxedAmb1}
 \end {figure}
 
-With Expressions the user will be able to edit the caption name and all of the values.
+With Expressions the user will be able to edit the caption name, ??????
 
 \subsection*{Classes}
 
-%_________________________________________________________________________Classes Example
-\begin {figure}[!htbp]
+%%Classes Example
+\begin {figure}
 \Draw
 \input {object}
 \MinNodeSize(40,40)
@@ -246,30 +328,6 @@ With Expressions the user will be able to edit the caption name and all of the v
 \caption {CAPTION HERE}
 \label {fig:studentClasses}
 \end {figure}
-
-The classes diagrams will be a tree of parents and their children.  The name of each class will be editabnle as well as the shape of the tree and the caption name.
-\newpage
-\subsection*{Objects}
-
-%___________________________________________________________OBJECT DIAGRAM
-\begin {figure}[!htbp]
-\Draw
-\input {object}
-\Indirect \Table <studentPrims>
-{  1, info, "1" 		&
-   1, info2,  "2"		&
-   1, info3,  "3"		
-}
-\Indirect \Table <studentObjs>
- {  0, home,Address,addrAPrims,addrAObjs, , , }
-  \Scale (0.8,0.8)
-\OD (OBJECT NAME, studentPrims, studentObjs, 6)
-    \EndDraw
-\caption {CAPTION HERE}
-\label {fig:simpleStudent}
-\end {figure}
-
-The object diagrams will display a single object with all of its values accepting input.  The caption name will be editable as well as the objects name.
 
 \section{User Input}
 Users will be able to create diagrams by editing a section near the top of the latex code.  This section will be clearly defined, easily editedable and understandable.  Below is a work in progress of some latex code that the user will have to edit to create a diagram that fits their specs. The example below is specifically used when making array diagrams and is far from final.
@@ -295,9 +353,22 @@ User Input Below~\\
 User Input Above~\\
 }\end{quote}
 
-The user will find the location in the template that clearly states "User Input Below" and edit below that until they come to "User Input Above".  The user will edit only the statements that are in CAPS being careful not to edit anything besides that.  For example if the user wanted to create an array diagram that holds 4 values they would look for "ARRAY LENGTH HERE".  After finding this they would replace the text in CAPS with an integer.  The user would then compile the LATEX code to find a array diagram to the users specs.  Above the user input area there will be information regarding what inputs are acceptable for the template. 
+The user will find the location in the template that clearly states "User Input Below" and edit below that until they come to "User Input Above".  The user will edit only the statements that are in CAPS being careful not to edit anything besides that.  For example if the user wanted to create an array diagram that holds 4 values they would look for "ARRAY LENGTH HERE".  After finding this they would replace the text in CAPS with an integer.  The user would then compile the LATEX code to find a array diagram to the users specs.  Above the user input area there will be information regarding what inputs are acceptable for the template.
+
+To declare a UML class/object diagram:
+{\textbackslash}umlcobject{\{}
+objectblock{object1,referenceType,referenceToObject/Objects},..,..,
+{\}}~ \\
+
+To declare a State,Stack, diagram:
+{\textbackslash}statediagm{\{}table{\}}~ \\ 
+Parameter table consist of states and input, and state reference for each input.
+
+To declare a tree:
+{\textbackslash}tree{\{}{\textbackslash}branch{\{}object,[]children{\}}, {\{}{\textbackslash}branch{object,[]children}{\}}~\\
 
 
+\end{flushleft}
 
 \pdfbookmark[1]{Change History}{change}
 \newpage

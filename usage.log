@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.2.10)  5 MAR 2015 16:10
-=======
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.2)  8 MAR 2015 22:37
->>>>>>> upstream/master
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.2.10)  8 MAR 2015 23:02
 entering extended mode
 **usage.tex
 (usage.tex
@@ -487,7 +483,32 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip72
 )
-(usage.aux)
+(usage.aux
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.29 <
+      <<<<<< HEAD
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: Label `fig:array' multiply defined.
+
+
+LaTeX Warning: Label `fig:exprsBoxedAmb1' multiply defined.
+
+
+LaTeX Warning: Label `fig:studentClasses' multiply defined.
+
+
+LaTeX Warning: Label `fig:simpleStudent' multiply defined.
+
+)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
 LaTeX Font Info:    ... okay on input line 76.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
@@ -532,64 +553,138 @@ LaTeX Info: Redefining \nameref on input line 76.
 
 (usage.out) (usage.out)
 \@outlinefile=\write3
+ [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
 LaTeX Font Info:    Try loading font information for OMS+aer on input line 105.
 
- ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
+("C:\Program Files\MiKTeX 2.9\tex\latex\ae\omsaer.fd"
 File: omsaer.fd 1999/12/27
 )
 LaTeX Font Info:    Font shape `OMS/aer/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 105.
-<<<<<<< HEAD
-=======
- [1
+ [2] [3]
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (C:\Users\Matt\latexbooks
-\object.tex)
-(C:\Users\Matt\latexbooks\boxIt.tex) (C:\Users\Matt\latexbooks\boxIt.tex)
-(C:\Users\Matt\latexbooks\object.tex) [2] (C:\Users\Matt\latexbooks\object.tex)
-LaTeX Font Info:    Try loading font information for T1+aett on input line 273.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [3]
-Overfull \vbox (33.88983pt too high) has occurred while \output is active []
+LaTeX Warning: File `UML.jpg' not found on input line 167.
 
 
-Overfull \vbox (32.88983pt too high) has occurred while \output is active []
+! Package pdftex.def Error: File `UML.jpg' not found.
 
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.167 \includegraphics{UML.jpg}
+                               
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-Overfull \vbox (31.88983pt too high) has occurred while \output is active []
+LaTeX Font Info:    Try loading font information for T1+aett on input line 167.
 
-
-Overfull \vbox (30.88983pt too high) has occurred while \output is active []
->>>>>>> upstream/master
-
-[1
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] (object.tex)
-(object.tex) (boxIt.tex) (boxIt.tex) (object.tex)
-LaTeX Font Info:    Try loading font information for T1+aett on input line 308.
-
-
-<<<<<<< HEAD
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [3] [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 343.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 343.
+)
+
+LaTeX Warning: File `29.jpg' not found on input line 168.
+
+
+! Package pdftex.def Error: File `29.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.168 \includegraphics{29.jpg}
+                              
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: File `80.jpg' not found on input line 171.
+
+
+! Package pdftex.def Error: File `80.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.171 \includegraphics{80.jpg}
+                              
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: File `48.jpg' not found on input line 174.
+
+
+! Package pdftex.def Error: File `48.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.174 \includegraphics{48.jpg}
+                              
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: File `148.jpg' not found on input line 176.
+
+
+! Package pdftex.def Error: File `148.jpg' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.176 \includegraphics{148.jpg}
+                               
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: File `if_statement.gif' not found on input line 178.
+
+
+! LaTeX Error: Unknown graphics extension: .gif.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.178 \includegraphics{if_statement.gif}
+                                        
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[4] (object.tex) (object.tex) (boxIt.tex) (boxIt.tex) (object.tex) [5] [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 373.
+
+[7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 373.
  (usage.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 343.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 343.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 373.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 373.
 Package rerunfilecheck Info: File `usage.out' has not changed.
 (rerunfilecheck)             Checksum: 6FF8EFFC84DD0B0F45A64B9F1BCA98B0;603.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 343.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 373.
  ) 
 Here is how much of TeX's memory you used:
- 8934 strings out of 493698
- 121108 string characters out of 3144400
- 388027 words of memory out of 3000000
- 12047 multiletter control sequences out of 15000+200000
+ 8961 strings out of 493698
+ 121309 string characters out of 3144400
+ 388117 words of memory out of 3000000
+ 12048 multiletter control sequences out of 15000+200000
  32583 words of font info for 69 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  36i,12n,43p,654b,624s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -597,62 +692,14 @@ Here is how much of TeX's memory you used:
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10
-.pfb>
-Output written on usage.pdf (5 pages, 129517 bytes).
+onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on usage.pdf (7 pages, 143681 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
- 37 named destinations out of 1000 (max. 500000)
-=======
-Overfull \vbox (28.88983pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (27.88983pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (26.88983pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (25.88983pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (24.88983pt too high) has occurred while \output is active []
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 307.
-
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 307.
- (C:\Users\Matt\latexbooks\usage.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 307.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 307.
-Package rerunfilecheck Info: File `usage.out' has not changed.
-(rerunfilecheck)             Checksum: 6FF8EFFC84DD0B0F45A64B9F1BCA98B0;603.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 307.
- ) 
-Here is how much of TeX's memory you used:
- 8807 strings out of 493921
- 120714 string characters out of 3144880
- 364530 words of memory out of 3000000
- 11892 multiletter control sequences out of 15000+200000
- 32583 words of font info for 69 fonts, out of 3000000 for 9000
- 841 hyphenation exceptions out of 8191
- 36i,12n,43p,679b,549s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/P
-rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Pr
-ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Progr
-am Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on usage.pdf (4 pages, 128337 bytes).
-PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
->>>>>>> upstream/master
+ 167 PDF objects out of 1000 (max. 8388607)
+ 55 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
