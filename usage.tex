@@ -108,8 +108,8 @@ The following libraries are required to run PBK:
 \href{https://www.ctan.org/pkg/pgf}{PGF} 3.0
 \item {} 
 \href{http://www.ctan.org/topic/pgf-tikz}{PGF-TiKz}
-\item {} 
-\href{https://ctan.org/pkg/luatex}{LuaTex}
+\item {}
+DraTeX, AlDraTeX
 \end{itemize}
 
 
@@ -159,214 +159,152 @@ The following libraries are required to run PBK:
 \thispagestyle{fancy}
 %%Jovaughn stuff
 \begin{flushleft}
-\section*{API}
 \section*{Diagrams \small{(subject to change)}}
-\subsection*{UML diagrams}
-\begin{enumerate}
-\item Class diagram
-\item Object diagram
-\item State diagram
-
-\includegraphics{UML.jpg}
-\includegraphics{29.jpg}
-\end{enumerate}
-\subsection*{Pushdown Stack}
-\includegraphics{80.jpg}
-\subsection*{Linked List}
-\subsection*{Hash Table}
-\includegraphics{48.jpg}
-\subsection*{Trees}
-\includegraphics{148.jpg}
-\subsection*{Syntax Diagram}
-\includegraphics{if_statement.gif}
-
-\end{flushleft}
-%_______________________________________________
-
-%%matts stuff
-\begin{flushleft}
-%%%%%%%%%%OBJECT DIAGRAM
-\begin {figure}
-\Draw
-\input {object}
-\Indirect \Table <studentPrims>
-{  1, info, "1" 		&
-   1, info2,  "2"		&
-   1, info3,  "3"		
-}
-\Indirect \Table <studentObjs>
- {  0, home,Address,addrAPrims,addrAObjs, , , }
-  \Scale (0.8,0.8)
-\OD (OBJECT NAME, studentPrims, studentObjs, 6)
-    \EndDraw
-\caption {CAPTION HERE}
-\label {fig:simpleStudent}
-\end {figure}
-
-\subsection*{Arrays}
-
-%%ARRAY EXAMPLE 
-%%User Input Below
-\newcommand{\ArrayName}
-{ARRAY NAME HERE}
-\newcommand{\Caption}
-{CAPTION HERE}
-\newcommand{\ArrayLengthMinusOne}
-{6}
-\newcommand{\0}
-{0}
-\newcommand{\1}
-{0}
-\newcommand{\2}
-{95}
-\newcommand{\3}
-{0}
-\newcommand{\4}
-{0}
-\newcommand{\5}
-{0}
-\newcommand{\6}
-{0}
-\newcommand{\7}
-{0}
-\newcommand{\8}
-{0}
-\newcommand{\9}
-{0}
-\newcommand{\ten}
-{0}
-\newcommand{\eleven}
-{0}
-%%User Input Above
-\begin {figure}
-
-\Draw
-
-\input {object}
-%%Array Name Draw
-\Move(-50,0)
-\Node(tag)(--\ArrayName--)
-\MoveToExit(1,0)
-\Move(20,0)
-\ORectNode(gr)(----)
-\Move (25,-25)
-
-%%Array Draw
-\MinNodeSize(20,20)
-\Node(start)(----)
-%%\newcounter{Counter}
-
-\Do(0,\ArrayLengthMinusOne)
-{  
-	\IF 
-    	\EqInt(0,0) 				
-        	\THEN
- 				\RectNode(rec)(--0--)
-                %%\stepcounter{Counter}
-   \ELSE
-   		\RectNode(rec)(--1--)
-   		
- 		   \FI
-   { 	\MoveToExit(0,-1.8)
- 	\Node(tag)(--\DoReg--)
-   }
-   \MoveToExit(2,0)
-}
-%%Arrow
-\ArrowHeads(1)
-\CurvedEdgeAt(gr,0,-0.5,start,-1,0) (-90,0.2,180,0.2)
-\EndDraw
-\caption {\Caption}
-\label {fig:array}
-\end {figure}
-
-With Arrays the user will be able to input the information for the array name, caption name, length of the array and the actual values of the array.  
-
-\subsection*{Expressions}
-
-%%Expression Example
-\begin {figure}
-\Draw
-\input boxIt
-\input boxIt
-\MarkLoc(a)
-\Move(50,0)
-\MarkLoc(b)
-\Move(75,0)
-\MarkLoc(c)
-\boxItDefault(4,2,a)
-\boxItDefault(3,2,b)
-\boxItDefault(4,4,c)
-\MoveToLoc(a)
-\Move(25,0)
-\MarkLoc(d)
-\boxIt(~$  +  $~,2,d,105, 25)
-\boxIt(\hspace{135pt}\hfill*\hspace{10pt},4,d, 250, 35)
-\EndDraw
-\caption {CAPTION HERE }
-\label {fig:exprsBoxedAmb1}
-\end {figure}
-
-With Expressions the user will be able to edit the caption name, ??????
-
-\subsection*{Classes}
-
-%%Classes Example
-\begin {figure}
-\Draw
-\input {object}
-\MinNodeSize(40,40)
-\RectNode (student)(--\underline {TOP}~~~~--)
-\MoveToExit(-2,-3)
-\RectNode (underGrad)(--\underline {TOPchild}~~~~--)
-\MoveToExit(3,0)
-\RectNode (gradStudent)(--\underline {TOPchild}~~~~--)
-\ArrowSpec (H)
-\Edge(underGrad,student)
-\Edge(gradStudent,student)
-\EndDraw
-\caption {CAPTION HERE}
-\label {fig:studentClasses}
-\end {figure}
+\subsection*{Class Diagram}
+\subsection*{Free Body Diagrams}
+\subsection*{Collections: Linked Lists, Array, and Maps/Sets }
 
 \section{User Input}
-Users will be able to create diagrams by editing a section near the top of the latex code.  This section will be clearly defined, easily editedable and understandable.  Below is a work in progress of some latex code that the user will have to edit to create a diagram that fits their specs. The example below is specifically used when making array diagrams and is far from final.
+Users will be able to create diagrams by editing a section near the top of the latex code.  This section will be clearly defined, easily editable and understandable.  Below is a work in progress of some latex code that the user will have to edit to create a diagram that fits their specs. The example below is specifically used when making array diagrams and is far from final.
 
+
+\subsection*{Declare Class Diagram:}
 \begin{quote}{\ttfamily \raggedright \noindent
-User Input Below~\\
-{\textbackslash}newcommand{\{}{\textbackslash}ArrayName{\}}~\\
-{\{}ARRAY NAME HERE{\}}~\\
-{\textbackslash}newcommand{\{}{\textbackslash}Caption{\}}~\\
-{\{}CAPTION HERE{\}}~\\
-{\textbackslash}newcommand{\{}{\textbackslash}ArrayLengthMinusOne{\}}~\\
-{\{}ARRAY LENGTH HERE{\}}~\\
-{\textbackslash}newcommand{\{}{\textbackslash}0{\}}~\\
-{\{}PLACE 0 VALUE HERE{\}}~\\
-{\textbackslash}newcommand{\{}{\textbackslash}1{\}}~\\
-{\{}PLACE 1 VALUE HERE{\}}~\\
-{\textbackslash}newcommand{\{}{\textbackslash}2{\}}~\\
-{\{}PLACE 2 VALUE HERE{\}}~\\
-{\textbackslash}newcommand{\{}{\textbackslash}3{\}}~\\
-{\{}PLACE 3 VALUE HERE{\}}~\\
-{\textbackslash}newcommand{\{}{\textbackslash}4{\}}~\\
-{\{}PLACE 4 VALUE HERE{\}}~\\
-User Input Above~\\
+
+{\textbackslash}classdiagram{\{} {\{}List of key:value sets {\}} {\}} ~\\
+
 }\end{quote}
 
-The user will find the location in the template that clearly states "User Input Below" and edit below that until they come to "User Input Above".  The user will edit only the statements that are in CAPS being careful not to edit anything besides that.  For example if the user wanted to create an array diagram that holds 4 values they would look for "ARRAY LENGTH HERE".  After finding this they would replace the text in CAPS with an integer.  The user would then compile the LATEX code to find a array diagram to the users specs.  Above the user input area there will be information regarding what inputs are acceptable for the template.
+Parameter Format:~\\ \medskip
+\begin{quote}{\ttfamily \raggedright \noindent
+{ {class:g=class,class,class,...},{class:a=class,class,class,...}, ...}
+}\end{quote}
 
-To declare a UML class/object diagram:
-{\textbackslash}umlcobject{\{}
-objectblock{object1,referenceType,referenceToObject/Objects},..,..,
-{\}}~ \\
+~\\ \medskip
 
-To declare a State,Stack, diagram:
-{\textbackslash}statediagm{\{}table{\}}~ \\ 
-Parameter table consist of states and input, and state reference for each input.
+"class:g" defines a class with a generalization relationship(:g) to one or more other classes(=class,class,class,...). 
+~\\ \medskip
+Relationships: ~\\ \medskip
 
-To declare a tree:
-{\textbackslash}tree{\{}{\textbackslash}branch{\{}object,[]children{\}}, {\{}{\textbackslash}branch{object,[]children}{\}}~\\
+:g - Generalization: A generalization is a taxonomic relationship between a more general classifier and a more specific classifier. Each instance of the specific classifier is also an indirect instance of the general classifier. Thus, the specific classifier inherits the features of the more general classifier.
+~\\ \medskip
 
+:c - Composition(Composite Association): An association may represent a composite aggregation (i.e., a whole/part relationship). Only binary associations can be aggregations. Composite aggregation is a strong form of aggregation that requires a part instance be included in at most one composite at a time. If a composite is deleted, all of its parts are normally deleted with it. Note that a part can (where allowed) be removed from a composite before the composite is deleted, and thus not be deleted as part of the composite. Compositions may be linked in a directed acyclic graph with transitive deletion characteristics; that is, deleting an element in one part of the graph will also result in the deletion of all elements of the subgraph below that element. Composition is represented by the isComposite attribute on the part end of the association being set to true.
+~\\ \medskip
+
+:d - Dependency: A dependency is a relationship that signifies that a single or a set of model elements requires other model elements for their specification or implementation. This means that the complete semantics of the depending elements is either semantically or structurally dependent on the definition of the supplier element(s).
+~\\ \medskip
+
+:di - Instantiation: A usage dependency among classifiers indicating that operations on the client create instances of the supplier.
+~\\ \medskip
+
+:da - Abstraction: An abstraction is a relationship that relates two elements or sets of elements that represent the same concept at different levels of abstraction or from different viewpoints. In the metamodel, an Abstraction is a Dependency in which there is a mapping between the supplier and the client.
+~\\ \medskip
+
+:dp - Permission: Permission is a kind of dependency. It grants a model element permission to access elements in another namespace.
+~\\ \medskip
+
+:r - Realization: Realization is a specialized abstraction relationship between two sets of model elements, one representing a specification (the supplier) and the other represents an implementation of the latter (the client). Realization can be used to model stepwise refinement, optimizations, transformations, templates, model synthesis, framework composition, etc.
+~\\ \medskip
+
+:dr - Refine: Specifies a refinement relationship between model elements at different semantic levels, such as analysis and design. The mapping specifies the relationship between the two elements or sets of elements. The mapping may or may not be computable, and it may be unidirectional or bidirectional. Refinement can be used to model transformations from analysis to design and other such changes.
+~\\ \medskip
+
+:s - Substition: A substitution is a relationship between two classifiers which signifies that the substitutingClassifier complies with the contract specified by the contract classifier. This implies that instances of the substitutingClassifier are runtime substitutable where instances of the contract classifier are expected.
+~\\ \medskip
+
+:t - Trace: Specifies a trace relationship between model elements or sets of model elements that represent the same concept in different models. Traces are mainly used for tracking requirements and changes across models. Since model changes can occur in both directions, the directionality of the dependency can often be ignored. The mapping specifies the relationship between the two, but it is rarely computable and is usually informal.
+~\\ \medskip
+
+:u - Usage: A usage is a relationship in which one element requires another element (or set of elements) for its full implementation or operation. In the metamodel, a Usage is a Dependency in which the client requires the presence of the supplier.
+~\\ \medskip
+
+:m - Merge: A package merge is a directed relationship between two packages that indicates that the contents of the two packages are to be combined. It is very similar to Generalization in the sense that the source element conceptually adds the characteristics of the target element to its own characteristics resulting in an element that combines the characteristics of both.
+
+	This mechanism should be used when elements defined in different packages have the same name and are intended to represent the same concept. Most often it is used to provide different definitions of a given concept for different purposes, starting from a common base definition. A given base concept is extended in increments, with each increment defined in a separate merged package. By selecting which increments to merge, it is possible to obtain a custom definition of a concept for a specific end. Package merge is particularly useful in meta-modeling and is extensively used in the definition of the UML metamodel.
+
+	Conceptually, a package merge can be viewed as an operation that takes the contents of two packages and produces a new package that combines the contents of the packages involved in the merge. In terms of model semantics, there is no difference between a model with explicit package merges, and a model in which all the merges have been performed.
+~\\ \medskip
+
+:i - Import: A package import is defined as a directed relationship that identifies a package whose members are to be imported by a namespace.
+~\\ \medskip
+
+:dd - Derive: Specifies a derivation relationship among model elements that are usually, but not necessarily, of the same type. A derived dependency specifies that the client may be computed from the supplier. The mapping specifies the computation. The client may be implemented for design reasons, such as efficiency, even though it is logically redundant.
+~\\ \medskip
+:b - Binding: TemplateBinding is a directed relationship from a bound templateable element to the template signature of the target template. A TemplateBinding owns a set of template parameter substitutions.
+~\\ \medskip
+:a - Aggregation: A kind of association that has one of its end marked shared as kind of aggregation, meaning that it has a shared aggregation.
+~\\ \medskip
+
+\subsection*{Declare a Class Object:}
+\begin{quote}{\ttfamily \raggedright \noindent
+{\textbackslash}oclass[content]{\{}Name{\}} 
+}\end{quote}
+
+\subsection*{Declare an Array:}
+\begin{quote}{\ttfamily \raggedright \noindent
+{\textbackslash}array{\{}List of values{\}} 
+}\end{quote}
+~\\ \medskip
+List of Values: Value of each index of the array separated by commas.(Value can reference to objects)
+~\\ \medskip
+Format of parameter:
+~\\
+\begin{quote}{\ttfamily \raggedright \noindent
+{\{}adam, jack, joe{\}} or {\{}{\textbackslash}oclass[content]{\{}Name{\}},{\textbackslash}oclass[content]{\{}Name{\}}, .....{\}}. 
+}\end{quote}
+~\\
+If List of values is empty,a minimal Array with default non-values will be produced.
+
+\subsection*{Declare a Singly LinkedList:}
+\begin{quote}{\ttfamily \raggedright \noindent
+{\textbackslash}slinklist{{\{}List of values{\}} 
+}}\end{quote}
+~\\ \medskip
+
+List of Values: Value of each index of the Linked list separated by commas. (Value can reference to objects). 
+~\\ \medskip
+Format of parameter:
+~\\
+\begin{quote}{\ttfamily \raggedright \noindent
+{\{}adam, jack, joe{\}} or {\{}{\textbackslash}oclass[content]{\{}Name{\}},{\textbackslash}oclass[content]{\{}Name{\}}, .....{\}}. 
+}\end{quote} ~\\
+If List of values is empty, a minimal Linked List with default non-values will be produced.
+
+\subsection*{Declare a Doubly LinkedList:}
+\begin{quote}{\ttfamily \raggedright \noindent
+{\textbackslash}dlinklist{\{}List of values{\}} 
+}\end{quote}
+~\\ \medskip
+List of Values: Value of each index of the Linked list separated by commas. (Value can reference to objects) 
+~\\ \medskip
+Format of parameter:
+~\\
+\begin{quote}{\ttfamily \raggedright \noindent
+{\{}adam, jack, joe{\}} or {\{}{\textbackslash}oclass[content]{\{}Name{\}},{\textbackslash}oclass[content]{\{}Name{\}}, .....{\}}. 
+}\end{quote}
+~\\
+If List of values is empty, a minimal Linked List with default non-values will be produced.
+
+\subsection*{Declare a Map/Set:}
+\begin{quote}{\ttfamily \raggedright \noindent
+{\textbackslash}mapset{\{}key{\}}{\{}value{\}} 
+}\end{quote}
+~\\ \medskip
+Key:  key of object ~\\
+Value: value of object ~\\
+
+\subsection*{Declare a Hashmap/Hashset:}
+\begin{quote}{\ttfamily \raggedright \noindent
+{\textbackslash}hashmapset{\{}list of key:value pairs{\}}
+}\end{quote}
+~\\ \medskip
+Parameter Format:~\\ \medskip
+\begin{quote}{\ttfamily \raggedright \noindent
+{ {key:value},{key:value},....}
+}\end{quote}
+Key:  key of object ~\\
+Value: value of object ~\\
 
 \end{flushleft}
 
@@ -376,7 +314,9 @@ To declare a tree:
 
 \section*{Change History}
 v0.1\\
-\indent General: Initial version \dotfill 1
+\indent General: Initial version \dotfill 2 \\
+v0.2\\
+\indent Version 2 \dotfill 1
 \end{multicols}
 
 \end{document}
