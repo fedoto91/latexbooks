@@ -1,0 +1,177 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	Author: Jovaughn Chin
+%
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes.multipart,chains,matrix,positioning,arrows.meta,arrows}
+\usepackage{xparse}% http://ctan.org/pkg/xparse
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\usepackage{ifthen}
+\errorcontextlines 10000
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Tikz Stylesheet
+\tikzstyle{maps}=[rectangle, rectangle split, rectangle split parts=3,
+        rectangle split horizontal, draw=black, rounded corners, fill=blue!40,
+        text centered, anchor=north, text=white, text width=1cm]
+\tikzstyle{link}=[rectangle, rectangle split, rectangle split parts=3,
+        rectangle split horizontal, draw=black, rounded corners, fill=red!40,
+        text centered, anchor=north, text=black,rectangle split part fill={blue!20, red!20, blue!20}]
+\tikzstyle{abstract}=[rectangle, draw=black, rounded corners, fill=blue!40,
+        text centered, anchor=north, text=white, text width=2cm]
+\tikzstyle{comment}=[rectangle, draw=black, rounded corners, fill=green,
+        text centered, anchor=north, text=white, text width=3cm]
+\tikzstyle{myarrow}=[->, >=open triangle 90, thick]
+\tikzstyle{line}=[-, thick]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%HELPERS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareListParser{\ListParsecomma}{,}
+\DeclareListParser{\ListParsesemi}{;}
+\DeclareListParser{\ListParsecolon}{:}
+\newcounter{cnt}
+\newcounter{xcnt}
+
+\def\addby#1#2{%
+\pgfmathsetmacro{\result}{#1}% 
+\pgfmathtruncatemacro{\result}{\result+ #2}% 
+\global\let\result\result
+}%
+\def\subby#1#2{%
+\pgfmathsetmacro{\sresult}{#1}% 
+\pgfmathtruncatemacro{\sresult}{\sresult- #2}% 
+\global\let\sresult\sresult
+}%
+
+\def\xgetarray#1{%
+\pgfmathsetmacro{\xlenarray}{0}% 
+ %add each element to list as well as define length of list
+\foreach \i in {#1}{%
+\pgfmathtruncatemacro{\xlenarray}{\xlenarray+1}% 
+\global\let\xlenarray\xlenarray
+}%
+\pgfmathsetmacro{\xlenminus}{0}%
+\pgfmathtruncatemacro{\xlenminus}{\xlenarray-1}%  
+\global\let\xlenminus\xlenminus
+
+\setcounter{xcnt}{0}
+\newcommand\xsetval[2]{%
+  \csdef{list##1}{##2}}
+\newcommand\xaddval[1]{%
+  \stepcounter{xcnt}%
+  \csdef{list\thexcnt}{##1}}
+\newcommand\xgetval[1]{%
+  \csuse{list##1}}
+  
+  \renewcommand{\do}[1]{\xaddval{##1}}
+  \expandafter\expandafter\expandafter\ListParsecolon\expandafter\expandafter\expandafter{#1}
+}
+\def\getarray#1{%
+\pgfmathsetmacro{\lenarray}{0}% 
+ %add each element to list as well as define length of list
+\foreach \i in {#1}{%
+\pgfmathtruncatemacro{\lenarray}{\lenarray+1}% 
+\global\let\lenarray\lenarray
+}%
+\pgfmathsetmacro{\lenminus}{0}%
+\pgfmathtruncatemacro{\lenminus}{\lenarray-1}%  
+\global\let\lenminus\lenminus
+
+\setcounter{cnt}{0}
+\newcommand\setval[2]{%
+  \csdef{list##1}{##2}}
+\newcommand\addval[1]{%
+  \stepcounter{cnt}%
+  \csdef{list\thecnt}{##1}}
+\newcommand\getval[1]{%
+  \csuse{list##1}}
+  
+  \renewcommand{\do}[1]{\addval{##1}}
+  \expandafter\expandafter\expandafter\ListParsecomma\expandafter\expandafter\expandafter{#1}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Class diagram
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	LinkedLists
+
+\newcommand\slinklist[1]{
+  	\begin{tikzpicture}[>=stealth, start chain]
+    \getarray{#1}
+    \node[link, on chain,] (0) {/ \nodepart{second}Head}; 
+   
+	
+	\foreach \x in {1,...,\lenarray}{	 
+    \node[link,on chain] (\x) {\nodepart{second}\getval{\x} };
+    }
+    \addby{\lenarray}{1}
+    \node[link, on chain,] (\result) {\nodepart{second}Tail \nodepart{three}/}; 
+    \foreach \v in {0,...,\lenarray}{
+    \addby{\v}{1}
+    \draw[*->] let \p1 = (\v.three), \p2 = (\v.center) in (\x1,\y2) -- (\result);
+    }
+ 
+    \end{tikzpicture}
+    }
+
+   \newcommand\dlinklist[1]{
+\begin{preview}
+  	\begin{tikzpicture}[link/.style={
+            very thick, rectangle split, 
+            rectangle split parts=3, draw, 
+            rectangle split horizontal, minimum size=18pt,
+            inner sep=5pt, text=black,
+            rectangle split part fill={blue!20, red!20, blue!20}
+        }, 
+        ->, start chain, very thick
+      ]
+    \getarray{#1}
+    \node[link, on chain,] (-1) {/ \nodepart{second}Head}; 
+    \node[link, on chain,] (0) {/ \nodepart{second}Head}; 
+   
+	
+	\foreach \x in {1,...,\lenarray}{	 
+    \node[link,on chain] (\x) {\nodepart{second}\getval{\x} };
+    }
+    \addby{\lenarray}{1}
+    \node[link, on chain,] (\result) {\nodepart{second}Tail \nodepart{three}/}; 
+    \path[*->] ($(\result.one)+(0.1,0.1)$) edge [bend left] ($(\lenarray.three)+(0,-0.05)$);
+    
+    \foreach \v in {0,...,\lenarray}{
+    ifthenelse{\v = 0}
+    {\addby{\v}{1}
+    \path[*->] let \p1 = (\v.three), \p2 = (\v.center) in (\x1,\y2) edge [bend left] ($(\result.one)+(0,0.2)$);
+    }
+     {\addby{\v}{1}
+     
+     \path[*->] let \p1 = (\v.three), \p2 = (\v.center) in (\x1,\y2) edge [bend left] ($(\result.one)+ (0,0.2)$);
+     \subby{\v}{1}
+    \path[*->] ($(\v.one)+(0.1,0.1)$) edge [bend left] ($(\sresult.three)+(0,-0.05)$);
+    }
+    }
+    \end{tikzpicture}
+    \end{preview}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	Map/Set Hashmap/Hashset
+\newcommand\mapset[3]{
+\begin{tikzpicture}
+\node[maps] (map) {Key: \\ #2 \nodepart{second}#1 \nodepart{three}Value: \\ #3};
+\end{tikzpicture}
+}
+\newcommand\hashmapset[1]{
+\begin{tikzpicture}
+\getarray{#1}
+  \foreach \v in {1,...,\lenarray}{
+  \xgetarray{\getval{\v}} 
+\node[maps] (map\v) {Key: \\ \xgetval{2} \nodepart{second}\xgetval{1}\nodepart{three}Value: \\\xgetval{3}};
+}
+\end{tikzpicture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%TESTS!
+\begin{document}
+\slinklist{3:gg:ds,sdcs,sdc} \\
+\mapset{name skdn;lv sa}{2}{78} \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
