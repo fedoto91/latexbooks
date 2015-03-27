@@ -72,9 +72,6 @@ pdftitle=TexBooks,
 pdfauthor={INSERT AUTHOR}
 }
 \raggedbottom
-\lhead{Matt}
-\rhead{Jovaughn}
-\chead{Eugene}
 \begin{document}
 \maketitle
 %___________________________________________________________________________
@@ -156,13 +153,14 @@ DraTeX, AlDraTeX
 %___________________________________________________________________________
 
 \newpage
+\chead{Jovaughn}
 \thispagestyle{fancy}
 %%Jovaughn stuff
 \begin{flushleft}
 \section*{Diagrams \small{(subject to change)}}
 \subsection*{Class Diagram}
 \subsection*{Free Body Diagrams}
-\subsection*{Collections: Linked Lists, Array, and Maps/Sets }
+\subsection*{Collections: Linked Lists, Arrays, and HashMaps/Sets }
 
 \section{User Input}
 Users will be able to create diagrams by editing a section near the top of the latex code.  This section will be clearly defined, easily editable and understandable.  Below is a work in progress of some latex code that the user will have to edit to create a diagram that fits their specs. The example below is specifically used when making array diagrams and is far from final.
@@ -254,7 +252,7 @@ Format of parameter:
 {\{}adam, jack, joe{\}} or {\{}{\textbackslash}oclass[content]{\{}Name{\}},{\textbackslash}oclass[content]{\{}Name{\}}, .....{\}}. 
 }\end{quote}
 ~\\
-If List of values is empty,a minimal Array with default non-values will be produced.
+If List of values is empty, nothing will be produced.
 
 \subsection*{Declare a Singly LinkedList:}
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -269,7 +267,7 @@ Format of parameter:
 \begin{quote}{\ttfamily \raggedright \noindent
 {\{}adam, jack, joe{\}} or {\{}{\textbackslash}oclass[content]{\{}Name{\}},{\textbackslash}oclass[content]{\{}Name{\}}, .....{\}}. 
 }\end{quote} ~\\
-If List of values is empty, a minimal Linked List with default non-values will be produced.
+If List of values is empty, nothing will be produced.
 
 \subsection*{Declare a Doubly LinkedList:}
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -284,7 +282,7 @@ Format of parameter:
 {\{}adam, jack, joe{\}} or {\{}{\textbackslash}oclass[content]{\{}Name{\}},{\textbackslash}oclass[content]{\{}Name{\}}, .....{\}}. 
 }\end{quote}
 ~\\
-If List of values is empty, a minimal Linked List with default non-values will be produced.
+If List of values is empty, nothing will be produced.
 
 \subsection*{Declare a Map/Set:}
 \begin{quote}{\ttfamily \raggedright \noindent
@@ -314,9 +312,9 @@ Value: value of object ~\\
 
 \section*{Change History}
 v0.1\\
-\indent General: Initial version \dotfill 2 \\
+\indent General: Initial version \dotfill 1 \\ 
 v0.2\\
-\indent Version 2 \dotfill 1
+\indent Update: Graphical Diagrams to be defined \dotfill 2
 \end{multicols}
 
 \end{document}
