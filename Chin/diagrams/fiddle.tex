@@ -1,18 +1,120 @@
-% Class diagram
-% Author: Remus Mihail Prunescu
+% Class Diagram Generator
+% Author: Jovaughn Chin
 \documentclass{minimal}
 \usepackage[a4paper,margin=1cm,landscape]{geometry}
 \usepackage{tikz}
-\usetikzlibrary{positioning,shapes,shadows,arrows}
+\usetikzlibrary{calc,shapes,shadows,shapes.multipart,chains,matrix,positioning,arrows.meta,arrows}
+\usepackage{xparse}% http://ctan.org/pkg/xparse
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\usepackage{ifthen}
+\errorcontextlines 10000
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareListParser{\ListParsecomma}{,}
+\DeclareListParser{\ListParsesemi}{;}
+\DeclareListParser{\ListParsecolon}{:}
+\newcounter{cnt}
+\newcounter{xcnt}
 
+\def\addby#1#2{%
+\pgfmathsetmacro{\result}{#1}% 
+\pgfmathtruncatemacro{\result}{\result+ #2}% 
+\global\let\result\result
+}%
+\def\subby#1#2{%
+\pgfmathsetmacro{\sresult}{#1}% 
+\pgfmathtruncatemacro{\sresult}{\sresult- #2}% 
+\global\let\sresult\sresult
+}%
+%%%%%Semi colon parser %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\ygetarray#1{%
+\pgfmathsetmacro{\ylenarray}{0}% 
+
+\foreach \i in {#1}{%
+\pgfmathtruncatemacro{\ylenarray}{\ylenarray+1}% 
+\global\let\ylenarray\ylenarray
+}%
+\pgfmathsetmacro{\ylenminus}{0}%
+\pgfmathtruncatemacro{\ylenminus}{\ylenarray-1}%  
+\global\let\ylenminus\ylenminus
+
+\setcounter{ycnt}{0}
+\newcommand\ysetval[2]{%
+  \csdef{list##1}{##2}}
+\newcommand\yaddval[1]{%
+  \stepcounter{ycnt}%
+  \csdef{list\theycnt}{##1}}
+\newcommand\ygetval[1]{%
+  \csuse{list##1}}
+  
+  \renewcommand{\do}[1]{\yaddval{##1}}
+  \expandafter\expandafter\expandafter\ListParsesemi\expandafter\expandafter\expandafter{#1}
+}
+%%%%%% colon parser %%%%%%%%%%%%
+\def\xgetarray#1{%
+\pgfmathsetmacro{\xlenarray}{0}% 
+ 
+\foreach \i in {#1}{%
+\pgfmathtruncatemacro{\xlenarray}{\xlenarray+1}% 
+\global\let\xlenarray\xlenarray
+}%
+\pgfmathsetmacro{\xlenminus}{0}%
+\pgfmathtruncatemacro{\xlenminus}{\xlenarray-1}%  
+\global\let\xlenminus\xlenminus
+
+\setcounter{xcnt}{0}
+\newcommand\xsetval[2]{%
+  \csdef{list##1}{##2}}
+\newcommand\xaddval[1]{%
+  \stepcounter{xcnt}%
+  \csdef{list\thexcnt}{##1}}
+\newcommand\xgetval[1]{%
+  \csuse{list##1}}
+  
+  \renewcommand{\do}[1]{\xaddval{##1}}
+  \expandafter\expandafter\expandafter\ListParsecolon\expandafter\expandafter\expandafter{#1}
+}
+%%%%%%%%% comma parser %%%%%%%%%%%%%%%%%%%
+\def\getarray#1{%
+\pgfmathsetmacro{\lenarray}{0}% 
+
+\foreach \i in {#1}{%
+\pgfmathtruncatemacro{\lenarray}{\lenarray+1}% 
+\global\let\lenarray\lenarray
+}%
+\pgfmathsetmacro{\lenminus}{0}%
+\pgfmathtruncatemacro{\lenminus}{\lenarray-1}%  
+\global\let\lenminus\lenminus
+
+\setcounter{cnt}{0}
+\newcommand\setval[2]{%
+  \csdef{list##1}{##2}}
+\newcommand\addval[1]{%
+  \stepcounter{cnt}%
+  \csdef{list\thecnt}{##1}}
+\newcommand\getval[1]{%
+  \csuse{list##1}}
+  
+  \renewcommand{\do}[1]{\addval{##1}}
+  \expandafter\expandafter\expandafter\ListParsecomma\expandafter\expandafter\expandafter{#1}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \tikzstyle{abstract}=[rectangle, draw=black, rounded corners, fill=blue!40, drop shadow,
         text centered, anchor=north, text=white, text width=3cm]
 \tikzstyle{comment}=[rectangle, draw=black, rounded corners, fill=green, drop shadow,
         text centered, anchor=north, text=white, text width=3cm]
-\tikzstyle{myarrow}=[->, >=open triangle 90, thick]
+\tikzstyle{myarrow}=[->, >=open triangle 45, thick]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Class style   
+\tikzstyle{class}=[rectangle,rectangle split, rectangle split parts=2, draw=black, rounded corners, fill=red!40, drop shadow, text centered, anchor=north, text=white, text width=3cm]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Relationship arrow styles%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzstyle{generalization}=[->, >=open triangle 45, thick]
+\tikzstyle{dependency}=[dashed,->, >=angle 60, thick]
+\tikzstyle{aggregation}=[->, >=open diamond, thick]
+\tikzstyle{composition}=[->, >=diamond, thick]
+\tikzstyle{realization}=[dashed,->, >=triangle 45, thick]
 \tikzstyle{line}=[-, thick]
-        
+\tikzstyle{dash}=[dashed,-, thick]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Fiddle sample %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 \begin{tikzpicture}[node distance=2cm]
     \node (Item) [abstract, rectangle split, rectangle split parts=2]
@@ -221,4 +323,48 @@
         
 \end{tikzpicture}
 \end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Automate Construct Class diagram %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Define class %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\class}[2]{
+\node[class] (#1) {\textbf #1 \nodepart{second}#2};
+}
+%%%%%%%draw class%%%%%%%%
+\newcommand{\drawclass}[2]{
+\tikz \node[class] (#1) {\textbf #1 \nodepart{second}#2};
+}
+\drawclass{name}{content}
+
+%%%%%%%draw class diagram%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\classdiagram}[1]{
+%parse input of list of class relationships(parsed by semi-colon)
+\getarray{#1}
+
+\foreach \r in {1,...,\lenarray}{
+%parse individual relationship(parsed by colon)
+\xgetarray{\getval{1}}
+%parse relationship children(parsed by comma)
+\ygetarray{\xgetval{3}}
+
+%%%%%%check relationship type%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\xgetval{2}g
+\else \ifx\xgetval{2}c
+\else \ifx\xgetval{2}d
+\else \ifx\xgetval{2}di
+\else \ifx\xgetval{2}da
+\else \ifx\xgetval{2}dp
+\else \ifx\xgetval{2}dr
+\else \ifx\xgetval{2}dd
+\else \ifx\xgetval{2}r
+\else \ifx\xgetval{2}s
+\else \ifx\xgetval{2}t
+\else \ifx\xgetval{2}u
+\else \ifx\xgetval{2}m
+\else \ifx\xgetval{2}i
+\else \ifx\xgetval{2}b
+\else \ifx\xgetval{2}a
+
+}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \end{document}
