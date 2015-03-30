@@ -11,27 +11,30 @@
 
 %User Input Diagram Creation Below
 % 1=yes and 0=no
-%invalid config = 101
+%invalid config = 101**
 \newcommand{\SECONDb}{1}
 \newcommand{\THIRDa}{1}
 \newcommand{\THIRDb}{1}
-
+\newcommand{\THIRDc}{1}
+\newcommand{\THIRDd}{1}
+\newcommand{\FOURTHc}{1}
+\newcommand{\FOURTHd}{1}
 %User Input Diagram Creation Above
 
-%%User Input Values Below
-\newcommand{\topitem}{TOP}
-\newcommand{\topitemvalue}{value}
-\newcommand{\seconditemone}{SECONDa}
-\newcommand{\seconditemonevalue}{value}
-\newcommand{\seconditemtwo}{SECONDb}
-\newcommand{\seconditemtwovalue}{value}
+%%User Input nils Below
+\newcommand{\topitem}{Student}
+\newcommand{\topitemnil}{nil}
+\newcommand{\seconditemone}{UnderGrad}
+\newcommand{\seconditemonenil}{nil}
+\newcommand{\seconditemtwo}{GradStudent}
+\newcommand{\seconditemtwonil}{nil}
 \newcommand{\thirditemone}{THIRDa}
-\newcommand{\thirditemonevalue}{value}
+\newcommand{\thirditemonenil}{nil}
 \newcommand{\thirditemtwo}{THIRDb}
-\newcommand{\thirditemtwovalue}{value}
+\newcommand{\thirditemtwonil}{nil}
 \newcommand{\thirditemL}{FOURTHa}
-\newcommand{\thirditemLvalue}{value}
-%User Input Values Above
+\newcommand{\thirditemLnil}{nil}
+%User Input nils Above
 
 \tikzstyle{abstract}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
         text centered, anchor=north, text=black, text width=3cm]
@@ -45,7 +48,7 @@
     \node (Item) [abstract, rectangle split, rectangle split parts=2]
         {
             \textbf{\topitem}
-            \nodepart{second}\topitemvalue
+            \nodepart{second}\topitemnil
         };
    
     
@@ -54,7 +57,7 @@
     \node (Component) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode01]
         {
             \textbf{\seconditemone}
-            \nodepart{second}\seconditemonevalue
+            \nodepart{second}\seconditemonenil
         };
          
 	%%SECONDRIGHT
@@ -62,7 +65,7 @@
     \node (System) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode01]
         {
             \textbf{\seconditemtwo}
-            \nodepart{second}\seconditemtwovalue
+            \nodepart{second}\seconditemtwonil
         };
     \fi
     
@@ -73,7 +76,7 @@
     \node (Sensor) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode02]
         {
             \textbf{\thirditemone}
-            \nodepart{second}\thirditemonevalue
+            \nodepart{second}\thirditemonenil
         };
         
 	\fi
@@ -83,7 +86,7 @@
     \node (Part) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode02]
         {
             \textbf{\thirditemtwo}
-            \nodepart{second}\thirditemtwovalue
+            \nodepart{second}\thirditemtwonil
         };
         \fi
         
@@ -93,156 +96,184 @@
     \node (Pressure) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode03, xshift=2cm]
         {
             \textbf{\thirditemL}
-            \nodepart{second}\thirditemLvalue
+            \nodepart{second}\thirditemLnil
         };
-    \node (Temperature) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode03, xshift=-2cm]
+    \node (FOURTHb) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode03, xshift=-2cm]
         {
-            \textbf{Temperature}
+            \textbf{FOURTHb}
             \nodepart{second}nil
         };
-    \node (PressureInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Pressure, text justified]
+    \node (PressureTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Pressure, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-p-suction\newline fw-p-delivery\newline fw-p-loop\newline sw-p-suction\newline sw-p-delivery
-                \newline sw-p-loop
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE
         };
-    \node (ClOp) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of PressureInstants]
+    \node (ClOp) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of PressureTEMP]
         {
-            \textbf{Closed/Open}
+            \textbf{FIFTHa}
             \nodepart{second}nil
         };
-    \node (ClOpInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of ClOp, text justified]
+    \node (ClOpTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of ClOp, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-clop-warm-up\newline sw-clop-control
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE2
         };
-    \node (TemperatureInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Temperature, text justified]
+    \node (FOURTHbTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FOURTHb, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-t-engine\newline fw-t-heat-exch.\newline sw-t-heat-exch.
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE3
         };
-    \node (Level) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of TemperatureInstants]
+    \node (FIFTHb) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FOURTHbTEMP]
         {
-            \textbf{Level}
+            \textbf{FIFTHb}
             \nodepart{second}nil
         };
-    \node (LevelInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Level, text justified]
+    \node (FIFTHbTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FIFTHb, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-l-tank
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE4
         };
-    \node (Ammeter) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of LevelInstants]
+    \node (SIXTHb) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FIFTHbTEMP]
         {
-            \textbf{Ammeter}
+            \textbf{SIXTHb}
             \nodepart{second}nil
         };
-    \node (AmmeterInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Ammeter, text justified]
+    \node (SIXTHbTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of SIXTHb, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-pump-ammeter\newline sw-pump-ammeter
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE5
         };
     \fi
     
     %%THIRDb
 	\if\THIRDb1        
     \node (AuxNode04) [below=of Part] {};
-    \node (Pump) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode04, xshift=2cm]
+    \node (FOURTHc) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode04, xshift=2cm]
         {
-            \textbf{Pump}
+            \textbf{FOURTHc}
             \nodepart{second}nil
         };
-    \node (Valve) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode04, xshift=-2cm]
+    %FOURTHd
+    \if\FOURTHd1
+    \node (FOURTHd) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode04, xshift=-2cm]
         {
-            \textbf{Valve}
+            \textbf{FOURTHd}
             \nodepart{second}nil
         };
-    \node (PumpInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Pump, text justified]
+	\fi
+    
+    \node (FOURTHcTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FOURTHc, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-pump\newline sw-pump
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE6
         };
-    \node (Tank) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of PumpInstants]
+    \node (FIFTHc) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FOURTHcTEMP]
         {
-            \textbf{Tank}
+            \textbf{FIFTHc}
             \nodepart{second}nil
         };
-    \node (ValveInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Valve, text justified]
+
+    %FOURTHd
+    \if\FOURTHd1
+    \node (FOURTHdTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FOURTHd, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-suction-valve\newline fw-delivery-valve\newline sw-suction-valve\newline sw-delivery-valve
-                \newline sw-discharge-valve\newline sw-control-valve
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE7
         };
-    \node (Engine) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of ValveInstants]
+    \node (FIFTHd) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FOURTHdTEMP]
         {
-            \textbf{Engine}
+            \textbf{FIFTHd}
             \nodepart{second}nil
         };
-    \node (TankInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Tank, text justified]
+    \fi
+    
+    \node (FIFTHcTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FIFTHc, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-expansion-tank
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE8
         };
-    \node (HeatExchanger) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of TankInstants]
+    \node (HeatExchanger) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FIFTHcTEMP]
         {
-            \textbf{Heat Exchanger}
+            \textbf{FIFTHc}
             \nodepart{second}nil
         };
-    \node (HeatExchangerInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of HeatExchanger, text justified]
+    \node (HeatExchangerTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of HeatExchanger, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-heat-exchanger
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE9
         };
-    \node (EngineInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Engine, text justified]
+    
+    %FOURTHd
+    \if\FOURTHd1
+    \node (FIFTHdTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FIFTHd, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-engine
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE10
         };
-    \node (Strainer) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of HeatExchangerInstants]
+    \fi
+    
+    \node (SIXTHc) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of HeatExchangerTEMP]
         {
-            \textbf{Strainer}
+            \textbf{SIXTHc}
             \nodepart{second}nil
         };
-    \node (StrainerInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Strainer, text justified]
+    \node (SIXTHcTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of SIXTHc, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}sw-strainer
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE11
         };
-    \node (Coolant) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of EngineInstants]
+    
+    %FOURTHd
+    \if\FOURTHd1
+    \node (FIFTHd) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FIFTHdTEMP]
         {
-            \textbf{Coolant}
+            \textbf{FIFTHd}
             \nodepart{second}nil
         };
-    \node (CoolantInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Coolant, text justified]
+    \node (FIFTHdTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FIFTHd, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-coolant\newline sw-coolant
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE12
         };  
+    \fi
 	\fi
     
     
     %%SECOND RIGHT
     \if\SECONDb1
     \node (AuxNode05) [below=of System] {};
+    %THIRDc
+    \if\THIRDc1
     \node (CoolingSystem) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode05, xshift=2cm]
         {
-            \textbf{Cooling System}
+            \textbf{THIRDc}
             \nodepart{second}nil
         };
+    \fi
+    %THIRDd
+    \if\THIRDd1
     \node (CoolingLoop) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode05, xshift=-2cm]
         {
-            \textbf{Cooling Loop}
+            \textbf{THIRDd}
             \nodepart{second}nil
         };
-    \node (CoolingSystemInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of CoolingSystem, text justified]
+    \fi
+    %THIRDc
+    \if\THIRDc1
+    \node (CoolingSystemTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of CoolingSystem, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}cool
+            \textbf{TEMP}
+            \nodepart{second}STUFF13
         };
-    \node (CoolingLoopInstants) [comment, rectangle split, rectangle split parts=2, below=0.2cm of CoolingLoop, text justified]
+        \fi
+        %THIRDd
+    \if\THIRDd1
+    \node (CoolingLoopTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of CoolingLoop, text justified]
         {
-            \textbf{Instants}
-            \nodepart{second}fw-loop\newline sw-loop
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE14
         };
+        \fi
     \fi
     \draw[myarrow] (Component.north) -- ++(0,0.8) -| (Item.south);
     
@@ -264,29 +295,40 @@
     %THRIDa
     \if\THIRDa1
     \draw[line] (Pressure.west) -- ++(-0.2,0);
-    \draw[line] (Temperature.east) -- ++(0.2,0);
-    \draw[line] (Level.east) -- ++(0.2,0);
+    \draw[line] (FOURTHb.east) -- ++(0.2,0);
+    \draw[line] (FIFTHb.east) -- ++(0.2,0);
     \draw[myarrow] (ClOp.west) -- ++(-0.2,0) -- ([yshift=0.5cm, xshift=-0.2cm] Pressure.north west) -|
      ([xshift=-1cm]Sensor.south);
-    \draw[myarrow] (Ammeter.east) -- ++(0.2,0) -- ([yshift=0.5cm, xshift=0.2cm] Temperature.north east) -|
+    \draw[myarrow] (SIXTHb.east) -- ++(0.2,0) -- ([yshift=0.5cm, xshift=0.2cm] FOURTHb.north east) -|
      ([xshift=1cm]Sensor.south);
     \fi
     
     %%THIRDb
     \if\THIRDb1
-    \draw[line] (Tank.west) -- ++(-0.2,0);
+    \draw[line] (FIFTHc.west) -- ++(-0.2,0);
     \draw[line] (HeatExchanger.west) -- ++(-0.2,0);
-    \draw[line] (Pump.west) -- ++(-0.2,0);
-    \draw[line] (Valve.east) -- ++(0.2,0);
-    \draw[line] (Engine.east) -- ++(0.2,0);
-    \draw[myarrow] (Strainer.west) -- ++(-0.2,0) -- ([yshift=0.5cm, xshift=-0.2cm] Pump.north west) -|
+    \draw[line] (FOURTHc.west) -- ++(-0.2,0);
+    
+    %FOURTHd
+    \if\FOURTHd1
+    \draw[line] (FOURTHd.east) -- ++(0.2,0);
+    \draw[line] (FIFTHd.east) -- ++(0.2,0);
+    \fi
+   
+    \draw[myarrow] (SIXTHc.west) -- ++(-0.2,0) -- ([yshift=0.5cm, xshift=-0.2cm] FOURTHc.north west) -|
      ([xshift=-1cm]Part.south);
-    \draw[myarrow] (Coolant.east) -- ++(0.2,0) -- ([yshift=0.5cm, xshift=0.2cm] Valve.north east) -|
+    
+    %FOURTHd
+    \if\FOURTHd1
+    \draw[myarrow] (FIFTHd.east) -- ++(0.2,0) -- ([yshift=0.5cm, xshift=0.2cm] FOURTHd.north east) -|
      ([xshift=1cm]Part.south);
+    \fi
     \fi
     
     %%SECOND RIGHT 
     \if\SECONDb1
+    %THIRDc
+    \if\THIRDc1
     \draw[myarrow] (CoolingSystem.north) -- ++(0,0.8) -| (System.south);
     \draw[line] (CoolingSystem.north) -- ++(0,0.8) -| (CoolingLoop.north);
     \fi    
