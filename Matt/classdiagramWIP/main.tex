@@ -1,0 +1,338 @@
+\documentclass{minimal}
+\usepackage[a4paper,margin=1cm,landscape]{geometry}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}
+\usetikzlibrary{positioning,shapes,shadows,arrows}
+
+\begin{document}
+
+%User Input Diagram Creation Below
+% 1=yes and 0=no
+%invalid config = 101**
+\newcommand{\SECONDb}{1}
+\newcommand{\THIRDa}{1}
+\newcommand{\THIRDb}{1}
+\newcommand{\THIRDc}{1}
+\newcommand{\THIRDd}{1}
+\newcommand{\FOURTHc}{1}
+\newcommand{\FOURTHd}{1}
+%User Input Diagram Creation Above
+
+%%User Input nils Below
+\newcommand{\topitem}{Student}
+\newcommand{\topitemnil}{nil}
+\newcommand{\seconditemone}{UnderGrad}
+\newcommand{\seconditemonenil}{nil}
+\newcommand{\seconditemtwo}{GradStudent}
+\newcommand{\seconditemtwonil}{nil}
+\newcommand{\thirditemone}{THIRDa}
+\newcommand{\thirditemonenil}{nil}
+\newcommand{\thirditemtwo}{THIRDb}
+\newcommand{\thirditemtwonil}{nil}
+\newcommand{\thirditemL}{FOURTHa}
+\newcommand{\thirditemLnil}{nil}
+%User Input nils Above
+
+\tikzstyle{abstract}=[rectangle, draw=black, rounded corners, fill=white!40, drop shadow,
+        text centered, anchor=north, text=black, text width=3cm]
+\tikzstyle{comment}=[rectangle, draw=black, rounded corners, fill=black, drop shadow,
+        text centered, anchor=north, text=white, text width=3cm]
+\tikzstyle{myarrow}=[->, >=open triangle 90, thick]
+\tikzstyle{line}=[-, thick]
+        
+\begin{center}
+\begin{tikzpicture}[node distance=2cm]
+    \node (Item) [abstract, rectangle split, rectangle split parts=2]
+        {
+            \textbf{\topitem}
+            \nodepart{second}\topitemnil
+        };
+   
+    
+    \node (AuxNode01) [text width=4cm, below=of Item] {};
+   
+    \node (Component) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode01]
+        {
+            \textbf{\seconditemone}
+            \nodepart{second}\seconditemonenil
+        };
+         
+	%%SECONDRIGHT
+	\if\SECONDb1
+    \node (System) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode01]
+        {
+            \textbf{\seconditemtwo}
+            \nodepart{second}\seconditemtwonil
+        };
+    \fi
+    
+    \node (AuxNode02) [text width=0.5cm, below=of Component] {};
+    
+    %THIRDa
+    \if\THIRDa1
+    \node (Sensor) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode02]
+        {
+            \textbf{\thirditemone}
+            \nodepart{second}\thirditemonenil
+        };
+        
+	\fi
+    
+	%%THIRDb
+    \if\THIRDb1
+    \node (Part) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode02]
+        {
+            \textbf{\thirditemtwo}
+            \nodepart{second}\thirditemtwonil
+        };
+        \fi
+        
+    %%THIRDb
+    \if\THIRDb1
+    \node (AuxNode03) [below=of Sensor] {};
+    \node (Pressure) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode03, xshift=2cm]
+        {
+            \textbf{\thirditemL}
+            \nodepart{second}\thirditemLnil
+        };
+    \node (FOURTHb) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode03, xshift=-2cm]
+        {
+            \textbf{FOURTHb}
+            \nodepart{second}nil
+        };
+    \node (PressureTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of Pressure, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE
+        };
+    \node (ClOp) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of PressureTEMP]
+        {
+            \textbf{FIFTHa}
+            \nodepart{second}nil
+        };
+    \node (ClOpTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of ClOp, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE2
+        };
+    \node (FOURTHbTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FOURTHb, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE3
+        };
+    \node (FIFTHb) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FOURTHbTEMP]
+        {
+            \textbf{FIFTHb}
+            \nodepart{second}nil
+        };
+    \node (FIFTHbTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FIFTHb, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE4
+        };
+    \node (SIXTHb) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FIFTHbTEMP]
+        {
+            \textbf{SIXTHb}
+            \nodepart{second}nil
+        };
+    \node (SIXTHbTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of SIXTHb, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE5
+        };
+    \fi
+    
+    %%THIRDb
+	\if\THIRDb1        
+    \node (AuxNode04) [below=of Part] {};
+    \node (FOURTHc) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode04, xshift=2cm]
+        {
+            \textbf{FOURTHc}
+            \nodepart{second}nil
+        };
+    %FOURTHd
+    \if\FOURTHd1
+    \node (FOURTHd) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode04, xshift=-2cm]
+        {
+            \textbf{FOURTHd}
+            \nodepart{second}nil
+        };
+	\fi
+    
+    \node (FOURTHcTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FOURTHc, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE6
+        };
+    \node (FIFTHc) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FOURTHcTEMP]
+        {
+            \textbf{FIFTHc}
+            \nodepart{second}nil
+        };
+
+    %FOURTHd
+    \if\FOURTHd1
+    \node (FOURTHdTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FOURTHd, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE7
+        };
+    \node (FIFTHd) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FOURTHdTEMP]
+        {
+            \textbf{FIFTHd}
+            \nodepart{second}nil
+        };
+    \fi
+    
+    \node (FIFTHcTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FIFTHc, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE8
+        };
+    \node (HeatExchanger) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FIFTHcTEMP]
+        {
+            \textbf{FIFTHc}
+            \nodepart{second}nil
+        };
+    \node (HeatExchangerTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of HeatExchanger, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE9
+        };
+    
+    %FOURTHd
+    \if\FOURTHd1
+    \node (FIFTHdTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FIFTHd, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE10
+        };
+    \fi
+    
+    \node (SIXTHc) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of HeatExchangerTEMP]
+        {
+            \textbf{SIXTHc}
+            \nodepart{second}nil
+        };
+    \node (SIXTHcTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of SIXTHc, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE11
+        };
+    
+    %FOURTHd
+    \if\FOURTHd1
+    \node (FIFTHd) [abstract, rectangle split, rectangle split parts=2, below=0.4cm of FIFTHdTEMP]
+        {
+            \textbf{FIFTHd}
+            \nodepart{second}nil
+        };
+    \node (FIFTHdTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of FIFTHd, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE12
+        };  
+    \fi
+	\fi
+    
+    
+    %%SECOND RIGHT
+    \if\SECONDb1
+    \node (AuxNode05) [below=of System] {};
+    %THIRDc
+    \if\THIRDc1
+    \node (CoolingSystem) [abstract, rectangle split, rectangle split parts=2, left=of AuxNode05, xshift=2cm]
+        {
+            \textbf{THIRDc}
+            \nodepart{second}nil
+        };
+    \fi
+    %THIRDd
+    \if\THIRDd1
+    \node (CoolingLoop) [abstract, rectangle split, rectangle split parts=2, right=of AuxNode05, xshift=-2cm]
+        {
+            \textbf{THIRDd}
+            \nodepart{second}nil
+        };
+    \fi
+    %THIRDc
+    \if\THIRDc1
+    \node (CoolingSystemTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of CoolingSystem, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF13
+        };
+        \fi
+        %THIRDd
+    \if\THIRDd1
+    \node (CoolingLoopTEMP) [comment, rectangle split, rectangle split parts=2, below=0.2cm of CoolingLoop, text justified]
+        {
+            \textbf{TEMP}
+            \nodepart{second}STUFF HERE14
+        };
+        \fi
+    \fi
+    \draw[myarrow] (Component.north) -- ++(0,0.8) -| (Item.south);
+    
+    %%SECOND RIGHT
+    \if\SECONDb1
+    \draw[line] (Component.north) -- ++(0,0.8) -| (System.north);
+    \fi
+    
+    %%THRIDa
+    \if\THIRDa1 
+    \draw[myarrow] (Sensor.north) -- ++(0,0.8) -| (Component.south);
+    \fi
+    
+    %%THIRDb
+    \if\THIRDb1
+    \draw[line] (Sensor.north) -- ++(0,0.8) -| (Part.north);
+    \fi
+    
+    %THRIDa
+    \if\THIRDa1
+    \draw[line] (Pressure.west) -- ++(-0.2,0);
+    \draw[line] (FOURTHb.east) -- ++(0.2,0);
+    \draw[line] (FIFTHb.east) -- ++(0.2,0);
+    \draw[myarrow] (ClOp.west) -- ++(-0.2,0) -- ([yshift=0.5cm, xshift=-0.2cm] Pressure.north west) -|
+     ([xshift=-1cm]Sensor.south);
+    \draw[myarrow] (SIXTHb.east) -- ++(0.2,0) -- ([yshift=0.5cm, xshift=0.2cm] FOURTHb.north east) -|
+     ([xshift=1cm]Sensor.south);
+    \fi
+    
+    %%THIRDb
+    \if\THIRDb1
+    \draw[line] (FIFTHc.west) -- ++(-0.2,0);
+    \draw[line] (HeatExchanger.west) -- ++(-0.2,0);
+    \draw[line] (FOURTHc.west) -- ++(-0.2,0);
+    
+    %FOURTHd
+    \if\FOURTHd1
+    \draw[line] (FOURTHd.east) -- ++(0.2,0);
+    \draw[line] (FIFTHd.east) -- ++(0.2,0);
+    \fi
+   
+    \draw[myarrow] (SIXTHc.west) -- ++(-0.2,0) -- ([yshift=0.5cm, xshift=-0.2cm] FOURTHc.north west) -|
+     ([xshift=-1cm]Part.south);
+    
+    %FOURTHd
+    \if\FOURTHd1
+    \draw[myarrow] (FIFTHd.east) -- ++(0.2,0) -- ([yshift=0.5cm, xshift=0.2cm] FOURTHd.north east) -|
+     ([xshift=1cm]Part.south);
+    \fi
+    \fi
+    
+    %%SECOND RIGHT 
+    \if\SECONDb1
+    %THIRDc
+    \if\THIRDc1
+    \draw[myarrow] (CoolingSystem.north) -- ++(0,0.8) -| (System.south);
+    \draw[line] (CoolingSystem.north) -- ++(0,0.8) -| (CoolingLoop.north);
+    \fi    
+        
+\end{tikzpicture}
+\end{center}
+\end{document}
