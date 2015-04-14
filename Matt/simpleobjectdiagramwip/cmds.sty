@@ -1,0 +1,273 @@
+% LaTeX source for ``Compiler Design: Theory, Tools, and Examples''
+% Primary Author:  Seth D. Bergmann
+
+% Exercise section
+
+\newcommand{\Exercises}{
+\vspace{10pt}
+\subsection{Exercises}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Macro for Sample Problems
+
+% Parameters:
+% 1.  Sample Problem number
+% 2.  Statement of problem
+% 3.  Solution
+
+\newcommand{\sample[4]}		%% What happened to parameter 1???
+{
+\vspace{20pt}
+\rule{6in}{2pt}
+
+%\textbf{Sample Problem #1}  
+\textbf{Sample Problem #2}  
+
+\begin{quotation}
+#3
+\end{quotation}
+
+\rule{5in}{1pt}
+
+\textbf{Solution: }
+
+#4
+
+\rule{6in}{2pt}
+
+\vspace{20pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossary entries
+% Parameters:
+% 1.  Word being defined
+% 2.  Definition
+
+%% What happened to parameter 1???
+
+\newcommand{\glossentry[3]}
+{ \textbf {#2}~-~#3
+
+  \vspace{5pt}
+}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Big C Notation for Compilers
+
+%  parameters
+%  1. Source language
+%  2. Object language
+%  3. Language in which this compiler is written
+
+\newcommand{\bigC}[3]{\Huge $C^{\mbox{\normalsize #1 $\rightarrow$ #2}}_{\mbox{\normalsize #3}}$
+	\normalsize }
+
+% Example, Source language is Pas, Object  language is  Sun, exists in
+% Mac machine language:
+%\bigC{Pas}{Sun}{Mac}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Diagram for a machine
+% One parameter: Name of the machine
+
+\newcommand{\machine}[1]{
+\begin{picture}(100,80)
+\thicklines
+
+% Draw a box for the machine
+\put(0,0){\framebox(80,50){   }}
+
+% Draw a box for the name of the machine
+\put(30,50){\framebox(50,20){#1}}
+
+\end{picture}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Diagram for a compilation on a computer
+% Parameters
+%  1. Source language 
+%  2. Object language
+%  3. Name of machine
+%  4. Input to the compiler
+%  5. Output of the compiler
+
+\newcommand{\compile}[5]{
+
+\begin{picture}(210,70)
+\thicklines  
+
+% Draw a box for the machine
+\put(80,0){\framebox(80,50){\bigC{#1}{#2}{#3}}}
+
+% Box for the name of the machine
+\put(110,50){\framebox(50,20){#3}}
+
+% Arrows for input and output
+\put(60,25){\vector(1,0){20}}
+\put(160,25){\vector(1,0){20}}
+
+% Input and output 
+\put(-10,20){#4}
+\put(188,20){#5}
+
+\end{picture}
+
+}
+
+% Untested Example:
+% On a Mac, running a compiler that translates java to pc machine language
+% Input is an inventory app written in java.
+% \compile{Java}{PC}{Mac}{Inventory$_{java}$}{Inventory$_{Mips}$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Diagram for a program executing on a machine
+% Parameters
+%  1. Name of machine
+%  2. Program in RAM 
+%  3. Input
+%  4. Output
+
+\newcommand{\program}[4]{
+
+\begin{picture}(210,70)
+\thicklines  
+
+% Draw a box for the machine
+\put(70,0){\framebox(80,50){#2}}
+
+% Box for the name of the machine
+\put(100,50){\framebox(50,20){#1}}
+
+% Arrows for input and output
+\put(50,25){\vector(1,0){20}}
+\put(150,25){\vector(1,0){20}}
+
+% Input and Output
+\put(-10,20){#3}
+\put(178,20){#4}
+
+\end{picture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Diagram for the compilation of a compiler
+% Parameters
+%  1. Language of input compiler
+%  2. Language of output compiler
+%  3. Name of machine
+%  4. Source language of input (and output) compilers
+%  5. Object language of input (and output) compilers
+
+\newcommand{\compileCompiler}[5]{
+\compile{#1}{#2}{#3}{\bigC{#4}{#5}{#1}}{\bigC{#4}{#5}{#2}}
+
+%\begin{picture}(210,70)
+%\thicklines  
+%
+%
+%
+%% Draw a box for the machine
+%\put(70,0){\framebox(80,50){\bigC{#1}{#2}{#3}}}
+%
+%% Box for the name of the machine
+%\put(100,50){\framebox(50,20){#3}}
+%
+%% Arrows for input and output
+%\put(50,25){\vector(1,0){20}}
+%\put(150,25){\vector(1,0){20}}
+%
+%% Input and output compilers, each of
+%% which translates from #4 to y
+%\put(-10,20){\bigC{#4}{#5}{#1}}
+%\put(173,20){\bigC{#4}{#5}{#2}}
+%
+%\end{picture}
+}
+
+% Example:
+% On a Mac, running a compiler that translates java to pc machine language
+% Input is a compiler that translates Ada to Mips, written in Java
+% \compileCompiler{Java}{PC}{Mac}{Ada}{Mips}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Format a grammar rule with rule number
+%  Parameter:
+%  1.  Grammar rule with the following separated by &'s:
+%      NT being defined
+%      def
+%      attribute computation (optional)
+
+\newcounter{ruleNum}	%% should be in prolog?
+
+\newcommand{
+\grule}[1]{ 
+\addtocounter{ruleNum}{1}
+\theruleNum. #1  \\ }   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Format a grammar with attributes
+%  Parameter:
+%  1.  All grammar rules, each defined by \grule
+%  2.  Starting rule number - 1
+
+\newcommand{
+\grammarAttrNum}[2]
+{\setcounter{ruleNum}{#2}
+\hspace*{3pt} \\ [3pt]
+\begin{tabular}{l@{$ \rightarrow $}ll}
+#1
+\end{tabular} \\ [5pt]
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Format a grammar with attributes
+%  Parameter:
+%  1.  All grammar rules, each defined by \grule
+
+\newcommand{
+\grammarAttr}[1]
+{\grammarAttrNum{#1}{0}}	% ++counter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Format a grammar without attributes
+%  Parameter:
+%  1.  All grammar rules, each defined by \grule
+
+\newcommand{
+\grammar}[1]
+{\setcounter{ruleNum}{0}
+\hspace*{3pt} \\ [3pt]
+\begin{tabular}{l@{$ \rightarrow $}l}
+#1
+\end{tabular} \\ [5pt]
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Draw a stack, horizontal
+% Parameter:
+% 1.  Contents of stack, bottom on left
+
+\newcommand{
+\stack}[1]
+{
+
+\Draw
+\Move(-200,0)
+\Clip[48,14]
+\DrawRect(50,14) 
+\Move(25,7)
+\Text(--$\bigtriangledown$ #1--)
+\EndDraw
+}
+
+%% \end {document}

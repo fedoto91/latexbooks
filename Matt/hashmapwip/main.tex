@@ -1,0 +1,194 @@
+\documentclass{article}
+\usepackage{cmds}
+\usepackage{DraTex}
+\usepackage{AlDraTex} 
+
+\begin{document}
+
+%%Diagram Creation Below
+\newcommand{\Size}{1}
+\newcommand{\Reference}{1}
+\newcommand{\Entries}{3}
+%Diagram Creation Above
+
+%Diagram Input Below
+\newcommand{\Caption}{Caption Here}
+\newcommand{\SizeValue}{2}
+\newcommand{\ReferenceValue}{Reference}
+\newcommand{\First}{first}
+\newcommand{\FirstValue}{1}
+\newcommand{\Second}{second}
+\newcommand{\SecondValue}{2}
+%DIagram Input Above
+
+\begin {figure}
+
+\Draw
+
+\input {object}
+
+%0 Entries
+\if\Entries0
+\Indirect \Table <keyPrims>
+ {  1, ,\FirstValue }
+  
+\Indirect \Table <keyObjs >
+ {  0, , , , , , ,  }
+
+\Indirect \Table <valuePrims>
+ {  1, , \SecondValue }
+  
+\Indirect \Table <valueObjs>
+ {  0, , , , , , ,  }
+
+%1 Reference for 0 Entries
+\if\Reference1
+\Obj (5, \ReferenceValue,HashMap~$<String{,}Integer>$,\SizeValue, 
+   keyPrims,keyObjs,valuePrims,valueObjs)
+\fi\fi
+
+%0 References for 1 
+\if\Reference0
+\Obj (5,\ReferenceValue, HashMap~$<String{,}Integer>$,\SizeValue, 
+   keyPrims,keyObjs,valuePrims,valueObjs)
+\fi
+
+%1 Entries
+\if\Entries1
+\Indirect \Table <student1Prims>
+{ 1, name, "joe" 	&
+  1, ssn, "256-44-0321"	&
+  1, gpa, 3.5  
+}
+
+\Indirect \Table <student1Objs>
+{ 0,  ,  ,  , , , ,  }
+
+\Indirect \Table <student2Prims>
+{ 1, name, "jim" 	&
+  1, ssn, "494-32-0909"	&
+  1, gpa, 2.5  
+}
+
+\Indirect \Table <student2Objs>
+{ 0,  ,  ,  , , , ,  }
+
+\Indirect \Table <keyPrims>
+ {  1, ,"256-44-0321"	
+ }
+
+\Indirect \Table <keyObjs>
+ {  0,0, , , , , ,  }
+  
+\Indirect \Table <valuePrims>
+ {  0, ,   }
+  
+\Indirect \Table <valueObjs>
+ {  1, ,Student,student1Prims,student1Objs, , ,
+ }
+  
+\Obj (5, \ReferenceValue,HashMap~$<String{,}Student>$,3, 
+ 	keyPrims,keyObjs,valuePrims,valueObjs)
+\fi
+
+%2 Entries
+\if\Entries2
+\Indirect \Table <student1Prims>
+{ 1, name, "joe" 	&
+  1, ssn, "256-44-0321"	&
+  1, gpa, 3.5  
+}
+
+\Indirect \Table <student1Objs>
+{ 0,  ,  ,  , , , ,  }
+
+\Indirect \Table <student2Prims>
+{ 1, name, "jim" 	&
+  1, ssn, "494-32-0909"	&
+  1, gpa, 2.5  
+}
+
+\Indirect \Table <student2Objs>
+{ 0,  ,  ,  , , , ,  }
+
+\Indirect \Table <keyPrims>
+ {  1, ,"256-44-0321"	&
+    1, ,"494-32-0909"   
+ }
+
+\Indirect \Table <keyObjs>
+ {  0,0, , , , , ,  }
+  
+\Indirect \Table <valuePrims>
+ {  0, ,   }
+  
+\Indirect \Table <valueObjs>
+ {  1, ,Student,student1Prims,student1Objs, , , &
+    1, ,Student,student2Prims,student2Objs, , ,
+ }
+  
+\Obj (5, \ReferenceValue,HashMap~$<String{,}Student>$,3, 
+ 	keyPrims,keyObjs,valuePrims,valueObjs)
+\fi
+
+
+%3 Entries
+\if\Entries3
+\Indirect \Table <student1Prims>
+{ 1, name, "joe" 	&
+  1, ssn, "256-44-0321"	&
+  1, gpa, 3.5  
+}
+
+\Indirect \Table <student1Objs>
+{ 0,  ,  ,  , , , ,  }
+
+\Indirect \Table <student2Prims>
+{ 1, name, "jim" 	&
+  1, ssn, "494-32-0909"	&
+  1, gpa, 2.5  
+}
+
+\Indirect \Table <student2Objs>
+{ 0,  ,  ,  , , , ,  }
+
+\Indirect \Table <student3Prims>
+{ 1, name, "mary" 	&
+  1, ssn, "222-32-9398"	&
+  1, gpa, 4.0  
+}
+
+\Indirect \Table <student3Objs>
+{ 0,  ,  ,  ,  , , , }
+
+\Indirect \Table <keyPrims>
+ {  1, ,"256-44-0321"	&
+    1, ,"494-32-0909"   &
+    1, ,"222-32-9398"	}
+
+\Indirect \Table <keyObjs>
+ {  0,0, , , , , ,  }
+  
+\Indirect \Table <valuePrims>
+ {  0, ,   }
+  
+\Indirect \Table <valueObjs>
+ {  1, ,Student,student1Prims,student1Objs, , , &
+    1, ,Student,student2Prims,student2Objs, , , &
+    1, ,Student,student3Prims,student3Objs, , , 
+ }
+  
+
+\Obj (5, \ReferenceValue,HashMap~$<String{,}Student>$,3, 
+ 	keyPrims,keyObjs,valuePrims,valueObjs)
+\fi
+
+\EndDraw
+
+\caption {\Caption}
+
+\label {fig:HashMap}
+
+\end {figure}
+
+\end {document}

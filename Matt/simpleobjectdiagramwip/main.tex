@@ -1,0 +1,198 @@
+\documentclass{article}
+
+\usepackage{cmds}
+\usepackage{DraTex}
+\usepackage{AlDraTex}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{pgffor}
+
+\begin{document}
+
+%Diagram Creation
+
+%User Input
+\newcommand{\Caption}{Caption Here}
+
+%Linked List Head
+\newcommand{\ObjectName}{LinkedList\textlangle student\textrangle}
+\newcommand{\LLHead}{}
+\newcommand{\LLTail}{null}
+\newcommand{\LLSize}{3}
+
+%Node
+\newcommand{\NName}{Node\textlangle student\textrangle}
+\newcommand{\NValue}{}
+\newcommand{\NNext}{}
+\newcommand{\NPrev}{null}
+
+%Value
+\newcommand{\VTop}{Student}
+\newcommand{\VName}{Jim}
+\newcommand{\VNum}{123}
+\newcommand{\VAddr}{}
+
+%Address
+\newcommand{\AName}{Address}
+\newcommand{\AStreet}{33 Blank St}
+\newcommand{\ACity}{Glassboro}
+\newcommand{\AState}{NJ}
+\newcommand{\AZip}{08080}
+
+%Linked List Tail
+\newcommand{\TName}{Dummy Tail}
+\newcommand{\THead}{arrow}
+\newcommand{\TTail}{null}
+\newcommand{\TSize}{null}
+
+\begin {figure}
+
+%%Linked List Head
+\Draw
+\input {object}
+
+\Indirect \Table <ObjectPrims>
+{  
+	1, head, \LLHead  &
+    1, tail, \LLTail &
+    1, size, \LLSize
+}
+\Indirect \Table <ObjectDiagram>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+\Scale (1,1)
+\OD (\ObjectName, ObjectPrims, ObjectDiagram, 6)
+
+%Arrow from head
+\Move(5,43)
+\FcNode(Head)
+\Move(45,0)
+\FcNode(HeadRight)
+\Move(0,-80)
+\FcNode(HeadDown)
+\Move(-100,0)
+\FcNode(HeadLeft)
+\Move(0,-14)
+\FcNode(HeadBottom)
+\ArrowHeads(1)
+\Edge(HeadLeft,HeadBottom)
+\ArrowHeads(0)
+\Edge(Head,HeadRight)
+\VHEdge(HeadRight,HeadDown)
+\Edge(HeadDown,HeadLeft)
+
+\EndDraw
+
+%Node
+\Draw
+\input {object}
+\Indirect \Table <NodePrims>
+{  
+	1, value, \NValue &
+    1, next, \NNext &
+    1, prev, \NPrev
+}
+\Indirect \Table <NodeDiagram>
+ {  0, home,Address,addrANode,addrANode, , , }
+\Scale (1,1)
+\OD (\NName, NodePrims, NodeDiagram, 6)
+
+%Arrow from node
+\Move(19,43)
+\FcNode(Node)
+\Move(50,0)
+\FcNode(NodeRight)
+\ArrowHeads(1)
+\Edge(Node,NodeRight)
+
+%Arrow from node to next
+\MoveToLoc(Node)
+\Move(0,-28)
+\FcNode(Next)
+\Move(45,0)
+\FcNode(NextRight)
+\Move(0,-70)
+\FcNode(NextDown)
+\Move(-100,0)
+\FcNode(NextLeft)
+\Move(0,-14)
+\FcNode(NextBottom)
+\ArrowHeads(1)
+\Edge(NextLeft,NextBottom)
+\ArrowHeads(0)
+\Edge(Next,NextRight)
+%\VHEdge(NextRight,NextDown)
+\Edge(NextDown,NextLeft)
+
+\EndDraw
+
+%Value
+\vspace{-4.3cm}
+\Draw
+\Move(280,300)
+\input {object}
+\Indirect \Table <NodePrims>
+{  
+	1, name, \VName &
+    1, num, \VNum &
+    1, addr, \VAddr
+}
+\Indirect \Table <NodeDiagram>
+ {  0, home,Address,addrANode,addrANode, , , }
+\Scale (1,1)
+\OD (\VTop, NodePrims, NodeDiagram, 6)
+
+%Arrow from value
+\Move(35,-12)
+\FcNode(Value)
+\Move(50,0)
+\FcNode(ValueRight)
+\ArrowHeads(1)
+\Edge(Value,ValueRight)
+
+\EndDraw
+
+%Address
+\vspace{-10.5cm}
+\Draw
+\Move(408,0)
+\input {object}
+\Indirect \Table <NodePrims>
+{  
+    1, Street, \AStreet &
+    1, City, \ACity &
+    1, State, \AState &
+    1, Zip, \AZip 
+}
+\Indirect \Table <NodeDiagram>
+ {  0, home,Address,addrANode,addrANode, , , }
+\Scale (1,1)
+\OD (\AName, NodePrims, NodeDiagram, 6)
+\EndDraw
+
+%
+
+
+%%Linked List Tail
+\hspace{3.5cm}
+\Draw
+\input {object}
+
+\Indirect \Table <ObjectPrims>
+{  
+	1, head, \THead &
+    1, tail, \TTail &
+    1, size, \TSize
+}
+\Indirect \Table <ObjectDiagram>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+\Scale (1,1)
+\OD (\TName, ObjectPrims, ObjectDiagram, 6)
+\EndDraw
+
+\caption {\Caption}
+
+\label {fig:ObjectDiagram}
+
+\end {figure}
+
+\end {document}
