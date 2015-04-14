@@ -256,7 +256,7 @@ If List of values is empty, nothing will be produced.
 
 \subsection*{Declare a Singly LinkedList:}
 \begin{quote}{\ttfamily \raggedright \noindent
-{\textbackslash}slinklist{{\{}List of values{\}} 
+{\textbackslash}linklist[single]{{\{}List of values{\}} 
 }}\end{quote}
 ~\\ \medskip
 
@@ -271,7 +271,7 @@ If List of values is empty, nothing will be produced.
 
 \subsection*{Declare a Doubly LinkedList:}
 \begin{quote}{\ttfamily \raggedright \noindent
-{\textbackslash}dlinklist{\{}List of values{\}} 
+{\textbackslash}linklist{\{}List of values{\}} 
 }\end{quote}
 ~\\ \medskip
 List of Values: Value of each index of the Linked list separated by commas. (Value can reference to objects) 
@@ -284,22 +284,15 @@ Format of parameter:
 ~\\
 If List of values is empty, nothing will be produced.
 
-\subsection*{Declare a Map/Set:}
-\begin{quote}{\ttfamily \raggedright \noindent
-{\textbackslash}mapset{\{}key{\}}{\{}value{\}} 
-}\end{quote}
-~\\ \medskip
-Key:  key of object ~\\
-Value: value of object ~\\
 
 \subsection*{Declare a Hashmap/Hashset:}
 \begin{quote}{\ttfamily \raggedright \noindent
-{\textbackslash}hashmapset{\{}list of key:value pairs{\}}
+{\textbackslash}hashmapset{\{}name{\}}{\{}list of keys{\}}{\{}list of coresponding values{\}}
 }\end{quote}
 ~\\ \medskip
 Parameter Format:~\\ \medskip
 \begin{quote}{\ttfamily \raggedright \noindent
-{ {key:value},{key:value},....}
+<name><key1,key2,key3><val1,val2,val3>
 }\end{quote}
 Key:  key of object ~\\
 Value: value of object ~\\

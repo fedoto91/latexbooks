@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage[pdftex,active,tightpage]{preview}
+\usepackage{expl3, xparse}% http://ctan.org/pkg/xparse
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\usepackage{ifthen}
+\usepackage{adjustbox}
+
+\PreviewEnvironment{tikzpicture}
+\errorcontextlines 10000
+
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes,shadows,shapes.multipart,chains,matrix,positioning,arrows.meta,arrows,
+graphs,graphdrawing}
+\usegdlibrary{layered}
+\usetikzlibrary{calc,shapes.multipart,chains,arrows,positioning}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Helpers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ExplSyntaxOn
+
+\seq_new:N \g_parsed_seq %%global tmp parsed sequence
+
+\NewDocumentCommand{\addby}{m m}{%
+ \int_eval:n {\seq_count:c {#1_seq} + (#2)}
+}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%List Processors %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentCommand{\newlist}{ m }
+ {
+  \seq_new:c { #1_seq }
+ }
+ 
+\NewDocumentCommand{\addtolist}{ O{,} m m }
+ {
+ \seq_gclear:N \g_parsed_seq %%clear tmp
+ \seq_gset_split:Nnn \g_parsed_seq {#1} {#3} %%split list by delimiter, store in tmp seq
+ 
+ %%map function: add each element in tmp in given seq
+ \seq_map_inline:Nn \g_parsed_seq
+  {
+   \seq_gput_right:cn { #2_seq } { ##1 }
+  }
+ 
+ }
+ 
+\NewDocumentCommand{\getsize}{m}
+{
+  \seq_count:c {#1_seq} %%value of list length 
+}
+
+\NewDocumentCommand{\getindex}{ m m }
+ {
+  \seq_item:cn { #1_seq } { #2 }
+ }
+\NewDocumentCommand{\setindex}{ m m m }
+ {
+  \cs_set:Npx #3 { \seq_item:cn { #1_seq } { #2 } }
+ }
+\NewDocumentCommand{\clearlist}{ m }
+ {
+  \seq_gclear:c { #1_seq }
+ }
+\ExplSyntaxOff
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\NewDocumentCommand{\linklist}{O{} m}{
+\begin{adjustbox}{width=0.8\paperwidth,center,keepaspectratio}
+  	\begin{tikzpicture}[every node/.style={align=center},linkn/.style={
+            very thick, rectangle split, 
+            rectangle split parts=3, draw, 
+            rectangle split horizontal, minimum size=18pt,
+            inner sep=5pt, text=black,rounded corners,
+            rectangle split part fill={blue!20, red!20, blue!20}
+        },
+        ref/.style={very thick, rectangle split, 
+            rectangle split parts=2, draw, 
+            , minimum size=18pt,
+            inner sep=5pt, text=black,rounded corners,
+            rectangle split part fill={blue!20, red!20}}
+            ,remember picture, 
+         ->,shorten >=1pt, auto, start chain, very thick
+      ]
+    \newlist{link}
+    \addtolist{link}{#2}
+    
+    \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
+   
+	%%place and draw of link node and respective ref value
+	\foreach \x in {1,...,\getsize{link}}{	 
+    \node[linkn,on chain] (\x) {\nodepart{second}Indx(\x)};
+    \node[ref, below= of \x] (ref\x) {Value-Ref(\x) \nodepart{second}\getindex{link}{\x} };
+    \path ($(\x.center)+(0,-0.1)$) edge (ref\x);
+    }
+    
+    \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
+
+   \ifthenelse {\equal{\detokenize{#1}}{\detokenize{single}}}{
+   \foreach \v [count=\w from 1] in {0,...,\getsize{link}}{
+    \draw[*->] let \p1 = (\v.three), \p2 = (\v.center) in (\x1,\y2) -- (\w);
+    }
+    }%%else doubly
+    {
+    \foreach \v [count=\i from 2, count=\j from 0] in {1,...,\getsize{link}}{
+
+     \path (\v.three) edge[bend left] (\i.one);
+    \path (\v.one) edge[bend left] (\j.three);
+    }
+    }
+    \end{tikzpicture}
+   \end{adjustbox}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%Hashmap%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%param(2): name, set of key value pairs;             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%format: \hashmapset{name}{{key,val},{key,val},...}; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\hashmapset[3]{
+\begin{adjustbox}{width=0.8\paperwidth,center,keepaspectratio}
+\begin{tikzpicture}[remember picture, auto,->,thick,
+  inner/.style={circle,draw=blue!50,fill=blue!20,inner sep=3pt},
+  outer/.style={rectangle,rectangle split, rectangle split parts=2, draw=black, rounded corners, 						fill=red!40, text centered, inner sep=10pt, text=black}
+  ]
+	\newlist{keys}
+	\addtolist{keys}{#2}
+	\newlist{vals}
+	\addtolist{vals}{#3}
+  %%construct Hashmap
+  \node[outer] (#1) {#1
+    
+    \nodepart{two}
+    \begin{tikzpicture}[start chain= going below]
+    %% Place key value nodes vertical
+    \foreach \i in {1,...,\getsize{keys}}{ 
+      \node [inner, on chain] (bk\i)  {};
+      \node [inner, right=of bk\i] (bv\i) {};
+    }  
+    \end{tikzpicture}
+    }; %
+    
+    
+ %% Place key value pairs references
+    \foreach \j in {1,...,\getsize{keys}}{   
+      
+    %%get key-value pair     
+                                        
+     \node [left= 1cm of bk\j] (key\j)  { \getindex{keys}{\j} };
+                                         
+     \node [right= 1cm of bv\j] (val\j)  { \getindex{vals}{\j}};
+}      
+      
+ %%connect nodes to references
+ 
+ \foreach \k  in {1,...,\getsize{keys}}{
+ 	 \path (bk\k .center) edge (key\k);
+     \path (bv\k .center) edge (val\k);
+ }
+ 
+ \end{tikzpicture} %% end
+ \end{adjustbox}
+}
+%%%%Test!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hashmapset{name}{ky1,ky2,ky3}{v1,v2,v3}
+
+\linklist[single]{3,4,5,6,7,8,{drrt,hgfk},tufik,j0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
