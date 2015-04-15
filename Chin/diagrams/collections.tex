@@ -66,12 +66,16 @@ graphs,graphdrawing}
   \seq_gclear:c { #1_seq }
  }
 \ExplSyntaxOff
+
+ \newlist{link}
  
+ \newcommand{\alignlist}{}
+ \newcommand{\alignref}{below}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
+
 \NewDocumentCommand{\linklist}{O{} m}{
-\begin{adjustbox}{width=0.8\paperwidth,center,keepaspectratio}
   	\begin{tikzpicture}[every node/.style={align=center},linkn/.style={
             very thick, rectangle split, 
             rectangle split parts=3, draw, 
@@ -87,7 +91,12 @@ graphs,graphdrawing}
             ,remember picture, 
          ->,shorten >=1pt, auto, start chain, very thick
       ]
-    \newlist{link}
+      
+%%%%
+
+%reset list upon each instantiation%%
+	\clearlist{link}           
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \addtolist{link}{#2}
     
     \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
@@ -95,13 +104,13 @@ graphs,graphdrawing}
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
     \node[linkn,on chain] (\x) {\nodepart{second}Indx(\x)};
-    \node[ref, below= of \x] (ref\x) {Value-Ref(\x) \nodepart{second}\getindex{link}{\x} };
+    \node[ref, \alignref= of \x] (ref\x) {Value-Ref(\x) \nodepart{second}\getindex{link}{\x}};
     \path ($(\x.center)+(0,-0.1)$) edge (ref\x);
     }
     
     \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
 
-   \ifthenelse {\equal{\detokenize{#1}}{\detokenize{single}}}{
+   \ifthenelse {\equal{\detokenize{#2}}{\detokenize{single}}}{
    \foreach \v [count=\w from 1] in {0,...,\getsize{link}}{
     \draw[*->] let \p1 = (\v.three), \p2 = (\v.center) in (\x1,\y2) -- (\w);
     }
@@ -114,7 +123,7 @@ graphs,graphdrawing}
     }
     }
     \end{tikzpicture}
-   \end{adjustbox}
+   
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -123,20 +132,24 @@ graphs,graphdrawing}
 %%%%%%%Hashmap%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%param(2): name, set of key value pairs;             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%format: \hashmapset{name}{{key,val},{key,val},...}; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlist{keys}
+\newlist{vals}
+
 \newcommand\hashmapset[3]{
-\begin{adjustbox}{width=0.8\paperwidth,center,keepaspectratio}
 \begin{tikzpicture}[remember picture, auto,->,thick,
   inner/.style={circle,draw=blue!50,fill=blue!20,inner sep=3pt},
-  outer/.style={rectangle,rectangle split, rectangle split parts=2, draw=black, rounded corners, 						fill=red!40, text centered, inner sep=10pt, text=black}
+  outer/.style={rectangle,rectangle split, rectangle split parts=3, draw=black, rounded corners, 						fill=red!40, text centered, inner sep=10pt, text=black}
   ]
-	\newlist{keys}
+%reset lists upon instantiation%%
+	\clearlist{keys}           %%
+	\clearlist{vals}           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\addtolist{keys}{#2}
-	\newlist{vals}
 	\addtolist{vals}{#3}
   %%construct Hashmap
-  \node[outer] (#1) {#1
+  \node[outer] (#1) {#1 \nodepart{two} Size=\getsize{keys}
     
-    \nodepart{two}
+    \nodepart{three}
     \begin{tikzpicture}[start chain= going below]
     %% Place key value nodes vertical
     \foreach \i in {1,...,\getsize{keys}}{ 
@@ -165,13 +178,19 @@ graphs,graphdrawing}
  }
  
  \end{tikzpicture} %% end
- \end{adjustbox}
+ 
 }
 %%%%Test!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{adjustbox}{width=0.8\paperwidth,center,keepaspectratio}
 \hashmapset{name}{ky1,ky2,ky3}{v1,v2,v3}
+\end{adjustbox}
 
+\begin{adjustbox}{width=0.8\paperwidth,center,keepaspectratio}
 \linklist[single]{3,4,5,6,7,8,{drrt,hgfk},tufik,j0}
+\end{adjustbox}
 
-
+\begin{adjustbox}{width=0.8\paperwidth,center,keepaspectratio}
+\linklist{3,4,5,6,7,8,{drrt,hgfk},tufik,j0}
+\end{adjustbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
