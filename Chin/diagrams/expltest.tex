@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{xparse}
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usepackage{etoolbox}
+\ExplSyntaxOn
+\NewDocumentCommand{\newgniourflist}{ m }
+ {
+  \seq_new:c { g_gniourf_#1_seq }
+ }
+\newgniourflist{gniourflist}
+\NewDocumentCommand{\addtogniourflist}{ O{gniourflist} m }
+ {
+  \seq_gput_right:cn { g_gniourf_#1_seq } { #2 }
+ }
+\NewDocumentCommand{\getnthelement}{ O{gniourflist} m }
+ {
+  \seq_item:cn { g_gniourf_#1_seq } { #2 }
+ }
+\NewDocumentCommand{\storenthelement}{ O{gniourflist} m m }
+ {
+  \cs_set:Npx #3 { \seq_item:cn { g_gniourf_#1_seq } { #2 } }
+ }
+\NewDocumentCommand{\cleargniourflist}{ O{gniourflist} }
+ {
+  \seq_gclear:c { g_gniourf_#1_seq }
+ }
+ \NewDocumentCommand{\getsizelist}{ O{gniourflist} }{
+  \seq_count:c {g_gniourf_#1_seq}
+ }
+ \NewDocumentCommand{\addby}{m m}{%
+\int_eval:n {\seq_count:c {g_gniourf_#1_seq} + (#2)}
+}%
+\NewDocumentCommand{\printlist}{O{~} m}{
+\seq_use:cn {g_gniourf_#2_seq}{#1}
+}
+
+
+
+\newcommand{\fourthelement}{\getnthelement{4}}
+
+\begin{document}
+
+\newgniourflist{fiddle}
+\addtogniourflist[fiddle]{}
+\getsizelist[fiddle]
+\addtogniourflist{first element}
+\addtogniourflist{second element}
+\addtogniourflist{{third element}}
+\addtogniourflist{fourth element}
+\addtogniourflist{fifth element}
+
+\begin{itemize}
+\item The third element is: ``\getnthelement{3}''.
+\item The fourth element is: ``\fourthelement''.
+\item The fourth element again: ``\fourthelement''.
+\item The fifth element is: ``\getnthelement{5}''.
+\item The round is: ``\fp_eval:n { ceil((\seq_count:c {g_gniourf_gniourflist_seq})/(1.5)) } ''.    
+\item The result is: ``\addby{gniourflist}{3}''. 
+\item the list is:   \printlist[,]{gniourflist}.
+\item the list is:   \printlist[,]{gniourflist}.
+
+\end{itemize}
+
+
+
+
+\storenthelement{4}{\playaroundelement}
+
+\texttt{\meaning\playaroundelement}
+
+\end{document}

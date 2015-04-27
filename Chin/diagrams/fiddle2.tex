@@ -1,0 +1,11 @@
+\documentclass[tikz,margin=5mm]{standalone}
+\usetikzlibrary{graphs, graphdrawing}
+\usegdlibrary{layered}
+
+\begin{document}
+\tikz [gr/.style={gray!50}, font=\bfseries]
+\graph [layered layout] {
+    A -- C -- F,
+    { [nodes=gr, edges=gr] A -- B -- { E, D -- F } },
+};
+\end{document}
