@@ -1,20 +1,35 @@
-\documentclass{article}
-\usepackage{expl3, xparse}% http://ctan.org/pkg/xparse
-\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
-\usepackage{ifthen}
-\usepackage{adjustbox}
-\usepackage{tikz}
-\usetikzlibrary{matrix,scopes}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{collection}
+\RequirePackage{expl3, xparse}% http://ctan.org/pkg/xparse
+\RequirePackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\RequirePackage{ifthen}
+\RequirePackage{adjustbox}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
 \usetikzlibrary{graphs}
-\usetikzlibrary{calc,shapes,shadows,shapes.multipart,chains,matrix,positioning,arrows.meta,arrows}
-\usetikzlibrary{calc,shapes.multipart,chains,arrows,positioning}
+\usetikzlibrary{calc,shapes,shadows,shapes.multipart,chains,matrix,scopes,positioning,arrows.meta,arrows}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Tikz stylesheet
 %%%%%%%%%%%%%%%%%%%%%%%%
-\tikzset{every node/.style={inner sep=1pt},
-  pre/.style={draw,fill=yellow}}
-  
+\tikzset{
+  -|-/.style={
+    to path={
+      (\tikztostart) -| ($(\tikztostart)!#1!(\tikztotarget)$) |- (\tikztotarget)
+      \tikztonodes
+    }
+  },
+  -|-/.default=0.5,
+  |-|/.style={
+    to path={
+      (\tikztostart) |- ($(\tikztostart)!#1!(\tikztotarget)$) -| (\tikztotarget)
+      \tikztonodes
+    }
+  },
+  |-|/.default=0.5,
+}
+\tikzstyle{dline}=[*-, thick]
+\tikzstyle{line}=[-, thick]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %% Helpers    %%%
 %%%%%%%%%%%%%%%%%
@@ -88,7 +103,6 @@
 %%%                                          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{document}
 
 \NewDocumentCommand{\lrmatrix}{ m m }{
 \begin{tikzpicture}
@@ -111,7 +125,7 @@
     {}%
   }
    
-  \matrix (a) [ampersand replacement=\&,matrix of nodes, row sep=1cm,column sep=1cm]{
+  \matrix (a) [ampersand replacement=\&,matrix of nodes, row sep=0.5cm,column sep=0.5cm]{
     \mymatrix
   };
 \end{tikzpicture}
@@ -310,8 +324,14 @@
             ,remember picture, *->, auto, start chain
       ]
 
-	\clearlist{link}           
-	
+\ifstrempty{#2}{
+\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
+\path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
+}%else
+{
+    
+	\clearlist{link}           	
     \addtolist{link}{#2}
     
     \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
@@ -326,12 +346,12 @@
     \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
 
   
-    \foreach \v [count=\i from 2, count=\j from 0] in {1,...,\getsize{link}}{
+    \foreach \v [count=\i from 1] in {0,...,\getsize{link}}{
 
      \path ($(\v.three)+(0,0.08)$) edge[bend left] ($(\i.one)+(0,0.08)$);
-    \path ($(\v.one)+(0,-0.08)$) edge[bend left] ($(\j.three)+(0,-0.08)$);
+    \path ($(\i.one)+(0,-0.08)$) edge[bend left] ($(\v.three)+(0,-0.08)$);
     }
-    
+}    
     \end{tikzpicture}   
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -355,29 +375,48 @@
             ,remember picture, *->, auto, start chain
       ]
 
-	\clearlist{link}           
+\ifstrempty{#2}{
+\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
+\path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
+}%else
+{
 	
+	\clearlist{link}         
     \addtolist{link}{#2}
-    
     \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
-    
+   
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
     \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)};
     \node[ref, below= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
     \path ($(\x.center)+(0,-0.12)$) edge (ref\x);
     }
+    \path (0.three) edge (1.one);
     
-    \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
-
-    
-    \foreach \v [count=\i from 2, count=\j from 0] in {1,...,\getsize{link}}{
-
-     \path ($(\v.three)+(0,0.08)$) edge[bend left] ($(\i.one)+(0,0.08)$);
-    \path ($(\v.one)+(0,-0.08)$) edge[bend left] ($(\j.three)+(0,-0.08)$);
+    \ifnumcomp{\getsize{link}}{=}{1}{
+    \path ($(1.north west)+(0,0.08)$) edge[bend left] ($(1.north east)+(0,0.08)$);
+    \path ($(1.north east)+(-0.2,0.08)$) edge[bend left] ($(1.north west)+(0.2,0.08)$);
+    }%else
+    {
+       
+    \foreach \v [count=\i from 2] in {1,...,\addby{link}{-1}}{
+        \ifnumcomp{\i}{=}{\getsize{link}}{
+        \path (\v.three) edge (\i.one);
+        }%else
+        {
+     	\path ($(\v.three)+(0,0.08)$) edge[bend left] ($(\i.one)+(0,0.08)$);
+   		\path ($(\i.one)+(0,-0.08)$) edge[bend left] ($(\v.three)+(0,-0.08)$);
+    	}}%
+    	
+    	\draw[dline] (1.north west) -- ($(1.north west)+(0,1)$);
+    	\draw[->,thick] ($(1.north west)+(0,1)$) -| ($({\getsize{link}}.north east)+(0,0.05)$);
+    	
+    	\draw[dline] ($({\getsize{link}}.north east)+(-0.3,0)$) -- ($({\getsize{link}}.north east)+(-0.3,0.5)$);
+    	\draw[->,thick] ($({\getsize{link}}.north east)+(-0.3,0.5)$) -| ($(1.north west)+(0.3,0.05)$);
+   
     }
-    \path ($(0.north west)+(0.2,0.08)$) edge[bend left=20] ($({\addby{link}{1}}.north east)+(-0.3,0.08)$);
-    \path ($({\addby{link}{1}}.south east)+(-0.2,-0.08)$) edge[bend left=50] ($(0.south west)+(0.2,-0.08)$);
+}
     \end{tikzpicture}   
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -400,7 +439,13 @@
             rectangle split part fill={blue!20, red!20}}
             ,remember picture, *->,shorten >=1pt, auto, start chain=going right
       ]
-      
+ 
+\ifstrempty{#2}{
+\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
+\path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
+}%else
+{     
 	\clearlist{link}           
 
     \addtolist{link}{#2}
@@ -419,6 +464,7 @@
    \foreach \v [count=\w from 1] in {0,...,\getsize{link}}{
     \draw let \p1 = (\v.three), \p2 = (\v.center) in (\x1,\y2) -- (\w);
    }
+}
     \end{tikzpicture}   
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -439,14 +485,18 @@
             , minimum size=18pt,
             inner sep=5pt, text=black,rounded corners,
             rectangle split part fill={blue!20, red!20}}
-            ,remember picture, *->,shorten >=1pt, auto, start chain
+            ,remember picture, *->, auto, start chain
       ]
-      
+\ifstrempty{#2}{
+\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
+\path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
+}%else
+{          
 	\clearlist{link}           
-
     \addtolist{link}{#2}
     
-    \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
+    \node[linkn, on chain] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
    
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
@@ -454,13 +504,20 @@
     \node[ref, below= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
     \path ($(\x.center)+(0,-0.12)$) edge (ref\x);
     }
+    \path (0.three) edge (1.one);
     
-    \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
-
-   \foreach \v [count=\w from 1] in {0,...,\getsize{link}}{
-    \draw let \p1 = (\v.three), \p2 = (\v.center) in (\x1,\y2) -- (\w);
-   }
-\path ($({\addby{link}{1}}.north east)+(-0.3,0.08)$) edge[bend right=20] ($(0.north west)+(0.3,0.08)$);
+    \ifnumcomp{\getsize{link}}{=}{1}{
+    \path ($(1.north west)+(0,0.08)$) edge[bend left] ($(1.north east)+(0,0.08)$);
+    \path ($(1.north east)+(-0.2,0.08)$) edge[bend left] ($(1.north west)+(0.2,0.08)$);
+    }%else
+    {     
+     \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
+     \draw (\v.three) -- (\w.one);
+   	 }
+	\draw[dline] ({\getsize{link}}.north east) -- ($({\getsize{link}}.north east)+(0,0.8)$);
+    \draw[->,thick] ($({\getsize{link}}.north east)+(0,0.8)$) -| ($(1.north west)+(0,0.05)$);
+	}
+}
     \end{tikzpicture}   
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -482,10 +539,14 @@
             inner sep=5pt, text=black,rounded corners,
             rectangle split part fill={blue!20, red!20}}
             ,remember picture, *->,shorten >=1pt, auto, start chain=going below
-      ]
-      
+      ]      
+\ifstrempty{#2}{
+\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
+\path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
+}%else
+{     
 	\clearlist{link}           
-
     \addtolist{link}{#2}
     
     \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
@@ -494,7 +555,7 @@
 	\foreach \x in {1,...,\getsize{link}}{	 
     \node[linkn,on chain] (\x) {\nodepart{second}Idx(\x)   };
     \node[ref, right= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
-    \path ($(\x.center)+(0.4,0)$) edge (ref\x);
+    \path ($(\x.east)+(-0.3,0)$) edge (ref\x);
     }
     
     \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
@@ -502,11 +563,12 @@
    \foreach \v [count=\w from 1] in {0,...,\getsize{link}}{
     \draw (\v.three) -- (\w.one);
    }
+}
     \end{tikzpicture}
    
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%CS doubly linklist%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%CS vertical doubly linklist%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%param(1):set of values             
 %%%%format:\csdlinklist{1,2,3,4}; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -526,125 +588,35 @@
             ,remember picture, *->, auto, start chain=going below
       ]
 
+\ifstrempty{#2}{
+\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
+\path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
+}%else
+{
 	\clearlist{link}           
-	
     \addtolist{link}{#2}
     
     \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
     
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)};
+    \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)  };
     \node[ref, right= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
-    \path ($(\x.center)+(0.4,0)$) edge (ref\x);
+    \path ($(\x.east)+(-0.3,0)$) edge (ref\x);
     }
     
     \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
 
   
-    \foreach \v [count=\i from 2, count=\j from 0] in {1,...,\getsize{link}}{
+    \foreach \v [count=\i from 1] in {0,...,\getsize{link}}{
 
-     \path ($(\v.three)+(0,0.08)$) edge[bend left] ($(\i.one)+(0,0.08)$);
-    \path ($(\v.one)+(0,-0.08)$) edge[bend left] ($(\j.three)+(0,-0.08)$);
+     \path ($(\v.three)+(0.1,0)$) edge[bend left] ($(\i.one)+(0.1,0)$);
+    \path ($(\i.one)+(-0.1,0)$) edge[bend left] ($(\v.three)+(-0.1,0)$);
     }
-    
+}    
     \end{tikzpicture}   
 } 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%Hashmap%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%param(2): name, set of key value pairs;             %%
-%%%format: \hashmapset{name}{{key,val},{key,val},...};%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newlist{keys}
-\newlist{vals}
-
-\newcommand\hashmapset[3]{
-\begin{tikzpicture}[remember picture,auto,->,thick,
-  inner/.style={circle,draw=blue!50,fill=blue!20,inner sep=3pt},
-  outer/.style={rectangle,rectangle split, rectangle split parts=3, draw=black, rounded corners, 						fill=red!40, text centered, inner sep=10pt, text=black}
-  ]
-%reset lists upon instantiation%%
-	\clearlist{keys}           %%
-	\clearlist{vals}           %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\addtolist{keys}{#2}
-	\addtolist{vals}{#3}
-  %%construct Hashmap
-  
-    \node[outer] (#1){#1 \nodepart{two}\tikz\node[draw, circle,fill=blue!20, label={[xshift=-1.0cm,yshift=-0.85cm]Size}]{\getsize{keys}};
-    \nodepart{three}%
-     \tikz \node(scope){
-    \begin{tikzpicture}[start chain=1 going below]
-    % Place key value nodes vertical
-    \foreach \i in {1,...,\getsize{keys}}{ 
-      \node [inner, on chain=1] (bk\i)  {};
-      \node [inner, right=of bk\i] (bv\i) {};
-    }   
-    \end{tikzpicture}
-    };%
-    };%%
-    
-    
-     %% Place key value pairs references
-    \node[ left=1cm of scope] (keys){
-    \begin{tikzpicture}[start chain=1 going below]
-     %%get keys   
-    \foreach \k in {1,...,\getsize{keys}}{                                 
-     \node [on chain=1] (key\k)  { \getindex{keys}{\k} };
-     }
-     \end{tikzpicture}
-     };
-    
-                                         
-    \node[right= 1cm of scope](values){
-    \begin{tikzpicture}[start chain=1 going below]
-     %%get values   
-    \foreach \v in {1,...,\getsize{keys}}{                                 
-     \node [on chain=1] (val\v)  { \getindex{vals}{\v} };
-     }
-    \end{tikzpicture}
-    };      
-      
- %%connect nodes to references
- 
- \foreach \j  in {1,...,\getsize{keys}}{
- 	 \path (bk\j .center) edge (key\j);
-     \path (bv\j .center) edge (val\j);
- }
- 
- \end{tikzpicture} %% end
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%Base Hashmap%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%param(2): name, set of key value pairs;             %%
-%%%format: \hashmapset{name}{{key,val},{key,val},...};%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand\bhashmap[3]{
-\begin{tikzpicture}[remember picture,auto,->,thick,
-  inner/.style={circle,draw=blue!50,fill=blue!20,inner sep=3pt},
-  outer/.style={rectangle,rectangle split, rectangle split parts=3, draw=black, rounded corners, 						fill=red!40, text centered, inner sep=10pt, text=black}
-  ]
-%reset lists upon instantiation%%
-	\clearlist{keys}           %%
-	\clearlist{vals}           %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\addtolist{keys}{#2}
-	\addtolist{vals}{#3}
-  %%construct Hashmap
-  
-    \node[outer] (#1){#1 \nodepart{two}\tikz\node[draw, circle,fill=blue!20, label={[xshift=-1.0cm,yshift=-0.85cm]Size}]{\getsize{keys}};
-    \nodepart{three} a     b};
-    \let\listy\empty
-    \foreach \y in {1,...,\getsize{keys}}{
-    \gappto\listy{
-    \tikz \node(key\y){\getindex{keys}{\y}}; \&
-    \tikz \node(bk\y){}; \&
-    \tikz \node(bv\y){}; \&
-    \tikz \node(val\y){\getindex{vals}{\y}}; \& \\
-    }
-    }%
- \end{tikzpicture} %% end 
-}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%single linklist%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%param(1):set of values             
@@ -655,24 +627,28 @@
             ,remember picture, *->,shorten >=1pt, auto,
       ]
     
-    \ifstrempty{#2}{ }
-    %else
-    {
+\ifstrempty{#2}{ }
+%else
+{
     
 	\clearlist{link}           
     \addtolist{link}{#2}
-    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}%
+    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}
+    %else
    {
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[links,on chain=going right] (\x) {\begin{tikzpicture}\node{\getindex{link}{\x}};\end{tikzpicture}};
+    \node[links, on chain=going right] (\x) {
+    \begin{tikzpicture}
+    \node{\getindex{link}{\x}};
+    \end{tikzpicture}};
     }
     
-   \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
-    \draw (\v.east) -- (\w.west);
+     \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
+     \draw (\v.east) -- (\w.west);
+     }
    }
-   }
-   }
+}
     \end{tikzpicture}
    
 }
@@ -745,7 +721,7 @@
 %%%%param(1):set of values             
 %%%%format:\linklist{1,2,3,4}; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\NewDocumentCommand{\dvlinklist}{O{} m}{
+\NewDocumentCommand{\vdlinklist}{O{} m}{
   	\begin{tikzpicture}[every node/.style={align=center}, links/.style={}
             ,remember picture, *->,shorten >=1pt, auto
       ]
@@ -772,70 +748,152 @@
    }
     \end{tikzpicture}   
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%Test!%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%doubly loop linklist%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%param(1):set of values             
+%%%%format:\linklist{1,2,3,4}; 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NewDocumentCommand{\loopdlinklist}{O{} m}{
+  	\begin{tikzpicture}[every node/.style={align=center}, links/.style={}
+            ,remember picture, *->,shorten >=1pt, auto
+      ]
+    
+    \ifstrempty{#2}{ }
+    %else
+    {
+    
+	\clearlist{link}           
+    \addtolist{link}{#2}
+    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}%
+   {
+	%%place and draw of link node and respective ref value
+	\foreach \x in {1,...,\getsize{link}}{	 
+    \node[links,on chain] (\x) {\getindex{link}{\x}};
+    }
+    
+  \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
 
-%%%CS versions
-\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
-\cslinklist{a,b,c,d,e}
-\end{adjustbox}
-\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
-\csdlinklist{foo,boo,coo,koo,woo,hoo}
-\end{adjustbox}
-\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
-\cslooplinklist{a,b,c,d}
-\end{adjustbox}
-\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
-\csloopdlinklist{a,b,c,d}
-\end{adjustbox}
+     \path ($(\v.east)+(0,0.06)$) edge[bend left] ($(\w.west)+(0,0.06)$);
+    \path ($(\w.west)+(0,-0.06)$) edge[bend left] ($(\v.east)+(0,-0.06)$);
+    }
+   \path ({\getsize{link}}.north) edge[bend right=40] (1.north);
+   \path (1.south) edge[bend right=40] ({\getsize{link}}.south);
+   }
+   }
+    \end{tikzpicture}   
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%single loop linklist%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%param(1):set of values             
+%%%%format:\linklist{1,2,3,4}; 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NewDocumentCommand{\looplinklist}{O{} m}{
+  	\begin{tikzpicture}[every node/.style={align=center}, links/.style={}
+            ,remember picture, *->,shorten >=1pt, auto
+      ]
+    
+    \ifstrempty{#2}{ }
+    %else
+    {
+    
+	\clearlist{link}           
+    \addtolist{link}{#2}
+    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}%
+   {
+	%%place and draw of link node and respective ref value
+	\foreach \x in {1,...,\getsize{link}}{	 
+    \node[links,on chain] (\x) {\getindex{link}{\x}};
+    }
+    
+   \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
+    \draw (\v.east) -- (\w.west);
+   }
+   \path ({\getsize{link}}.north) edge[bend right=40] (1.north);
+   }
+   }
+    \end{tikzpicture}  
+}
 
-%%%simple form
-\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
-\linklist{a,b,c,d}
-\end{adjustbox}
-\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
-\dlinklist{a,b,c,d}
-\end{adjustbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%Base Hashmap%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%param(2): name, set of key value pairs;             %%
+%%%format: \hashmapset{name}{{key,val},{key,val},...};%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%Hashmap%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%param(2): name, set of key value pairs;             %%
+%%%format: \hashmapset{name}{{key,val},{key,val},...};%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlist{keys}
+\newlist{vals}
+
+\newcommand\hashmapset[3]{
+\begin{tikzpicture}[remember picture,auto,->,thick,
+  inner/.style={circle,draw=blue!50,fill=blue!20,inner sep=3pt},
+  outer/.style={rectangle,rectangle split, rectangle split parts=3, draw=black, rounded corners, 						fill=red!40, text centered, text=black}
+  ]
+%reset lists upon instantiation%%
+	\clearlist{keys}           %%
+	\clearlist{vals}           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\addtolist{keys}{#2}
+	\addtolist{vals}{#3}
+  %%construct Hashmap
+  
+    \node[outer] (#1){#1 \nodepart{two}\tikz\node[inner,label={[xshift=-1.0cm,yshift=-1.3cm]Size}]{\getsize{keys}};%
+\nodepart{three}%
+\tikz \node(scope){%
+    \begin{tikzpicture}[start chain=1 going below]%
+    % Place key value nodes vertical
+    \foreach \i in {1,...,\getsize{keys}}{ 
+      \node [inner, on chain=1] (bk\i)  {};
+      \node [inner, right=of bk\i] (bv\i) {};
+    }%  
+    \end{tikzpicture}%
+    };%
+    };%%
+    
+    
+    \ifnumcomp{\getsize{keys}}{=}{1}{
+    \node[left=1cm bk1](key1){\getindex{keys}{1}};
+    \node[right=1cm of bv1](val1){\getindex{vals}{1}};
+    }%else
+    {
+     %% Place key value pairs references
+    
+    
+     %%get keys   
+     \node[left= of bk1] (key1){\getindex{keys}{1}};
+      \foreach \k [count=\xk from 1] in {2,...,\getsize{keys}}{                                 
+     \node [below= of key\xk .east, anchor=east, left= of bk\k] (key\k)  { \getindex{keys}{\k} };
+     }
+    
+     
+    
+                                       
+     %%get values  
+      \node[right= of bv1] (val1){\getindex{vals}{1}};
+      \foreach \v [count=\xv from 1] in {2,...,\getsize{keys}}{                                 
+     \node [below= of val\xv .west, anchor=west, right= of bv\v] (val\v)  { \getindex{vals}{\v} };
+     }
+   
+   
+    }     
+      
+ %%connect nodes to references
+ 
+ \foreach \j  in {1,...,\getsize{keys}}{
+ 	 \path (bk\j .center) edge (key\j);
+     \path (bv\j .center) edge (val\j);
+ }
+ 
+ \end{tikzpicture} %% end
+} 
 
 
 
 
-%%%%verticals
-\begin{adjustbox}{height=0.5\paperheight,center,keepaspectratio}
-\csvdlinklist{foo,boo,coo,koo,woo,hoo}
-\end{adjustbox}
-\begin{adjustbox}{height=0.5\paperheight,center,keepaspectratio}
-\csvlinklist{a,b,c,d,e}
-\end{adjustbox}
-\begin{adjustbox}{height=0.5\paperheight,center,keepaspectratio}
-\vlinklist{a,b,c,d}
-\end{adjustbox}
-\begin{adjustbox}{height=0.5\paperheight,center,keepaspectratio}
-\dvlinklist{a,b,c,d}
-\end{adjustbox}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
-\hashmapset{HashMap}{key1,key2,key3}{value3,value2,value3}
-\end{adjustbox}\\
-
-%%matrix-arrays
-
-\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
-\lrmatrix{1}{\linklist{1,a},\linklist{2,b},\linklist{3,c}}
-\end{adjustbox}\\
-
-\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
-\lrmatrix{3}{\vlinklist{1,a},\vlinklist{2,b},\vlinklist{3,c}}
-\end{adjustbox}\\
-
-
-\lrmatrix{5}{1,2,3,4,5,6,7,8,9,10} \\
-\vmatrix{2}{1,2,3,4,5,6,7,8,9,10}\\
-\lrsmatrix{3}{1,2,3,4,5,6,7,8,9,10}\\
-\rlsmatrix{3}{1,2,3,4,5,6,7,8,9,10}\\
-\vsmatrix{3}{1,2,3,4,5,6,7,8,9,10}\\
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{document}
+\endinput

@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{collection}
+
+\begin{document}
+
+
+\begin{center}
+{\Huge Collection Package(Beta): More To Come!}
+\end{center}
+\indent \textbf{Objective:} is to aid in the visualization of Data Structures and Objects in the Theory of Computer Science, as well as, being flexible enough to accept any object(text,pictures,or any graphics) as input and customize to the user's desire.
+\newpage
+%%%CS versions
+\begin{center}
+\textbf{{\Large Computer Science Data Structures: Linked Lists}}
+\end{center}
+
+CS Singly Linked List\\
+Format:{\textbackslash}cslinklist[Option:styling]{\{}objects{\}}\\
+Example:{\textbackslash}cslinklist{\{}a,b,c,d,e{\}} \newline \\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\cslinklist{a,b,c,d,e}
+\end{adjustbox}\\
+CS Doubly Linked List\\
+Format:{\textbackslash}csdlinklist[Option:styling]{\{}objects{\}}\\
+Example:{\textbackslash}csdlinklist{\{}foo,boo,coo,koo,woo,hoo{\}} \newline \\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\csdlinklist{foo,boo,coo,koo,woo,hoo}
+\end{adjustbox}\\
+CS Circular Singly Linked List\\
+Format:{\textbackslash}cslooplinklist[Option:styling]{\{}objects{\}}\\
+Example:{\textbackslash}cslooplinklist{\{}a,b,c,d{\}} \newline \\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\cslooplinklist{a,b,c,d}
+\end{adjustbox}\\
+CS Circular Doubly Linked List\\
+Format:{\textbackslash}csloopdlinklist[Option:styling]{\{}objects{\}}\\
+Example:{\textbackslash}csloopdlinklist{\{}a,b,c,d{\}} \newline \\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\csloopdlinklist{a,b,c,d}
+\end{adjustbox}\\
+%%%simple form
+\newpage
+\begin{center}
+\textbf{{\Large Simple collections: Linked Lists}}
+\end{center}
+Simple Singly Linked List\\
+Format:{\textbackslash}linklist[Option:styling]{\{}objects{\}}\\
+Example:{\textbackslash}linklist{\{}a,b,c,d{\}} \newline \\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\linklist{a,b,c,d}
+\end{adjustbox}\\
+Simple Doubly Linked List\\
+Format:{\textbackslash}dlinklist[Option:styling]{\{}objects{\}}\\
+Example:{\textbackslash}dlinklist{\{}a,b,c,d{\}} \newline \\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\dlinklist{a,b,c,d}
+\end{adjustbox}\\
+Simple loop Linked List\\
+Format:{\textbackslash}looplinklist[Option:styling]{\{}objects{\}}\\
+Example:{\textbackslash}looplinklist{\{}a,b,c,d{\}} \newline \\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\looplinklist{a,b,c,d}
+\end{adjustbox}\\
+Simple Doubly Linked List\\
+Format:{\textbackslash}loopdlinklist[Option:styling]{\{}objects{\}}\\
+Example:{\textbackslash}loopdlinklist{\{}a,b,c,d{\}} \newline \\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\loopdlinklist{a,b,c,d}
+\end{adjustbox}
+\newpage
+\begin{center}
+\textbf{{\Large Option(Vertical): CS vs Simple: Singly and Doubly Linked Lists}}
+\end{center}
+
+\begin{center}
+\begin{adjustbox}{height=0.6\paperheight,width=\paperwidth,center,keepaspectratio}
+\lrmatrix{4}{{{\textbackslash}csvdlinklist{\{}foo,boo,koo{\}}},{{\textbackslash}csvlinklist{\{}a,b,c{\}}},{{\textbackslash}vlinklist{\{}a,b,c,d,e,f,g,h,i{\}}},{{\textbackslash}dvlinklist{\{}a,b,c,d,e,f,g,h,i{\}}},\csvdlinklist{foo,boo,koo},\csvlinklist{a,b,c},\vlinklist{a,b,c,d,e,f,g,h,i},\vdlinklist{a,b,c,d,e,f,g,h,i}}
+\end{adjustbox}
+\end{center}
+\newpage
+\begin{center}
+\textbf{{\Large Data Structure: HashMap Object}}
+\end{center}
+Format:{\textbackslash}hashmapset[Option:styling]{\{}Name of Hashmap{\} }{\{}list of Keys{\}}{\{}list of Values{\}}\\
+Example:{\textbackslash}hashmapset{\{}HashMap{\} }{\{}key1,key2,key3{\}}{\{}value1,value2,value3{\}}\newline \\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\hashmapset{HashMap}{key1,key2,key3}{value1,value2,value3}
+\end{adjustbox}
+\newpage
+\begin{center}
+\textbf{{\Large ARRAYS:} \\
+Common use case would be to generate a table of contents,a gallery of objects(ex.pictures), or as formatting}
+\end{center}
+(Left-Right)\\ 
+Format:{\textbackslash}lrmatrix{\{}number of columns to split list of objects{\} }{\{}objects{\}}\\
+Example1:{\textbackslash}lrmatrix{\{}4{\} }{\{}1,2,3,4,5,6,7,a,b,c{\}}\\
+Example2:{\textbackslash}lrmatrix{\{}2{\} }{\{}{\textbackslash}includegraphics{\{}ex1.jpg{\}},{\textbackslash}includegraphics{\{}ex2.jpg{\}},\\{\textbackslash}includegraphics{\{}ex3.jpg{\}},{\textbackslash}includegraphics{\{}ex4.jpg{\}}{\}}\newline \\
+
+\lrmatrix{4}{1,2,3,4,5,6,7,a,b,c} \lrmatrix{2}{\includegraphics[width=30mm]{computer_science_zoomed_by_blackblood357-d37ofou.jpg},\includegraphics[width=30mm]{computer-science1.jpg},\includegraphics[width=30mm]{computer-science1.jpg},\includegraphics[width=30mm]{computer_science_zoomed_by_blackblood357-d37ofou.jpg}} \newline \\
+
+(Vertical)\\
+Format:{\textbackslash}vmatrix{\{}number of rows to split list of objects{\}}{\{}objects{\}}\\
+Example:{\textbackslash}vmatrix{\{}2{\}}{\{}1,2,3,4,5,6,7,a,b,c{\}}\\
+\vmatrix{2}{1,2,3,4,5,6,7,a,b,c}
+\newpage
+\textbf{Data Structure:(Simple Hashtable)}\\
+{\textbackslash}lrmatrix{\{}1{\} }{\{}{\textbackslash}linklist{\{}0,a,b,c{\}},{\textbackslash}linklist{\{}1,d,e,f{\}},{\textbackslash}linklist{\{}2,g,h,i{\}}{\}}\newline \\
+\lrmatrix{1}{\linklist{0,a,b,c},\linklist{1,d,e,f},\linklist{2,g,h,i}}
+
+
+
+\end{document}
