@@ -16,9 +16,11 @@
 \usetikzlibrary{arrows,positioning,shapes}
             
 %Diagram Creation
-\newcommand{\numofnodes}{5}
+%%Change the value to the number of nodes 
+\newcommand{\numofnodes}{2}
 
 %User Input
+%%Change the "Caption Here" to the caption
 \newcommand{\Caption}{Caption Here}
 
 %Head
@@ -54,7 +56,8 @@
 
 \begin {figure}
 
-%%Head
+%Head
+%%Draws the head node
 \Draw
 \input {object}
 \hspace{-4cm}
@@ -72,6 +75,7 @@
 \OD (\ObjectName, ObjectPrims, ObjectDiagram, 6)
 
 %Arrow from head
+%%Draws the arrow from head to first node
 \Move(5,43)
 \FcNode(Head)
 \Move(45,0)
@@ -92,45 +96,36 @@
 
 %Node
 \begin{tikzpicture}[abstract, rectangle split, rectangle split parts=2, text justified]
-%\hspace{.3cm}
 \foreach \x in {0}
     \foreach \y in {1,...,\numofnodes} 
        {\node (NODES) [abstract, rectangle split, rectangle split parts=2, text justified]  (\x\y) at (5, 2.9*\y) 
        		{\textbf{Node}
-            \nodepart{second}next  \framebox[1.1\width]{null}
-            \newline prev  \framebox[1.1\width]{null}
-            \newline value  \framebox[1.1\width]{}
+            \nodepart{second}next  \framebox[1.1\width]{arrow}
+            \newline prev  \framebox[1.1\width]{arrow}
+            \newline value  \framebox[1.1\width]{arrow}
             
             };}
-            
-%\hspace{4cm}          
+                      
 \foreach \x in {0}
     \foreach \y in {1,...,\numofnodes}            
-{
-%\hspace{.4cm}
-\node (NODETHING) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (10, 2.6*\y) 
-       		{\textbf{Student}
-            \nodepart{second}Name  \framebox[1.1\width]{Fake Name}
-            \newline Num  \framebox[1.1\width]{856-881-6666}
+{\node (NODETHING) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (10, 2.6*\y) 
+       		{\textbf{\VTop}
+            \nodepart{second}Name  \framebox[1.1\width]{\VName}
+            \newline Num  \framebox[1.1\width]{\VNum}
             \newline Address  \framebox[1.1\width]{arrow}};}
-
-%\hspace{3.8cm}
 
 \foreach \x in {0}
     \foreach \y in {1,...,\numofnodes} 
-{
-%\hspace{.4cm}
-\node (NODETHING2) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (15, 2.6*\y) 
-       		{\textbf{Address}
-            \nodepart{second}Street  \framebox[1.1\width]{641 Fake St}
-            \newline City  \framebox[1.1\width]{Williamstown}
-            \newline State  \framebox[1.1\width]{NJ}
-            \newline Zip  \framebox[1.1\width]{08094}};}
-            
-            
+{\node (NODETHING2) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (15, 2.6*\y) 
+       		{\textbf{\AName}
+            \nodepart{second}Street  \framebox[1.1\width]{\AStreet}
+            \newline City  \framebox[1.1\width]{\ACity}
+            \newline State  \framebox[1.1\width]{\AState}
+            \newline Zip  \framebox[1.1\width]{\AZip}};}           
 \end{tikzpicture}
 
 %%Tail
+%%Draws the tail node
 \hspace{.05cm}
 \Draw
 \input {object}
@@ -146,8 +141,8 @@
 \Scale (1,1)
 \OD (\TName, ObjectPrims, ObjectDiagram, 6)
 
-
 %Arrow from Tail
+%%Draws the arrow from tail node to tail
 \Move(48,15)
 \FcNode(Tail)
 \Move(45,0)
@@ -158,14 +153,12 @@
 \FcNode(Temp4)
 \Move(0,14)
 \FcNode(Temp5)
-
 \ArrowHeads(1)
 \Edge(Temp4,Temp5)
 \ArrowHeads(0)
 \Edge(Tail,Temp2)
 \Edge(Temp2,Temp3)
 \Edge(Temp3,Temp4)
-
 \EndDraw
 
 \caption {\Caption}
