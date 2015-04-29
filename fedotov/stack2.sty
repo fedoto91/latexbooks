@@ -51,7 +51,7 @@
 \newcommand{\stackbottom}[1][default]{
   \addtocounter{cellcounter}{-1}
   \draw[#1] (0,\value{cellcounter})
-  +(-2,-.5) -- +(-2,+.5) -- +(2,+.5) -- +(2,-.5);
+  +(2,.5) -- +(-2,.5) -- +(-2,-.5) -- +(2,-.5);
   \draw (0,\value{cellcounter}) node{...};
 }
 \newenvironment{stack}[1][]%

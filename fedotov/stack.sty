@@ -23,37 +23,75 @@
 \newcounter{structcounter}
 \setcounter{cellcounter}{0}
 
-\newcommand{\llcell}[3]{
-    \addtocounter{cellcounter}{-#1}
-    \setcounter{ptrcounter}{0}
-    \draw[#2] (0,\value{cellcounter}) +(-2,-.5) rectangle +(2,-.5+#1);
-    \draw (0,\value{cellcounter}+#1/2-0.5)  node(currentcell) {#3};
-}
+
 
 \newcommand{\cell}[2][default]{%
 \llcell{1}{#1}{#2}}
 
 \newcounter{ptrcounter}
 
+
+
+\newenvironment{stack}[1]%
+{
+
+\ifthenelse{\equal{#1}{vertical}}{\newcommand{\llcell}[3]{
+    \addtocounter{cellcounter}{-##1}
+    \setcounter{ptrcounter}{0}
+    \draw[##2] (0,\value{cellcounter}) +(-2,-.5) rectangle +(2,-.5+##1);
+    \draw (0,\value{cellcounter}+##1/2-0.5)  node(currentcell) {##3};
+}
+
 \newcommand{\stacktop}[2][default]{
   \setcounter{cellcounter}{0}
-  \ifthenelse{\equal{#2}{}}{}{
-    \draw (0,\value{cellcounter}) node {#2};
+  \ifthenelse{\equal{##2}{}}{}{
+    \draw (0,\value{cellcounter}) node {##2};
     \addtocounter{cellcounter}{-1}
   }
 
-  \draw[#1] (0,\value{cellcounter})
+  \draw[##1] (0,\value{cellcounter})
   +(-2,.5) -- +(-2,-.5) -- +(2,-.5) -- +(2,.5);
   \draw (0,\value{cellcounter}) node{...};
 }
 \newcommand{\stackbottom}[1][default]{
   \addtocounter{cellcounter}{-1}
-  \draw[#1] (0,\value{cellcounter})
+  \draw[##1] (0,\value{cellcounter})
   +(-2,-.5) -- +(-2,+.5) -- +(2,+.5) -- +(2,-.5);
   \draw (0,\value{cellcounter}) node{...};
 }
-\newenvironment{stack}[1][]%
-{\begin{tikzpicture}[#1]\stacktop{}}%
+
+
+}{}
+
+\ifthenelse{\equal{#1}{horizontal}}{\newcommand{\llcell}[3]{
+    \addtocounter{cellcounter}{##1}
+    \setcounter{ptrcounter}{0}
+    \draw[##2] (\value{cellcounter},0) +(-.5,-2) rectangle +(-.5+##1,2);
+    \draw (\value{cellcounter}+##1/2-0.5,0)  node(currentcell) {##3};
+}
+\newcommand{\stacktop}[2][default]{
+  \setcounter{cellcounter}{0}
+  \ifthenelse{\equal{##2}{}}{}{
+    \draw (0,\value{cellcounter}) node {##2};
+    \addtocounter{cellcounter}{-1}
+  }
+
+  \draw[##1] (\value{cellcounter},0)
+  +(-.5,2) -- +(.5,2) -- +(.5,-2) -- +(-.5,-2);
+  \draw (0,\value{cellcounter}) node{...};
+}
+\newcommand{\stackbottom}[1][default]{
+  \addtocounter{cellcounter}{1}
+  \draw[##1] (\value{cellcounter},0)
+  +(.5,-2) -- +(-.5,-2) -- +(-.5,2) -- +(.5,2);
+  \draw (\value{cellcounter},0) node{...};
+}
+
+}{}
+
+% Remove \stacktop or \stackbottom,
+% if you want a closed end.
+\begin{tikzpicture}\stacktop{}}
 {\stackbottom\end{tikzpicture}}
 
 \newcommand{\stylepad}[2]{\llcell{#1}{default}{#2}}
