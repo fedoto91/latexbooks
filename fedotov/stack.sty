@@ -35,32 +35,25 @@
 
 \newcounter{ptrcounter}
 
-
-
-
-
-
-\newenvironment{stack}[1][]%
-{% top cell with an open top
 \newcommand{\stacktop}[2][default]{
   \setcounter{cellcounter}{0}
-  \ifthenelse{\equal{##2}{}}{}{
-    \draw (0,\value{cellcounter}) node {##2};
+  \ifthenelse{\equal{#2}{}}{}{
+    \draw (0,\value{cellcounter}) node {#2};
     \addtocounter{cellcounter}{-1}
   }
 
-  \draw[##1] (0,\value{cellcounter})
+  \draw[#1] (0,\value{cellcounter})
   +(-2,.5) -- +(-2,-.5) -- +(2,-.5) -- +(2,.5);
   \draw (0,\value{cellcounter}) node{...};
 }
-% bottom cell with an open bottom
 \newcommand{\stackbottom}[1][default]{
   \addtocounter{cellcounter}{-1}
-  \draw[##1] (0,\value{cellcounter})
+  \draw[#1] (0,\value{cellcounter})
   +(-2,-.5) -- +(-2,+.5) -- +(2,+.5) -- +(2,-.5);
   \draw (0,\value{cellcounter}) node{...};
-}  
-\begin{tikzpicture}[#1]\stacktop{}}%
+}
+\newenvironment{stack}[1][]%
+{\begin{tikzpicture}[#1]\stacktop{}}%
 {\stackbottom\end{tikzpicture}}
 
 \newcommand{\stylepad}[2]{\llcell{#1}{default}{#2}}
