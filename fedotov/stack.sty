@@ -7,9 +7,9 @@
 % styles
 \tikzstyle{default}=[fill=green!10,draw=green!30!black]
 \tikzstyle{stylepad}=[fill=green!30!black!20,draw=green!30!black]
-\tikzstyle{stylered}=[fill=green!10!red!50,draw=green!30!black]
-\tikzstyle{styleblue}=[fill=green!10!blue!50,draw=green!30!black]
-\tikzstyle{styleteal}=[fill=green!50!blue!50,draw=green!30!black]
+\tikzstyle{red}=[fill=green!10!red!50,draw=green!30!black]
+\tikzstyle{blue}=[fill=green!10!blue!50,draw=green!30!black]
+\tikzstyle{teal}=[fill=green!50!blue!50,draw=green!30!black]
 \tikzstyle{highlight}=[draw=red]
 \tikzstyle{stylecell}=[fill=green!10,draw=green!30!black]
 
@@ -66,7 +66,7 @@
 \ifthenelse{\equal{#1}{horizontal}}{\newcommand{\llcell}[3]{
     \addtocounter{cellcounter}{##1}
     \setcounter{ptrcounter}{0}
-    \draw[##2] (\value{cellcounter},0) +(-.5,-2) rectangle +(-.5+##1,2);
+    \draw[##2] (\value{cellcounter},0) +(-.5,-1) rectangle +(-.5+##1,1);
     \draw (\value{cellcounter}+##1/2-0.5,0)  node(currentcell) {##3};
 }
 \newcommand{\stacktop}[2][default]{
@@ -77,13 +77,13 @@
   }
 
   \draw[##1] (\value{cellcounter},0)
-  +(-.5,2) -- +(.5,2) -- +(.5,-2) -- +(-.5,-2);
+  +(-.5,1) -- +(.5,1) -- +(.5,-1) -- +(-.5,-1);
   \draw (0,\value{cellcounter}) node{...};
 }
 \newcommand{\stackbottom}[1][default]{
   \addtocounter{cellcounter}{1}
   \draw[##1] (\value{cellcounter},0)
-  +(.5,-2) -- +(-.5,-2) -- +(-.5,2) -- +(.5,2);
+  +(.5,-1) -- +(-.5,-1) -- +(-.5,1) -- +(.5,1);
   \draw (\value{cellcounter},0) node{...};
 }
 
