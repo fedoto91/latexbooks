@@ -26,10 +26,10 @@
 
 
 \newcommand{\llcell}[3]{
-    \addtocounter{cellcounter}{-#1}
+    \addtocounter{cellcounter}{#1}
     \setcounter{ptrcounter}{0}
-    \draw[#2] (0,\value{cellcounter}) +(-2,-.5) rectangle +(2,-.5+#1);
-    \draw (0,\value{cellcounter}+#1/2-0.5)  node(currentcell) {#3};
+    \draw[#2] (\value{cellcounter},0) +(-.5,-2) rectangle +(-.5+#1,2);
+    \draw (\value{cellcounter}+#1/2-0.5,0)  node(currentcell) {#3};
 }
 
 \newcommand{\cell}[2][default]{%
@@ -55,8 +55,8 @@
   \draw (0,\value{cellcounter}) node{...};
 }
 \newenvironment{stack}[1][]%
-{\begin{tikzpicture}[#1]\stacktop{}}%
-{\stackbottom\end{tikzpicture}}
+{\begin{tikzpicture}[#1]}%
+{\end{tikzpicture}}
 
 \newcommand{\stylepad}[2]{\llcell{#1}{default}{#2}}
 \newcommand{\cellred}[1]{\cell[stylered]{#1}}
