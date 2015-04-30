@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{collection}
+\usetikzlibrary{graphs,graphdrawing}
+\usetikzlibrary{graphdrawing.layered}
+
+\begin{document}
+
+
+\NewDocumentCommand{\class}{m O{} O{} O{} }{
+\tikz\node[draw,text width=3cm, align=center,rounded corners](#1){ #2\\ \hline \\ #3 \\ \rule{\linewidth}{0.4pt} \\ #4};
+}
+
+\tikz[layered layout]{
+\class{b}[wd][sdwd][wdwdelkjnl]
+\class{a}[wd][sdwd][wdwdelkjnl]
+}
+
+\tikz{\graph [layered layout]
+{
+    first root -> {1 -> {1,2, 7} -> {4, 5}, 6 }, 4 -- 5;
+    second root -> x -> {a -> {u,v}, b, c -> d -> {w,z} };
+    third root -> child -> grandchild -> youngster -> third root;
+};
+}
+
+
+
+
+
+\end{document}

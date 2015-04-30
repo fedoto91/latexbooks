@@ -5,7 +5,7 @@
 
 
 \begin{center}
-{\Huge Collection Package(Beta): More To Come!}
+{\Huge Collection Package}
 \end{center}
 \indent \textbf{Objective:} is to aid in the visualization of Data Structures and Objects in the Theory of Computer Science, as well as, being flexible enough to accept any object(text,pictures,or any graphics) as input and customize to the user's desire.
 \newpage
@@ -49,6 +49,13 @@ Example:{\textbackslash}linklist{\{}a,b,c,d{\}} \newline \\
 \begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
 \linklist{a,b,c,d}
 \end{adjustbox}\\
+
+Example:{\textbackslash}linklist{\{}{\{}{\textbackslash}tikz{\textbackslash}node[draw,circle]{\{}0{\}};{\}},{\{}{\textbackslash}tikz{\textbackslash}node[draw,circle]{\{}gh{\}};{\}},{\{}{\textbackslash}tikz{\textbackslash}node[draw,circle]{\{}b{\}};{\}},{\{}{\textbackslash}tikz{\textbackslash}node[draw,circle]{\{}c{\}};{\}}{\}}\\
+\begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
+\linklist{{\tikz\node[draw,circle]{0};},{\tikz\node[draw,circle]{gh};},{\tikz\node[draw,circle]{b};},{\tikz\node[draw,circle]{c};}} 
+\end{adjustbox}\\
+
+
 Simple Doubly Linked List\\
 Format:{\textbackslash}dlinklist[Option:styling]{\{}objects{\}}\\
 Example:{\textbackslash}dlinklist{\{}a,b,c,d{\}} \newline \\
@@ -77,6 +84,15 @@ Example:{\textbackslash}loopdlinklist{\{}a,b,c,d{\}} \newline \\
 \lrmatrix{4}{{{\textbackslash}csvdlinklist{\{}foo,boo,koo{\}}},{{\textbackslash}csvlinklist{\{}a,b,c{\}}},{{\textbackslash}vlinklist{\{}a,b,c,d,e,f,g,h,i{\}}},{{\textbackslash}dvlinklist{\{}a,b,c,d,e,f,g,h,i{\}}},\csvdlinklist{foo,boo,koo},\csvlinklist{a,b,c},\vlinklist{a,b,c,d,e,f,g,h,i},\vdlinklist{a,b,c,d,e,f,g,h,i}}
 \end{adjustbox}
 \end{center}
+
+%\begin{adjustbox}{width=0.8\paperwidth,center,keepaspectratio}
+%\hashmapset{namew}{1,2,3}{\cslinklist[{scale=0.6,every node/.style={transform shape}}]{a,c,d},%\csdlinklist[scale=0.6, every node/.style={transform shape}]{a,c,d},hello}
+%\end{adjustbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \begin{center}
 \textbf{{\Large Data Structure: HashMap Object}}
@@ -86,10 +102,32 @@ Example:{\textbackslash}hashmapset{\{}HashMap{\} }{\{}key1,key2,key3{\}}{\{}valu
 \begin{adjustbox}{width=0.5\paperwidth,center,keepaspectratio}
 \hashmapset{HashMap}{key1,key2,key3}{value1,value2,value3}
 \end{adjustbox}
+
 \newpage
 \begin{center}
-\textbf{{\Large ARRAYS:} \\
-Common use case would be to generate a table of contents,a gallery of objects(ex.pictures), or as formatting}
+\textbf{{\Large Data Structure: Stacks}}
+\end{center}
+
+\section*{Vertical Stack}
+{\textbackslash}begin{\{}stack{\}}{\{}vertical{\}}
+  {\textbackslash}cell[blue]{\{}cell 1{\}}{\{}1{\}}
+{\textbackslash}end{\{}stack{\}} \\ \newline
+\begin{stack}{vertical}
+  \cell[blue]{cell 1}{1}
+\end{stack}\\ \newline
+
+\section*{Horizontal Stack}
+{\textbackslash}begin{\{}stack{\}}{\{}horizontal{\}}
+  {\textbackslash}cell[blue]{\{}cell 1{\}}{\{}1{\}}
+{\textbackslash}end{\{}stack{\}} \\ \newline
+\begin{stack}{horizontal}
+  \cell[blue]{cell 1}{1}
+  \cell[red]{cell 2}{2}
+\end{stack}
+
+\newpage
+\begin{center}
+\textbf{{\Large ARRAYS:}}
 \end{center}
 (Left-Right)\\ 
 Format:{\textbackslash}lrmatrix{\{}number of columns to split list of objects{\} }{\{}objects{\}}\\
@@ -104,9 +142,39 @@ Example:{\textbackslash}vmatrix{\{}2{\}}{\{}1,2,3,4,5,6,7,a,b,c{\}}\\
 \vmatrix{2}{1,2,3,4,5,6,7,a,b,c}
 \newpage
 \textbf{Data Structure:(Simple Hashtable)}\\
-{\textbackslash}lrmatrix{\{}1{\} }{\{}{\textbackslash}linklist{\{}0,a,b,c{\}},{\textbackslash}linklist{\{}1,d,e,f{\}},{\textbackslash}linklist{\{}2,g,h,i{\}}{\}}\newline \\
-\lrmatrix{1}{\linklist{0,a,b,c},\linklist{1,d,e,f},\linklist{2,g,h,i}}
+{\textbackslash}lrmatrix{\{}1{\} }{\{}\\{\textbackslash}linklist{\{}{\{}{\textbackslash}tikz{\textbackslash}node[draw,circle]{\{}0{\}};{\}},a,b,c{\}},\\{\textbackslash}linklist{\{}{\{}{\textbackslash}tikz{\textbackslash}node[draw,circle]{\{}1{\}};{\}},d,e,f{\}},\\{\textbackslash}linklist{\{}{\{}{\textbackslash}tikz{\textbackslash}node[draw,circle]{\{}0{\}};{\}},g,h,i{\}}{\}}\newline \\
+\lrmatrix{1}{\linklist{{\tikz\node[draw,circle]{0};},a,b,c},\linklist{{\tikz\node[draw,circle]{1};},d,e,f},\linklist{{\tikz\node[draw,circle]{2};},g,h,i}}
 
 
+\section*{Diagrams}
+Format:\\
+{\textbackslash}begin{\{}diagram{\}}{\{}Styling{\}}\\ 
+-----Content------\\
+{\textbackslash}end{\{}diagram{\}}\\
+\subsection*{Example: Class Diagram}
+Format:\\
+{\textbackslash}class[Option: styling]{\{}class var{\}}[Option:Title][Option:members][Option:operations]\\
+{\textbackslash}rel{\{}relationship{\}}{\{}derive source{\}} {\{}deriver{\}}\\
+EX:
+{\textbackslash}begin{\{}diagram{\}}{\{}node distance=5cm,layered layout{\}}\\
+{\textbackslash}class[rounded corners, fill=red!20]{\{}a{\}}[Interface{\textbackslash}{\textbackslash}Classes][members][operations]\\
+{\textbackslash}class[rounded corners, fill=blue!20]{\{}b{\}}[class1][members][operations]\\
+{\textbackslash}class{\{}c{\}}[class2][members][operations]\\
+{\textbackslash}class{\{}d{\}}[class3][members]\\
+{\textbackslash}class[rounded corners]{\{}e{\}}[other Object][members][operations]\\
+{\textbackslash}rel{\{}generalization{\}}{\{}a{\}} {\{}b,c,d{\}}\\
+{\textbackslash}rel{\{}dependency{\}}{\{}e{\}}{\{}d{\}}\\  
+{\textbackslash}end{\{}diagram{\}}\\
+
+\begin{diagram}{node distance=5cm,layered layout}
+\class[rounded corners, fill=red!20]{a}[Interface\\Classes][members][operations]
+\class[rounded corners, fill=blue!20]{b}[class1][members][operations]
+\class{c}[class2][members][operations]
+\class{d}[class3][members]
+\class[rounded corners]{e}[other Object][members][operations]
+\rel{generalization}{a} {b,c,d}
+\rel{dependency}{e}{d}
+    
+\end{diagram}
 
 \end{document}

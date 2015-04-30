@@ -1,5 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{collection}
+\RequirePackage{diagram}
+\RequirePackage{stack}
 \RequirePackage{expl3, xparse}% http://ctan.org/pkg/xparse
 \RequirePackage{etoolbox}% http://ctan.org/pkg/etoolbox
 \RequirePackage{ifthen}
@@ -7,6 +9,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
 \usetikzlibrary{graphs}
+\usetikzlibrary{scopes,automata}
 \usetikzlibrary{calc,shapes,shadows,shapes.multipart,chains,matrix,scopes,positioning,arrows.meta,arrows}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -308,8 +311,13 @@
 %%%%param(1):set of values             
 %%%%format:\csdlinklist{1,2,3,4}; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\default}{ }
+\newcommand{\styler}{\default}
+\newsavebox{\boxer}
+
 \NewDocumentCommand{\csdlinklist}{O{} m}{
-\begin{tikzpicture}[every node/.style={align=center},linkn/.style={
+\renewcommand\styler{#1}
+\begin{tikzpicture}[#1,every node/.style={align=center,transform shape},linkn/.style={
             very thick, rectangle split, 
             rectangle split parts=3, draw, 
             rectangle split horizontal, minimum size=18pt,
@@ -318,14 +326,14 @@
             },
         ref/.style={very thick, rectangle split, 
             rectangle split parts=2, draw, 
-            , minimum size=18pt,
-            inner sep=5pt, text=black,rounded corners,
+             minimum size=18pt,
+            text=black,rounded corners,
             rectangle split part fill={blue!20, red!20}}
-            ,remember picture, *->, auto, start chain
+            ,*->, auto, \styler
       ]
 
 \ifstrempty{#2}{
-\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\node[linkn] (0) {/ \nodepart{second}Head \\ Size = 0};
 \path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
 \path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
 }%else
@@ -334,17 +342,20 @@
 	\clearlist{link}           	
     \addtolist{link}{#2}
     
-    \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
-    
+    \begin{scope}[start chain=going right, every join/.style={->, thick,shorten >=1pt},]
+    \node[linkn, on chain] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
     \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)};
-    \node[ref, below= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
-    \path ($(\x.center)+(0,-0.12)$) edge (ref\x);
     }
+    \node[linkn, on chain] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
+    \end{scope}
     
-    \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
-
+    \foreach \r in {1,...,\getsize{link}}{
+    \savebox{\boxer}{\tikz\node{\getindex{link}{\r}};}
+    \node[ref, below= of \r] (ref\r) {Ref(\r)-Value \nodepart{second}\usebox{\boxer}};
+    \path ($(\r.center)+(0,-0.12)$) edge (ref\r);
+    }
   
     \foreach \v [count=\i from 1] in {0,...,\getsize{link}}{
 
@@ -352,7 +363,8 @@
     \path ($(\i.one)+(0,-0.08)$) edge[bend left] ($(\v.three)+(0,-0.08)$);
     }
 }    
-    \end{tikzpicture}   
+    \end{tikzpicture}  
+    \renewcommand\styler{\default} 
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%CS loop doubly linklist%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -360,7 +372,7 @@
 %%%%format:\csdlinklist{1,2,3,4}; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand{\csloopdlinklist}{O{} m}{
-\begin{tikzpicture}[every node/.style={align=center},linkn/.style={
+\begin{tikzpicture}[every node/.style={align=center,transform shape},linkn/.style={
             very thick, rectangle split, 
             rectangle split parts=3, draw, 
             rectangle split horizontal, minimum size=18pt,
@@ -372,11 +384,11 @@
             , minimum size=18pt,
             inner sep=5pt, text=black,rounded corners,
             rectangle split part fill={blue!20, red!20}}
-            ,remember picture, *->, auto, start chain
+            ,remember picture, *->, auto
       ]
 
 \ifstrempty{#2}{
-\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\node[linkn] (0) {/ \nodepart{second}Head \\ Size = 0};
 \path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
 \path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
 }%else
@@ -384,13 +396,18 @@
 	
 	\clearlist{link}         
     \addtolist{link}{#2}
+    
+    \begin{scope}[start chain=going right]
     \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
-   
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
     \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)};
-    \node[ref, below= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
-    \path ($(\x.center)+(0,-0.12)$) edge (ref\x);
+    } 
+    \end{scope}
+    
+    \foreach \r in {1,...,\getsize{link}}{
+    \node[ref, below= of \r] (ref\r) {Ref(\r)-Value \nodepart{second}\getindex{link}{\r}};
+    \path ($(\r.center)+(0,-0.12)$) edge (ref\r);
     }
     \path (0.three) edge (1.one);
     
@@ -425,7 +442,8 @@
 %%%%format:\cslinklist{1,2,3,4}; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand{\cslinklist}{O{} m}{
-  	\begin{tikzpicture}[every node/.style={align=center},linkn/.style={
+\renewcommand{\styler}{#1}
+  	\begin{tikzpicture}[every node/.style={align=center,transform shape},linkn/.style={
             very thick, rectangle split, 
             rectangle split parts=3, draw, 
             rectangle split horizontal, minimum size=18pt,
@@ -437,11 +455,11 @@
             , minimum size=18pt,
             inner sep=5pt, text=black,rounded corners,
             rectangle split part fill={blue!20, red!20}}
-            ,remember picture, *->,shorten >=1pt, auto, start chain=going right
+            ,remember picture, *->,shorten >=1pt, auto,\styler
       ]
  
 \ifstrempty{#2}{
-\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\node[linkn] (0) {/ \nodepart{second}Head \\ Size = 0};
 \path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
 \path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
 }%else
@@ -450,22 +468,26 @@
 
     \addtolist{link}{#2}
     
+    \begin{scope}[start chain=going right]
     \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
-   
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[linkn,on chain] (\x) {\nodepart{second}Idx(\x)};
-    \node[ref, below= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
-    \path ($(\x.center)+(0,-0.12)$) edge (ref\x);
+    \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)};
     }
-    
     \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
+    \end{scope}
+    
+    \foreach \r in {1,...,\getsize{link}}{
+    \node[ref, below= of \r] (ref\r) {Ref(\r)-Value \nodepart{second}\getindex{link}{\r}};
+    \path ($(\r.center)+(0,-0.12)$) edge (ref\r);
+    } 
 
    \foreach \v [count=\w from 1] in {0,...,\getsize{link}}{
     \draw let \p1 = (\v.three), \p2 = (\v.center) in (\x1,\y2) -- (\w);
    }
 }
     \end{tikzpicture}   
+    \renewcommand{\styler}{\default}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%CS loop single linklist%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -473,7 +495,7 @@
 %%%%format:\cslinklist{1,2,3,4}; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand{\cslooplinklist}{O{} m}{
-  	\begin{tikzpicture}[every node/.style={align=center},linkn/.style={
+  	\begin{tikzpicture}[every node/.style={align=center,transform shape},linkn/.style={
             very thick, rectangle split, 
             rectangle split parts=3, draw, 
             rectangle split horizontal, minimum size=18pt,
@@ -485,10 +507,10 @@
             , minimum size=18pt,
             inner sep=5pt, text=black,rounded corners,
             rectangle split part fill={blue!20, red!20}}
-            ,remember picture, *->, auto, start chain
+            ,remember picture, *->, auto
       ]
 \ifstrempty{#2}{
-\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\node[linkn] (0) {/ \nodepart{second}Head \\ Size = 0};
 \path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
 \path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
 }%else
@@ -496,13 +518,17 @@
 	\clearlist{link}           
     \addtolist{link}{#2}
     
-    \node[linkn, on chain] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
-   
+    \begin{scope}[start chain=going right]
+    \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[linkn,on chain] (\x) {\nodepart{second}Idx(\x)};
-    \node[ref, below= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
-    \path ($(\x.center)+(0,-0.12)$) edge (ref\x);
+    \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)};
+    }
+    \end{scope}
+    
+    \foreach \r in {1,...,\getsize{link}}{
+    \node[ref, below= of \r] (ref\r) {Ref(\r)-Value \nodepart{second}\getindex{link}{\r}};
+    \path ($(\r.center)+(0,-0.12)$) edge (ref\r);
     }
     \path (0.three) edge (1.one);
     
@@ -526,7 +552,7 @@
 %%%%format:\cslinklist{1,2,3,4}; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand{\csvlinklist}{O{} m}{
-  	\begin{tikzpicture}[every node/.style={align=center},linkn/.style={
+  	\begin{tikzpicture}[every node/.style={align=center,transform shape},linkn/.style={
             very thick, rectangle split, 
             rectangle split parts=3, draw, 
             minimum size=18pt,
@@ -538,10 +564,10 @@
             , minimum size=18pt,
             inner sep=5pt, text=black,rounded corners,
             rectangle split part fill={blue!20, red!20}}
-            ,remember picture, *->,shorten >=1pt, auto, start chain=going below
+            ,remember picture, *->,shorten >=1pt, auto
       ]      
 \ifstrempty{#2}{
-\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\node[linkn] (0) {/ \nodepart{second}Head \\ Size = 0};
 \path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
 \path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
 }%else
@@ -549,16 +575,20 @@
 	\clearlist{link}           
     \addtolist{link}{#2}
     
+    \begin{scope}[start chain=going below]
     \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
-   
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[linkn,on chain] (\x) {\nodepart{second}Idx(\x)   };
-    \node[ref, right= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
-    \path ($(\x.east)+(-0.3,0)$) edge (ref\x);
+    \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)};
     }
-    
     \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
+    \end{scope}
+    
+    \foreach \r in {1,...,\getsize{link}}{
+    \node[ref, right= of \r] (ref\r) {Ref(\r)-Value \nodepart{second}\getindex{link}{\r}};
+    \path ($(\r.east)+(-0.3,0)$) edge (ref\r);
+    }
+   
 
    \foreach \v [count=\w from 1] in {0,...,\getsize{link}}{
     \draw (\v.three) -- (\w.one);
@@ -573,7 +603,7 @@
 %%%%format:\csdlinklist{1,2,3,4}; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand{\csvdlinklist}{O{} m}{
-\begin{tikzpicture}[every node/.style={align=center},linkn/.style={
+\begin{tikzpicture}[every node/.style={align=center,transform shape},linkn/.style={
             very thick, rectangle split, 
             rectangle split parts=3, draw, 
             minimum size=18pt,
@@ -585,11 +615,11 @@
             , minimum size=18pt,
             inner sep=5pt, text=black,rounded corners,
             rectangle split part fill={blue!20, red!20}}
-            ,remember picture, *->, auto, start chain=going below
+            ,remember picture, *->, auto
       ]
 
 \ifstrempty{#2}{
-\node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = 0};
+\node[linkn] (0) {/ \nodepart{second}Head \\ Size = 0};
 \path ($(0.three)+(0,0.08)$) edge[bend left] ($(0.one)+(0,0.08)$);
 \path ($(0.one)+(0,-0.08)$) edge[bend left] ($(0.three)+(0,-0.08)$);
 }%else
@@ -597,16 +627,19 @@
 	\clearlist{link}           
     \addtolist{link}{#2}
     
+    \begin{scope}[start chain=going below]
     \node[linkn, on chain,] (0) {/ \nodepart{second}Head \\ Size = \getsize{link}}; 
-    
 	%%place and draw of link node and respective ref value
 	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)  };
-    \node[ref, right= of \x] (ref\x) {Ref(\x)-Value \nodepart{second}\getindex{link}{\x}};
-    \path ($(\x.east)+(-0.3,0)$) edge (ref\x);
+    \node[linkn,on chain] (\x) {\nodepart{second} Idx(\x)};
     }
-    
     \node[linkn, on chain,] ({\addby{link}{1}}) {\nodepart{second}Tail \nodepart{three} /}; 
+    \end{scope}
+    
+    \foreach \r in {1,...,\getsize{link}}{
+    \node[ref, right= of \r] (ref\r) {Ref(\r)-Value \nodepart{second}\getindex{link}{\r}};
+    \path ($(\r.east)+(-0.3,0)$) edge (ref\r);
+    }
 
   
     \foreach \v [count=\i from 1] in {0,...,\getsize{link}}{
@@ -633,15 +666,15 @@
     
 	\clearlist{link}           
     \addtolist{link}{#2}
-    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}
+    \ifnumcomp{\getsize{link}}{=}{1}{ \node{\getindex{link}{1}};}
     %else
    {
-	%%place and draw of link node and respective ref value
-	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[links, on chain=going right] (\x) {
-    \begin{tikzpicture}
-    \node{\getindex{link}{\x}};
-    \end{tikzpicture}};
+	%%place and draw of link node
+	\savebox{\boxer}{\tikz\node{\getindex{link}{1}};} 
+	 \node(1){\usebox{\boxer}};
+	\foreach \x [count=\px from 1] in {2,...,\getsize{link}}{
+	\savebox{\boxer}{\tikz\node{\getindex{link}{\x}};} 	 
+    \node[links, right=of \px] (\x) {\usebox{\boxer}};
     }
     
      \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
@@ -668,11 +701,12 @@
     
 	\clearlist{link}           
     \addtolist{link}{#2}
-    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}%
+    \ifnumcomp{\getsize{link}}{=}{1}{ \node{\getindex{link}{1}};}%
    {
 	%%place and draw of link node and respective ref value
-	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[links,on chain=going right] (\x) {\getindex{link}{\x}};
+	\node(1){\getindex{link}{1}};
+	\foreach \x [count=\px from 1] in {2,...,\getsize{link}}{	 
+    \node[links, right=of \px] (\x) {\getindex{link}{\x}};
     }
     
    \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
@@ -690,8 +724,8 @@
 %%%%format:\linklist{1,2,3,4}; 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand{\vlinklist}{O{} m}{
-  	\begin{tikzpicture}[every node/.style={align=center}, links/.style={}
-            ,remember picture, *->,shorten >=1pt, auto
+  	\begin{tikzpicture}[every node/.style={align=center}, links/.style={},
+  						 *->,shorten >=1pt, auto
       ]
     
     \ifstrempty{#2}{ }
@@ -700,11 +734,12 @@
     
 	\clearlist{link}           
     \addtolist{link}{#2}
-    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}%
+    \ifnumcomp{\getsize{link}}{=}{1}{\node{\getindex{link}{1}};}%
    {
 	%%place and draw of link node and respective ref value
-	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[links,on chain=going below] (\x) {\getindex{link}{\x}};
+	 \node(1){\getindex{link}{1}};
+	\foreach \x [count=\px from 1] in {2,...,\getsize{link}}{	 
+    \node[links, below=of \px] (\x) {\getindex{link}{\x}};
     }
     
    \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
@@ -723,7 +758,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand{\vdlinklist}{O{} m}{
   	\begin{tikzpicture}[every node/.style={align=center}, links/.style={}
-            ,remember picture, *->,shorten >=1pt, auto
+            , *->,shorten >=1pt, auto
       ]
     
     \ifstrempty{#2}{ }
@@ -732,11 +767,12 @@
     
 	\clearlist{link}           
     \addtolist{link}{#2}
-    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}%
+    \ifnumcomp{\getsize{link}}{=}{1}{ \node{\getindex{link}{1}};}%
    {
 	%%place and draw of link node and respective ref value
-	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[links,on chain=going below] (\x) {\getindex{link}{\x}};
+	 \node(1){\getindex{link}{1}};
+	\foreach \x [count=\px from 1] in {2,...,\getsize{link}}{	 
+    \node[links, below=of \px] (\x) {\getindex{link}{\x}};
     }
     
    \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
@@ -765,11 +801,12 @@
     
 	\clearlist{link}           
     \addtolist{link}{#2}
-    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}%
+    \ifnumcomp{\getsize{link}}{=}{1}{ \node{\getindex{link}{1}};}%
    {
 	%%place and draw of link node and respective ref value
-	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[links,on chain] (\x) {\getindex{link}{\x}};
+	 \node(1){\getindex{link}{1}};
+	\foreach \x [count=\px from 1] in {2,...,\getsize{link}}{	 
+    \node[links, right=of \px] (\x) {\getindex{link}{\x}};
     }
     
   \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
@@ -800,11 +837,12 @@
     
 	\clearlist{link}           
     \addtolist{link}{#2}
-    \ifnumcomp{\getsize{link}}{=}{1}{ \tikz\node{\getindex{link}{1}};}%
+    \ifnumcomp{\getsize{link}}{=}{1}{\node{\getindex{link}{1}};}%
    {
 	%%place and draw of link node and respective ref value
-	\foreach \x in {1,...,\getsize{link}}{	 
-    \node[links,on chain] (\x) {\getindex{link}{\x}};
+	 \node(1){\getindex{link}{1}};
+	\foreach \x [count=\px from 1] in {2,...,\getsize{link}}{	 
+    \node[links, right=of \px] (\x) {\getindex{link}{\x}};
     }
     
    \foreach \v [count=\w from 2] in {1,...,\addby{link}{-1}}{
@@ -831,9 +869,9 @@
 \newlist{vals}
 
 \newcommand\hashmapset[3]{
-\begin{tikzpicture}[remember picture,auto,->,thick,
+\begin{tikzpicture}[auto,->,thick,remember picture,
   inner/.style={circle,draw=blue!50,fill=blue!20,inner sep=3pt},
-  outer/.style={rectangle,rectangle split, rectangle split parts=3, draw=black, rounded corners, 						fill=red!40, text centered, text=black}
+  outer/.style={rectangle,rectangle split, rectangle split parts=3, rectangle split part align={center,center,center},draw=black, rounded corners,fill=red!40, text centered, text=black}
   ]
 %reset lists upon instantiation%%
 	\clearlist{keys}           %%

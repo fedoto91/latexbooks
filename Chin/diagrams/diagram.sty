@@ -1,0 +1,41 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{diagram}
+\RequirePackage{expl3, xparse}% http://ctan.org/pkg/xparse
+\RequirePackage{tikz}
+\usetikzlibrary{graphs,graphdrawing}
+\usegdlibrary{force}
+\usegdlibrary{layered}
+
+\tikzstyle{generalization}=[<-, >=open triangle 90, thick]
+\tikzstyle{aggregation}=[<-,>=open diamond, thick]
+\tikzstyle{composition}=[<-,>=closed diamond, thick]
+\tikzstyle{dependency}=[<-,dashed, thick]
+
+\NewDocumentCommand{\class}{O{} m O{} O{} O{} }{
+\tikz\node[draw,inner sep=0pt, align=center, #1](#2){ \begin{tabular}{c}
+    
+    #3 \\
+    \hline
+    #4 \\
+    \hline
+    #5 \\
+    \end{tabular}};
+}
+
+\newenvironment{diagram}[1]
+    {
+    \begin{tikzpicture}[spring layout ,every node/.style={transform shape}, node distance=3cm,level distance=2cm, sibling distance=3cm,#1]
+    }
+    { 
+   
+    \end{tikzpicture} 
+    }
+\NewDocumentCommand{\rel}{O{} m m m}{
+\tikz\graph [use existing nodes, #1] {
+      {#3} --[#2] {#4};
+ };
+ }
+ 
+
+
+\endinput
