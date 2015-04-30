@@ -1,5 +1,12 @@
 \documentclass{article}
 \usepackage{collection}
+\usepackage{DraTex}
+\usepackage{AlDraTex}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{pgffor}
+\usepackage{graphicx}
+\usetikzlibrary{positioning,shapes,shadows,arrows}
 
 \begin{document}
 
@@ -176,5 +183,412 @@ EX:
 \rel{dependency}{e}{d}
     
 \end{diagram}
+
+%%%%%%%1 input
+\newpage
+\begin{center}
+\textbf{{\Large Objects:}}
+\end{center}
+Example1:{{\textbackslash}numofnodes{1}{\\}}\\
+Example2:{{\textbackslash}numofnodes{2}{\\}}\\
+Example3:{{\textbackslash}numofnodes{3}{\\}}\\
+\newpage
+\begin{center}
+\textbf{{\Large Objects:}}
+\end{center}
+Example1:{{\textbackslash}numofnodes{1}{\\}}\\
+\tikzstyle{abstract}=[rectangle, draw=black, fill=white!40,
+        text centered, anchor=north, text=black, text width=4cm]
+\usetikzlibrary{arrows,positioning,shapes}
+\newcommand{\numofnodes}{1}
+
+%User Input
+%%Change the "Caption Here" to the caption
+\newcommand{\Caption}{Caption Here}
+
+%Head
+\newcommand{\ObjectName}{LinkedList\textlangle student\textrangle}
+\newcommand{\LLHead}{}
+\newcommand{\LLTail}{null}
+\newcommand{\LLSize}{\numofnodes}
+
+%Node
+\newcommand{\NName}{Node\textlangle student\textrangle}
+\newcommand{\NValue}{}
+\newcommand{\NNext}{}
+\newcommand{\NPrev}{null}
+
+%Value
+\newcommand{\VTop}{Student}
+\newcommand{\VName}{Jim}
+\newcommand{\VNum}{123}
+\newcommand{\VAddr}{}
+
+%Address
+\newcommand{\AName}{Address}
+\newcommand{\AStreet}{33 Blank St}
+\newcommand{\ACity}{Glassboro}
+\newcommand{\AState}{NJ}
+\newcommand{\AZip}{08080}
+
+%Linked List Tail
+\newcommand{\TName}{Tail}
+\newcommand{\THead}{null}
+\newcommand{\TTail}{}
+\newcommand{\TSize}{null}
+
+\begin {figure}
+
+%Head
+%%Draws the head node
+\Draw
+\input {object}
+\hspace{-4cm}
+
+\Indirect \Table <ObjectPrims>
+{  
+	1, head, \LLHead  &
+    1, tail, \LLTail &
+    1, size, \LLSize
+}
+
+\Indirect \Table <ObjectDiagram>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+\Scale (1,1)
+\OD (\ObjectName, ObjectPrims, ObjectDiagram, 6)
+
+%Arrow from head
+%%Draws the arrow from head to first node
+\Move(5,43)
+\FcNode(Head)
+\Move(45,0)
+\FcNode(HeadRight)
+\Move(0,-80)
+\FcNode(HeadDown)
+\Move(-100,0)
+\FcNode(HeadLeft)
+\Move(0,-14)
+\FcNode(HeadBottom)
+\ArrowHeads(1)
+\Edge(HeadLeft,HeadBottom)
+\ArrowHeads(0)
+\Edge(Head,HeadRight)
+\VHEdge(HeadRight,HeadDown)
+\Edge(HeadDown,HeadLeft)
+\EndDraw
+
+%Node
+\begin{tikzpicture}[abstract, rectangle split, rectangle split parts=2, text justified]
+\foreach \x in {0}
+    \foreach \y in {1,...,\numofnodes} 
+       {\node (NODES) [abstract, rectangle split, rectangle split parts=2, text justified]  (\x\y) at (5, 2.9*\y) 
+       		{\textbf{Node}
+            \nodepart{second}next  \framebox[1.1\width]{arrow}
+            \newline prev  \framebox[1.1\width]{arrow}
+            \newline value  \framebox[1.1\width]{arrow}
+            
+            };}
+                      
+\foreach \x in {0}
+    \foreach \y in {1,...,\numofnodes}            
+{\node (NODETHING) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (10, 2.6*\y) 
+       		{\textbf{\VTop}
+            \nodepart{second}Name  \framebox[1.1\width]{\VName}
+            \newline Num  \framebox[1.1\width]{\VNum}
+            \newline Address  \framebox[1.1\width]{arrow}};}
+
+\foreach \x in {0}
+    \foreach \y in {1,...,\numofnodes} 
+{\node (NODETHING2) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (15, 2.6*\y) 
+       		{\textbf{\AName}
+            \nodepart{second}Street  \framebox[1.1\width]{\AStreet}
+            \newline City  \framebox[1.1\width]{\ACity}
+            \newline State  \framebox[1.1\width]{\AState}
+            \newline Zip  \framebox[1.1\width]{\AZip}};}           
+\end{tikzpicture}
+
+%%Tail
+%%Draws the tail node
+\hspace{.05cm}
+\Draw
+\input {object}
+
+\Indirect \Table <ObjectPrims>
+{  
+	1, next, \THead &
+    1, prev, \TTail &
+    1, value, \TSize
+}
+\Indirect \Table <ObjectDiagram>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+\Scale (1,1)
+\OD (\TName, ObjectPrims, ObjectDiagram, 6)
+
+%Arrow from Tail
+%%Draws the arrow from tail node to tail
+\Move(48,15)
+\FcNode(Tail)
+\Move(45,0)
+\FcNode(Temp2)
+\Move(0,60)
+\FcNode(Temp3)
+\Move(-100,0)
+\FcNode(Temp4)
+\Move(0,14)
+\FcNode(Temp5)
+\ArrowHeads(1)
+\Edge(Temp4,Temp5)
+\ArrowHeads(0)
+\Edge(Tail,Temp2)
+\Edge(Temp2,Temp3)
+\Edge(Temp3,Temp4)
+\EndDraw
+
+\caption {\Caption}
+
+\label {fig:ObjectDiagram}
+
+\end {figure}
+
+
+%%%%%%%2 input
+\newpage
+\tikzstyle{abstract}=[rectangle, draw=black, fill=white!40,
+        text centered, anchor=north, text=black, text width=4cm]
+\usetikzlibrary{arrows,positioning,shapes}
+\newcommand{\numofnodess}{2}
+
+\begin {figure}
+
+%Head
+%%Draws the head node
+\Draw
+\input {object}
+\hspace{-4cm}
+
+\Indirect \Table <ObjectPrims>
+{  
+	1, head, \LLHead  &
+    1, tail, \LLTail &
+    1, size, \LLSize
+}
+
+\Indirect \Table <ObjectDiagram>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+\Scale (1,1)
+\OD (\ObjectName, ObjectPrims, ObjectDiagram, 6)
+
+%Arrow from head
+%%Draws the arrow from head to first node
+\Move(5,43)
+\FcNode(Head)
+\Move(45,0)
+\FcNode(HeadRight)
+\Move(0,-80)
+\FcNode(HeadDown)
+\Move(-100,0)
+\FcNode(HeadLeft)
+\Move(0,-14)
+\FcNode(HeadBottom)
+\ArrowHeads(1)
+\Edge(HeadLeft,HeadBottom)
+\ArrowHeads(0)
+\Edge(Head,HeadRight)
+\VHEdge(HeadRight,HeadDown)
+\Edge(HeadDown,HeadLeft)
+\EndDraw
+
+%Node
+\begin{tikzpicture}[abstract, rectangle split, rectangle split parts=2, text justified]
+\foreach \x in {0}
+    \foreach \y in {1,...,\numofnodess} 
+       {\node (NODES) [abstract, rectangle split, rectangle split parts=2, text justified]  (\x\y) at (5, 2.9*\y) 
+       		{\textbf{Node}
+            \nodepart{second}next  \framebox[1.1\width]{arrow}
+            \newline prev  \framebox[1.1\width]{arrow}
+            \newline value  \framebox[1.1\width]{arrow}
+            
+            };}
+                      
+\foreach \x in {0}
+    \foreach \y in {1,...,\numofnodess}            
+{\node (NODETHING) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (10, 2.6*\y) 
+       		{\textbf{\VTop}
+            \nodepart{second}Name  \framebox[1.1\width]{\VName}
+            \newline Num  \framebox[1.1\width]{\VNum}
+            \newline Address  \framebox[1.1\width]{arrow}};}
+
+\foreach \x in {0}
+    \foreach \y in {1,...,\numofnodess} 
+{\node (NODETHING2) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (15, 2.6*\y) 
+       		{\textbf{\AName}
+            \nodepart{second}Street  \framebox[1.1\width]{\AStreet}
+            \newline City  \framebox[1.1\width]{\ACity}
+            \newline State  \framebox[1.1\width]{\AState}
+            \newline Zip  \framebox[1.1\width]{\AZip}};}           
+\end{tikzpicture}
+
+%%Tail
+%%Draws the tail node
+\hspace{.05cm}
+\Draw
+\input {object}
+
+\Indirect \Table <ObjectPrims>
+{  
+	1, next, \THead &
+    1, prev, \TTail &
+    1, value, \TSize
+}
+\Indirect \Table <ObjectDiagram>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+\Scale (1,1)
+\OD (\TName, ObjectPrims, ObjectDiagram, 6)
+
+%Arrow from Tail
+%%Draws the arrow from tail node to tail
+\Move(48,15)
+\FcNode(Tail)
+\Move(45,0)
+\FcNode(Temp2)
+\Move(0,60)
+\FcNode(Temp3)
+\Move(-100,0)
+\FcNode(Temp4)
+\Move(0,14)
+\FcNode(Temp5)
+\ArrowHeads(1)
+\Edge(Temp4,Temp5)
+\ArrowHeads(0)
+\Edge(Tail,Temp2)
+\Edge(Temp2,Temp3)
+\Edge(Temp3,Temp4)
+\EndDraw
+
+\caption {\Caption}
+
+\label {fig:ObjectDiagram}
+
+\end {figure}
+
+%%%%%%%5 input
+\newpage
+
+\newcommand{\numofnodesss}{5}
+
+
+\begin {figure}
+
+%Head
+%%Draws the head node
+\Draw
+\input {object}
+\hspace{-4cm}
+
+\Indirect \Table <ObjectPrims>
+{  
+	1, head, \LLHead  &
+    1, tail, \LLTail &
+    1, size, \LLSize
+}
+
+\Indirect \Table <ObjectDiagram>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+\Scale (1,1)
+\OD (\ObjectName, ObjectPrims, ObjectDiagram, 6)
+
+%Arrow from head
+%%Draws the arrow from head to first node
+\Move(5,43)
+\FcNode(Head)
+\Move(45,0)
+\FcNode(HeadRight)
+\Move(0,-80)
+\FcNode(HeadDown)
+\Move(-100,0)
+\FcNode(HeadLeft)
+\Move(0,-14)
+\FcNode(HeadBottom)
+\ArrowHeads(1)
+\Edge(HeadLeft,HeadBottom)
+\ArrowHeads(0)
+\Edge(Head,HeadRight)
+\VHEdge(HeadRight,HeadDown)
+\Edge(HeadDown,HeadLeft)
+\EndDraw
+
+%Node
+\begin{tikzpicture}[abstract, rectangle split, rectangle split parts=2, text justified]
+\foreach \x in {0}
+    \foreach \y in {1,...,\numofnodesss} 
+       {\node (NODES) [abstract, rectangle split, rectangle split parts=2, text justified]  (\x\y) at (5, 2.9*\y) 
+       		{\textbf{Node}
+            \nodepart{second}next  \framebox[1.1\width]{arrow}
+            \newline prev  \framebox[1.1\width]{arrow}
+            \newline value  \framebox[1.1\width]{arrow}
+            
+            };}
+                      
+\foreach \x in {0}
+    \foreach \y in {1,...,\numofnodesss}            
+{\node (NODETHING) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (10, 2.6*\y) 
+       		{\textbf{\VTop}
+            \nodepart{second}Name  \framebox[1.1\width]{\VName}
+            \newline Num  \framebox[1.1\width]{\VNum}
+            \newline Address  \framebox[1.1\width]{arrow}};}
+
+\foreach \x in {0}
+    \foreach \y in {1,...,\numofnodesss} 
+{\node (NODETHING2) [abstract, rectangle split, rectangle split parts=2, text justified] (\x\y) at (15, 2.6*\y) 
+       		{\textbf{\AName}
+            \nodepart{second}Street  \framebox[1.1\width]{\AStreet}
+            \newline City  \framebox[1.1\width]{\ACity}
+            \newline State  \framebox[1.1\width]{\AState}
+            \newline Zip  \framebox[1.1\width]{\AZip}};}           
+\end{tikzpicture}
+
+%%Tail
+%%Draws the tail node
+\hspace{.05cm}
+\Draw
+\input {object}
+
+\Indirect \Table <ObjectPrims>
+{  
+	1, next, \THead &
+    1, prev, \TTail &
+    1, value, \TSize
+}
+\Indirect \Table <ObjectDiagram>
+ {  0, home,Address,addrAPrims,addrAObjs, , , }
+\Scale (1,1)
+\OD (\TName, ObjectPrims, ObjectDiagram, 6)
+
+%Arrow from Tail
+%%Draws the arrow from tail node to tail
+\Move(48,15)
+\FcNode(Tail)
+\Move(45,0)
+\FcNode(Temp2)
+\Move(0,60)
+\FcNode(Temp3)
+\Move(-100,0)
+\FcNode(Temp4)
+\Move(0,14)
+\FcNode(Temp5)
+\ArrowHeads(1)
+\Edge(Temp4,Temp5)
+\ArrowHeads(0)
+\Edge(Tail,Temp2)
+\Edge(Temp2,Temp3)
+\Edge(Temp3,Temp4)
+\EndDraw
+
+\caption {\Caption}
+
+\label {fig:ObjectDiagram}
+
+\end {figure}
+
 
 \end{document}
